@@ -1,0 +1,50 @@
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx;
+}
+.box {
+  width: 100%;
+  background: linear-gradient(180deg, #F7F4FF 0%, #ffffff 28%);
+  border-radius: 32rpx;
+  padding: 48rpx 40rpx 36rpx;
+}
+.title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-bottom: 28rpx;
+}
+.body {
+  color: #666;
+  font-size: 28rpx;
+  line-height: 1.7;
+  text-align: center;
+}
+.actions {
+  margin-top: 40rpx;
+  display: flex;
+  gap: 20rpx;
+}
+.btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+}
+.ghost {
+  color: #6B5CFF;
+  border: 2rpx solid #6B5CFF;
+  background: #fff;
+}
+.fill {
+  color: #fff;
+  background: linear-gradient(90deg, #4C6FFF, #8B5CFF);
+}

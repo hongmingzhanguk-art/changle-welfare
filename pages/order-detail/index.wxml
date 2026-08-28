@@ -1,0 +1,40 @@
+<view class="page od">
+  <nav-bar title="订单详情" background="#F4F5F9"></nav-bar>
+  <view class="status">
+    <view class="truck"></view>
+    <view>
+      <view class="st">{{order.status}}</view>
+      <view class="tip">{{order.statusTip}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="who">{{order.address.name}}  {{order.address.phone}}</view>
+    <view class="full">{{order.address.full}}</view>
+  </view>
+
+  <view class="card">
+    <view class="g" wx:for="{{order.items}}" wx:key="index">
+      <image src="{{item.image}}" mode="aspectFill"></image>
+      <view class="ginfo">
+        <view class="gt ellipsis"><text class="tag">超市</text>{{item.title}}</view>
+        <view class="gs">规格：{{item.spec}}</view>
+        <view class="gf">
+          <text class="price"><text class="yen">¥</text>{{item.price}}</text>
+          <text class="gq">x{{item.qty}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">订单信息</view>
+  <view class="card info">
+    <view class="row"><text>订单编号</text><view class="rval">{{order.no}} <text class="copy" bindtap="copyNo">复制</text></view></view>
+    <view class="row"><text>下单时间</text><text>{{order.createdAt}}</text></view>
+    <view class="row"><text>订单金额</text><text>{{order.amount}}</text></view>
+    <view class="row"><text>支付方式</text><text>{{order.payType}}</text></view>
+    <view class="row"><text>应付金额</text><text class="price">¥ {{order.amount}}</text></view>
+  </view>
+
+  <view class="btn-primary back" bindtap="goList">返回订单列表</view>
+</view>

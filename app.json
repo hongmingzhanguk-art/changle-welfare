@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/index",
+    "pages/cart/index",
+    "pages/mine/index",
+    "pages/login/index",
+    "pages/detail/index",
+    "pages/order/index",
+    "pages/order-detail/index",
+    "pages/welfare/index",
+    "pages/bind-card/index",
+    "pages/feedback/index",
+    "pages/search/index",
+    "pages/address/index",
+    "pages/orders/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "常乐福利",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#F4F5F9",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#B8B8B8",
+    "selectedColor": "#6B5CFF",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "分类",
+        "iconPath": "images/tabbar/cate.png",
+        "selectedIconPath": "images/tabbar/cate-active.png"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车",
+        "iconPath": "images/tabbar/cart.png",
+        "selectedIconPath": "images/tabbar/cart-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "images/tabbar/mine.png",
+        "selectedIconPath": "images/tabbar/mine-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

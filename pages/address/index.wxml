@@ -1,0 +1,8 @@
+<view class="page ad">
+  <nav-bar title="收货地址" background="#F4F5F9"></nav-bar>
+  <view class="card" wx:for="{{list}}" wx:key="id" bindtap="pick">
+    <view class="who">{{item.name}}  {{item.phone}} <text class="def" wx:if="{{item.isDefault}}">默认</text></view>
+    <view class="full">{{item.full}}</view>
+  </view>
+  <view class="btn-primary add" bindtap="add">新增收货地址</view>
+</view>

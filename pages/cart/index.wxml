@@ -1,0 +1,86 @@
+<view class="page cart-page">
+  <view class="top" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-row">
+      <text class="nt">购物车 ({{itemCount}})</text>
+    </view>
+    <view class="addr-row">
+      <view class="addr" bindtap="goAddress">
+        <view class="pin"></view>
+        <text>点击添加收货地址</text>
+        <text class="caret">›</text>
+      </view>
+      <text class="manage">管理</text>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!groups.length}}">
+    <view class="empty-icon">
+      <view class="empty-cart"></view>
+    </view>
+    <view class="empty-t">购物车空空如也</view>
+    <view class="empty-s">赶快加入喜欢的商品吧~</view>
+    <view class="btn-primary empty-btn" bindtap="goHome">去逛逛</view>
+  </view>
+
+  <view class="groups" wx:else>
+    <view class="shop" wx:for="{{groups}}" wx:for-index="gi" wx:key="shopId">
+      <view class="shop-hd">
+        <view class="ck {{item.checked ? 'on' : ''}}" data-gi="{{gi}}" bindtap="toggleShop"></view>
+        <view class="shop-logo s{{gi}}"></view>
+        <text class="shop-name">{{item.shop}}</text>
+      </view>
+      <view class="item-wrap" wx:for="{{item.items}}" wx:for-item="it" wx:for-index="ii" wx:key="id">
+        <movable-area class="marea">
+          <movable-view
+            class="mview"
+            direction="horizontal"
+            damping="40"
+            x="{{it.x}}"
+            data-gi="{{gi}}"
+            data-ii="{{ii}}"
+            bindchange="onChange"
+          >
+            <view class="item">
+              <view class="ck {{it.checked ? 'on' : ''}}" data-gi="{{gi}}" data-ii="{{ii}}" catchtap="toggleItem"></view>
+              <image class="thumb" src="{{it.image}}" mode="aspectFill" bindtap="goDetail" data-id="{{it.productId}}"></image>
+              <view class="meta">
+                <view class="name ellipsis">{{it.title}}</view>
+                <view class="spec">{{it.spec}}</view>
+                <view class="iprice"><text class="yen">¥</text>{{it.price}}</view>
+              </view>
+              <text class="qty">x{{it.qty}}</text>
+            </view>
+            <view class="actions">
+              <view class="act fav" catchtap="favItem">移入收藏</view>
+              <view class="act del" data-gi="{{gi}}" data-ii="{{ii}}" catchtap="delItem">删除</view>
+            </view>
+          </movable-view>
+        </movable-area>
+      </view>
+    </view>
+  </view>
+
+  <view class="guess-title">猜你喜欢</view>
+  <view class="grid">
+    <view class="p-card" wx:for="{{guess}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image class="p-img" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="p-body">
+        <view class="p-name ellipsis-2">{{item.title}}</view>
+        <view class="p-foot">
+          <text class="price"><text class="yen">¥</text>{{item.price}}</text>
+          <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
+            <view class="cart-fab-icon"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tail-space"></view>
+
+  <view class="bar" wx:if="{{groups.length}}">
+    <view class="ck {{allChecked ? 'on' : ''}}" bindtap="toggleAll"></view>
+    <text class="all-txt">全选</text>
+    <view class="sum">合计：<text class="price"><text class="yen">¥</text>{{total}}</text></view>
+    <view class="pay" bindtap="checkout">结算</view>
+  </view>
+</view>

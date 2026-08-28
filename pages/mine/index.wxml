@@ -1,0 +1,71 @@
+<view class="page mine">
+  <view class="hero" style="padding-top: {{statusBarHeight}}px;">
+    <view class="blob b1"></view>
+    <view class="blob b2"></view>
+    <view class="user">
+      <image wx:if="{{loggedIn && user.avatar}}" class="avatar" src="{{user.avatar}}" mode="aspectFill"></image>
+      <view wx:else class="avatar guest-av"></view>
+      <view class="uinfo">
+        <view class="nick">{{user.nickname}}</view>
+        <view class="phone">{{user.phone}}</view>
+      </view>
+      <view class="bind-btn" bindtap="goBind">
+        <text class="star">★</text>
+        <text>积分绑定</text>
+        <text class="caret">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="welfare" bindtap="goWelfare">
+    <view>
+      <view class="w-title">▾ 我的福利  {{welfareCount}}</view>
+      <view class="w-sub">各项福利享不停，立即查看我的福利</view>
+    </view>
+    <view class="flower"></view>
+  </view>
+
+  <view class="card order-card">
+    <view class="card-hd">
+      <text>我的订单</text>
+      <text class="all" bindtap="goOrders">全部订单 ›</text>
+    </view>
+    <view class="order-icons">
+      <view class="oi" bindtap="goOrders"><view class="oi-ic film"></view><text>电影</text></view>
+      <view class="oi" bindtap="goOrders"><view class="oi-ic vip"></view><text>会员</text></view>
+      <view class="oi" bindtap="goOrders"><view class="oi-ic bag"></view><text>商品</text></view>
+      <view class="oi" bindtap="goOrders"><view class="oi-ic cake"></view><text>蛋糕</text></view>
+      <view class="oi" bindtap="goOrders"><view class="oi-ic food"></view><text>点餐</text></view>
+    </view>
+  </view>
+
+  <view class="card menu-card">
+    <view class="menu" bindtap="goAddress">
+      <view class="mi loc"></view><text>收货地址</text><text class="arrow">›</text>
+    </view>
+    <view class="menu" bindtap="goProfile">
+      <view class="mi user"></view><text>个人资料</text><text class="arrow">›</text>
+    </view>
+    <view class="menu" bindtap="goService">
+      <view class="mi chat"></view><text>联系客服</text><text class="arrow">›</text>
+    </view>
+    <view class="menu" bindtap="goFeedback">
+      <view class="mi mail"></view><text>意见反馈</text><text class="arrow">›</text>
+    </view>
+    <view class="menu" bindtap="goAbout">
+      <view class="mi info"></view><text>关于我们</text><text class="arrow">›</text>
+    </view>
+  </view>
+
+  <c-modal
+    show="{{guestShow}}"
+    title="游客模式暂不支持该功能"
+    cancelText="继续体验"
+    confirmText="去注册/登录"
+    bind:cancel="onStay"
+    bind:close="onStay"
+    bind:confirm="onGoLogin"
+  >
+    <view>绑定新卡完成注册或登录可使用完整功能</view>
+  </c-modal>
+</view>

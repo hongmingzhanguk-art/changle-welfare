@@ -1,0 +1,28 @@
+.bind {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #E8E4FF 0%, #F4F5F9 240rpx);
+}
+.illus { margin: 8rpx 24rpx 0; border-radius: 24rpx; overflow: hidden; }
+.illus image { width: 100%; }
+.card {
+  margin: 20rpx 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx 24rpx 36rpx;
+}
+.hd { font-size: 30rpx; font-weight: 700; display: flex; align-items: center; }
+.bar { width: 8rpx; height: 28rpx; background: #6B5CFF; border-radius: 4rpx; margin-right: 10rpx; }
+.tip { color: #888; font-size: 24rpx; margin: 16rpx 0 20rpx; }
+.field {
+  background: #F4F5F9;
+  border-radius: 16rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+}
+.field text { width: 80rpx; color: #333; }
+.field input { flex: 1; }
+.btn-primary { margin-top: 16rpx; }

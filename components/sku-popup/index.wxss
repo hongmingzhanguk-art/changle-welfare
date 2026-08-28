@@ -1,0 +1,120 @@
+.wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+}
+.mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #F4F0FF 0%, #fff 80rpx);
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 28rpx 32rpx calc(env(safe-area-inset-bottom) + 24rpx);
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+.ht {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.close {
+  font-size: 44rpx;
+  color: #999;
+  width: 56rpx;
+  text-align: right;
+  line-height: 1;
+}
+.prod {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 28rpx;
+}
+.thumb {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  background: #f6f6f6;
+}
+.meta {
+  flex: 1;
+  min-width: 0;
+}
+.name {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.price {
+  color: #FF2A2A;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin: 8rpx 0 16rpx;
+}
+.yen { font-size: 24rpx; }
+.stepper {
+  display: flex;
+  align-items: center;
+}
+.sbtn {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 8rpx;
+  background: #F3F4F8;
+  text-align: center;
+  line-height: 44rpx;
+  font-size: 32rpx;
+  color: #666;
+}
+.snum {
+  min-width: 56rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+.spec { margin-bottom: 24rpx; }
+.slabel {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.chip {
+  padding: 12rpx 22rpx;
+  background: #F3F4F8;
+  border-radius: 12rpx;
+  font-size: 24rpx;
+  color: #333;
+  border: 2rpx solid transparent;
+}
+.chip.on {
+  background: #fff;
+  color: #6B5CFF;
+  border-color: #6B5CFF;
+}
+.buy {
+  margin-top: 12rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 44rpx;
+  background: linear-gradient(90deg, #4C6FFF, #8B5CFF);
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

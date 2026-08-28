@@ -1,0 +1,26 @@
+<view class="page fb">
+  <nav-bar title="意见反馈" background="#F4F5F9"></nav-bar>
+  <view class="card">
+    <view class="hd"><view class="bar"></view>反馈问题</view>
+    <picker range="{{types}}" value="{{typeIndex}}" bindchange="onType">
+      <view class="pick">
+        <text>{{types[typeIndex]}}</text>
+        <text class="caret">▾</text>
+      </view>
+    </picker>
+  </view>
+  <view class="card">
+    <view class="hd"><view class="bar"></view>问题与意见</view>
+    <view class="hint">请详细您的问题(10个字符以上)，以便我们为您提供更好的帮助</view>
+    <view class="area-wrap">
+      <textarea
+        placeholder="请输入您的问题"
+        maxlength="240"
+        value="{{content}}"
+        bindinput="onInput"
+      ></textarea>
+      <view class="count">{{content.length}}/240</view>
+    </view>
+    <view class="btn-primary" bindtap="submit">提交</view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+.od { min-height: 100vh; padding-bottom: 60rpx; background: #F4F5F9; }
+.status { display: flex; align-items: center; padding: 24rpx 32rpx 12rpx; }
+.truck {
+  width: 72rpx; height: 48rpx; margin-right: 16rpx;
+  background: #4C8DFF; border-radius: 8rpx 16rpx 8rpx 8rpx;
+  position: relative;
+}
+.st { font-size: 40rpx; font-weight: 700; }
+.tip { color: #999; font-size: 24rpx; margin-top: 6rpx; }
+.card { margin: 16rpx 24rpx; background: #fff; border-radius: 24rpx; padding: 24rpx; }
+.who { font-size: 30rpx; }
+.full { color: #999; font-size: 24rpx; margin-top: 8rpx; }
+.g { display: flex; }
+.g image { width: 140rpx; height: 140rpx; border-radius: 16rpx; }
+.ginfo { flex: 1; margin-left: 16rpx; min-width: 0; }
+.gt { font-size: 28rpx; }
+.tag { background: #FF3B30; color: #fff; font-size: 18rpx; padding: 0 6rpx; border-radius: 4rpx; margin-right: 8rpx; }
+.gs { color: #999; font-size: 22rpx; margin: 10rpx 0; }
+.gf { display: flex; justify-content: space-between; }
+.sec { padding: 8rpx 32rpx; font-size: 30rpx; font-weight: 700; }
+.info .row {
+  display: flex; justify-content: space-between; padding: 18rpx 0;
+  font-size: 26rpx; color: #888;
+}
+.rval { color: #333; }
+.copy { color: #3B6BFF; margin-left: 8rpx; }
+.back { margin: 80rpx 48rpx 0; }

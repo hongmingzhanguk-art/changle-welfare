@@ -1,0 +1,74 @@
+<view class="page order">
+  <nav-bar title="提交订单" background="#F4F5F9"></nav-bar>
+
+  <view class="addr card" bindtap="goAddress">
+    <view class="addr-ic"></view>
+    <view class="addr-info">
+      <view class="who">{{address.name}}  {{address.phone}}</view>
+      <view class="full">{{address.full}}</view>
+    </view>
+    <text class="arrow">›</text>
+    <view class="stripe"></view>
+  </view>
+
+  <view class="card goods">
+    <view class="wh">仓 仓库 LB190410002</view>
+    <view class="g" wx:for="{{items}}" wx:key="index">
+      <image src="{{item.image}}" mode="aspectFill"></image>
+      <view class="ginfo">
+        <view class="gt ellipsis"><text class="tag">超市</text>{{item.title}}</view>
+        <view class="gs">规格：{{item.spec}}</view>
+        <view class="gf">
+          <text class="price"><text class="yen">¥</text>{{item.price}}</text>
+          <text class="gq">x{{item.qty}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="pay-title">支付方式</view>
+  <view class="card pay">
+    <view class="pay-item" data-t="points" bindtap="setPay">
+      <view class="pic star">★</view>
+      <view class="ptxt">
+        <view class="pn">积分支付 <text class="need">需支付 <text class="price">{{total}}</text></text></view>
+      </view>
+      <view class="radio {{payType==='points'?'on':''}}"></view>
+    </view>
+    <view class="balance" wx:if="{{payType==='points'}}">积分余额：{{points}}.00</view>
+    <view class="pay-item" data-t="wx" bindtap="setPay">
+      <view class="pic wx">微</view>
+      <view class="ptxt">
+        <view class="pn">微信支付 <text class="need">需支付 <text class="price">{{total}}</text></text></view>
+      </view>
+      <view class="radio {{payType==='wx'?'on':''}}"></view>
+    </view>
+  </view>
+
+  <view class="bar">
+    <view class="sum">应付：<text class="price"><text class="yen">¥</text>{{total}}</text></view>
+    <view class="pay-btn" bindtap="submit">确认支付</view>
+  </view>
+
+  <c-modal
+    show="{{confirmShow}}"
+    title="确认支付"
+    cancelText="返回修改"
+    confirmText="确认支付"
+    bind:cancel="closeConfirm"
+    bind:close="closeConfirm"
+    bind:confirm="doPay"
+  >
+    <view class="cfm">
+      <view class="cl">请确认收货信息：</view>
+      <view class="cv">{{address.full}}</view>
+      <view class="cv">{{address.name}}  {{address.phone}}</view>
+      <view class="div"></view>
+      <view class="cl">支付方式：</view>
+      <view class="cv">{{payType==='points' ? '积分支付' : '微信支付'}}</view>
+      <view class="div"></view>
+      <view class="cl">{{payType==='points' ? '积分抵扣：' : '应付金额：'}}</view>
+      <view class="price big"><text class="yen">¥</text>{{total}}</view>
+    </view>
+  </c-modal>
+</view>

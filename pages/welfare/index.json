@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "c-modal": "/components/modal/index"
+  }
+}

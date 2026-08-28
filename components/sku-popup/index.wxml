@@ -1,0 +1,36 @@
+<view class="wrap" wx:if="{{show}}" catchtouchmove="noop">
+  <view class="mask" bindtap="onClose"></view>
+  <view class="sheet">
+    <view class="head">
+      <text class="ht">规格选择</text>
+      <view class="close" bindtap="onClose">×</view>
+    </view>
+    <view class="prod">
+      <image class="thumb" src="{{preview || product.image}}" mode="aspectFill"></image>
+      <view class="meta">
+        <view class="name ellipsis">{{product.title}}</view>
+        <view class="price"><text class="yen">¥</text>{{product.price}}</view>
+        <view class="stepper">
+          <view class="sbtn" bindtap="minus">−</view>
+          <text class="snum">{{qty}}</text>
+          <view class="sbtn" bindtap="plus">+</view>
+        </view>
+      </view>
+    </view>
+    <view class="spec" wx:for="{{product.sku.specs}}" wx:key="name">
+      <view class="slabel">{{item.name}}</view>
+      <view class="chips">
+        <view
+          class="chip {{selected[item.name] === v ? 'on' : ''}}"
+          wx:for="{{item.values}}"
+          wx:for-item="v"
+          wx:key="*this"
+          data-name="{{item.name}}"
+          data-value="{{v}}"
+          bindtap="pick"
+        >{{v}}</view>
+      </view>
+    </view>
+    <view class="buy" bindtap="buy">立即购买</view>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+.os { min-height: 100vh; background: #F4F5F9; }
+.tabs {
+  display: flex; background: #fff; padding: 0 8rpx 12rpx;
+}
+.t { flex: 1; text-align: center; font-size: 26rpx; color: #888; padding: 12rpx 0; }
+.t.on { color: #6B5CFF; font-weight: 600; position: relative; }
+.t.on::after {
+  content: ''; position: absolute; left: 50%; bottom: 0; width: 40rpx; height: 6rpx;
+  background: #6B5CFF; border-radius: 4rpx; transform: translateX(-50%);
+}
+.card { margin: 16rpx 24rpx; background: #fff; border-radius: 24rpx; padding: 24rpx; }
+.hd { display: flex; justify-content: space-between; font-size: 26rpx; margin-bottom: 16rpx; }
+.st { color: #6B5CFF; }
+.g { display: flex; }
+.g image { width: 140rpx; height: 140rpx; border-radius: 16rpx; }
+.info { flex: 1; margin-left: 16rpx; }
+.name { font-size: 28rpx; }
+.spec { color: #999; font-size: 22rpx; margin: 8rpx 0; }
+.gf { display: flex; justify-content: space-between; }
+.ft { text-align: right; margin-top: 16rpx; font-size: 26rpx; }
+.empty { text-align: center; color: #999; padding: 80rpx; }

@@ -1,0 +1,38 @@
+.navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+.inner {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.left {
+  width: 88rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.arrow {
+  width: 18rpx;
+  height: 18rpx;
+  border-left: 4rpx solid #1A1A1A;
+  border-bottom: 4rpx solid #1A1A1A;
+  transform: rotate(45deg);
+  margin-left: 8rpx;
+}
+.title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: 600;
+  pointer-events: none;
+}

@@ -1,0 +1,16 @@
+.se { min-height: 100vh; background: #fff; }
+.bar { display: flex; align-items: center; padding: 12rpx 24rpx 20rpx; }
+.input-wrap {
+  flex: 1; height: 68rpx; background: #F3F4F8; border-radius: 34rpx;
+  padding: 0 24rpx; display: flex; align-items: center;
+}
+.input-wrap input { flex: 1; font-size: 26rpx; }
+.go { margin-left: 16rpx; color: #6B5CFF; font-size: 28rpx; }
+.ht { padding: 8rpx 32rpx; font-size: 28rpx; font-weight: 600; }
+.his { display: flex; flex-wrap: wrap; padding: 8rpx 24rpx; gap: 16rpx; }
+.chip { background: #F3F4F8; padding: 10rpx 24rpx; border-radius: 28rpx; font-size: 24rpx; color: #555; }
+.row { display: flex; padding: 16rpx 24rpx; border-bottom: 1rpx solid #F4F4F6; }
+.row image { width: 160rpx; height: 160rpx; border-radius: 16rpx; }
+.info { flex: 1; margin-left: 16rpx; display: flex; flex-direction: column; justify-content: space-between; }
+.name { font-size: 28rpx; }
+.info .price { font-size: 32rpx; }

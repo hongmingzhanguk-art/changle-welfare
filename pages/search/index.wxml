@@ -1,0 +1,22 @@
+<view class="page se">
+  <nav-bar title="搜索" background="#fff"></nav-bar>
+  <view class="bar">
+    <view class="input-wrap">
+      <input placeholder="请输入搜索关键词" value="{{keyword}}" bindinput="onInput" confirm-type="search" bindconfirm="search" />
+    </view>
+    <text class="go" bindtap="search">搜索</text>
+  </view>
+  <view wx:if="{{!list.length}}">
+    <view class="ht">历史搜索</view>
+    <view class="his">
+      <view class="chip" wx:for="{{history}}" wx:key="*this" data-k="{{item}}" bindtap="tapHis">{{item}}</view>
+    </view>
+  </view>
+  <view class="row" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+    <image src="{{item.image}}" mode="aspectFill"></image>
+    <view class="info">
+      <view class="name ellipsis-2">{{item.title}}</view>
+      <text class="price"><text class="yen">¥</text>{{item.price}}</text>
+    </view>
+  </view>
+</view>

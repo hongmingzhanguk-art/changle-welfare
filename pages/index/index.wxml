@@ -1,0 +1,120 @@
+<view class="page home">
+  <view class="hero" style="padding-top: {{statusBarHeight}}px;">
+    <view class="blob b1"></view>
+    <view class="blob b2"></view>
+    <view class="nav-row">
+      <text class="brand">常乐福利</text>
+    </view>
+    <view class="search-row">
+      <view class="city">
+        <view class="pin"></view>
+        <text>{{city}}</text>
+        <text class="caret">▾</text>
+      </view>
+      <view class="search" bindtap="goSearch">
+        <view class="sicon"></view>
+        <text class="sph">请输入搜索关键词</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="banner-wrap">
+    <swiper class="banner" autoplay circular interval="4000">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <image class="banner-img" src="{{item.image}}" mode="aspectFill" bindtap="goDetail" data-id="p-airpods"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="cats card">
+    <view class="cat" wx:for="{{categories}}" wx:key="id" bindtap="goCate" data-id="{{item.id}}" data-name="{{item.name}}">
+      <image class="cat-icon" src="{{item.icon}}" mode="aspectFill"></image>
+      <text class="cat-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="section card">
+    <view class="sec-hd">
+      <text class="sec-title">电影鉴赏</text>
+      <text class="more">›</text>
+    </view>
+    <scroll-view scroll-x class="movies" enhanced show-scrollbar="{{false}}">
+      <view class="movie" wx:for="{{movies}}" wx:key="id">
+        <image class="poster" src="{{item.poster}}" mode="aspectFill"></image>
+        <text class="mname">{{item.name}}</text>
+        <view class="ticket" bindtap="buyTicket">购票</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="ops">
+    <view class="op op-coupon" bindtap="goOps" data-t="生活卡券">
+      <view class="op-hd">
+        <text>生活卡券</text>
+        <text class="more">›</text>
+      </view>
+      <image class="op-img" src="/images/ops/coupon.png" mode="aspectFill"></image>
+    </view>
+    <view class="op op-gift" bindtap="goOps" data-t="节日礼包">
+      <view class="op-hd">
+        <text>节日礼包</text>
+        <text class="more">›</text>
+      </view>
+      <image class="op-img" src="/images/ops/gift.png" mode="aspectFill"></image>
+    </view>
+  </view>
+
+  <view class="local card">
+    <view class="local-title">本地生活 应有尽有</view>
+    <view class="brands">
+      <view class="brand-item" wx:for="{{brands}}" wx:key="id" bindtap="goOps" data-t="{{item.name}}">
+        <image class="brand-icon" src="{{item.icon}}" mode="aspectFill"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="popular card">
+    <view class="sec-hd">
+      <view class="hot-title"><text class="fire">HOT</text> 人气推荐</view>
+      <text class="more">›</text>
+    </view>
+    <scroll-view scroll-x class="pop-row" enhanced show-scrollbar="{{false}}">
+      <view class="pop-left">
+        <text class="pop-tag">焕新升级 呵护新生</text>
+        <image class="pop-banner" src="/images/products/vida.png" mode="aspectFill"></image>
+      </view>
+      <view class="pop-item" wx:for="{{popular}}" wx:key="id" bindtap="goDetail" data-id="p-dettol">
+        <image src="{{item.image}}" mode="aspectFit"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <scroll-view scroll-x class="tabs" enhanced show-scrollbar="{{false}}">
+    <view
+      class="tab {{tabId === item.id ? 'on' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onTab"
+    >{{item.name}}</view>
+  </scroll-view>
+
+  <view class="grid">
+    <view class="p-card" wx:for="{{products}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image class="p-img" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="p-body">
+        <view class="p-name ellipsis-2">{{item.title}}</view>
+        <view class="p-foot">
+          <text class="price"><text class="yen">¥</text>{{item.price}}</text>
+          <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
+            <view class="cart-fab-icon"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tail">已经到底啦</view>
+</view>

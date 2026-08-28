@@ -1,0 +1,77 @@
+<view class="page cate-page">
+  <view class="top" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-row"><text class="nt">分类</text></view>
+    <view class="search" bindtap="goSearch">
+      <view class="sicon"></view>
+      <text class="sph">请输入关键词</text>
+    </view>
+    <scroll-view scroll-x class="h-cats" enhanced show-scrollbar="{{false}}" wx:if="{{!showAll}}">
+      <view
+        class="h-cat {{current === item.id ? 'on' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="id"
+        wx:if="{{item.id !== 'all'}}"
+        data-id="{{item.id}}"
+        bindtap="onCat"
+      >
+        <image src="{{item.icon}}" mode="aspectFill"></image>
+        <text>{{item.name}}</text>
+      </view>
+      <view class="h-all" bindtap="toggleAll">
+        <text>全部</text>
+        <text class="eq">≡</text>
+      </view>
+    </scroll-view>
+    <view class="all-inline" wx:else>
+      <view class="all-title">全部分类</view>
+      <view class="all-grid">
+        <view
+          class="all-item {{current === item.id ? 'on' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="pickAll"
+        >
+          <image src="{{item.icon}}" mode="aspectFill"></image>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+      <view class="fold" bindtap="toggleAll">收起分类 ∧</view>
+    </view>
+  </view>
+
+  <view class="body">
+    <scroll-view scroll-y class="side">
+      <view
+        class="side-item {{subIndex === index ? 'on' : ''}}"
+        wx:for="{{subs}}"
+        wx:key="*this"
+        data-index="{{index}}"
+        bindtap="onSub"
+      >{{item}}</view>
+    </scroll-view>
+    <view class="main">
+      <view class="sorts">
+        <view class="sort {{sort === '综合' ? 'on' : ''}}" data-sort="综合" bindtap="onSort">综合</view>
+        <view class="sort {{sort === '销量' ? 'on' : ''}}" data-sort="销量" bindtap="onSort">销量</view>
+      </view>
+      <scroll-view scroll-y class="list">
+        <view class="row" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+          <image class="thumb" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="info">
+            <view class="name ellipsis-2">{{item.title}}</view>
+            <view class="tag" wx:if="{{item.postage}}">包邮</view>
+            <view class="row-foot">
+              <text class="price"><text class="yen">¥</text>{{item.price}}</text>
+              <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
+                <view class="cart-fab-icon"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view class="all-mask" wx:if="{{showAll}}" bindtap="toggleAll"></view>
+</view>

@@ -1,0 +1,34 @@
+<view class="page wel">
+  <nav-bar title="福利详情" background="transparent"></nav-bar>
+  <view class="card {{item.theme}}" wx:for="{{cards}}" wx:key="id">
+    <view class="row1">
+      <text>{{item.name}}</text>
+      <text class="face" wx:if="{{item.theme==='purple'}}">面值{{item.face}}.00福豆</text>
+    </view>
+    <view class="bal">{{item.balance}}.00</view>
+    <view class="sub">可用余额(福豆)</view>
+    <view class="row2">
+      <view>
+        <view>卡　号：{{item.no}} <text class="copy" catchtap="copyNo" data-no="{{item.no}}">❐</text></view>
+        <view>有效期至：{{item.expire}}</view>
+      </view>
+      <view class="cvt" wx:if="{{item.convertible}}" catchtap="convert" data-item="{{item}}">⇄ 转换</view>
+    </view>
+  </view>
+  <view class="rules">
+    <view class="rt"><view class="bar"></view>使用规则</view>
+    <view class="rb">{{rules}}</view>
+  </view>
+
+  <c-modal
+    show="{{convertShow}}"
+    title="次卡转换"
+    cancelText="暂不转换"
+    confirmText="确认转换"
+    bind:cancel="close"
+    bind:close="close"
+    bind:confirm="confirm"
+  >
+    <view>当前次卡可直接用于观影，无需转换。购买商城商品可转换成积分卡，当前可转换{{current.convertPoints}}积分。转换后不支持二次转换！！！</view>
+  </c-modal>
+</view>

@@ -1,0 +1,19 @@
+<view class="page os">
+  <nav-bar title="我的订单" background="#fff"></nav-bar>
+  <view class="tabs">
+    <view class="t {{cur===index?'on':''}}" wx:for="{{tabs}}" wx:key="*this" data-i="{{index}}" bindtap="onTab">{{item}}</view>
+  </view>
+  <view class="card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+    <view class="hd"><text>商品订单</text><text class="st">{{item.status}}</text></view>
+    <view class="g" wx:for="{{item.items}}" wx:for-item="it" wx:key="index">
+      <image src="{{it.image}}" mode="aspectFill"></image>
+      <view class="info">
+        <view class="name ellipsis">{{it.title}}</view>
+        <view class="spec">{{it.spec}}</view>
+        <view class="gf"><text class="price">¥{{it.price}}</text><text>x{{it.qty}}</text></view>
+      </view>
+    </view>
+    <view class="ft">实付 <text class="price">¥{{item.amount}}</text></view>
+  </view>
+  <view class="empty" wx:if="{{!list.length}}">暂无订单</view>
+</view>

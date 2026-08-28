@@ -1,0 +1,23 @@
+<view class="page login">
+  <view class="bg">
+    <view class="c c1"></view>
+    <view class="c c2"></view>
+    <view class="c c3"></view>
+  </view>
+  <nav-bar title="登录" background="transparent"></nav-bar>
+  <view class="center">
+    <image class="logo" src="/images/logo-mark.png" mode="aspectFit"></image>
+    <view class="name">常乐福利</view>
+    <view class="slogan">福利不等待，常乐购精彩</view>
+    <view class="btn-primary login-btn" bindtap="login">手机号快捷登录/注册</view>
+    <view class="agree" bindtap="toggle">
+      <view class="dot {{agreed ? 'on' : ''}}"></view>
+      <view class="agree-txt">
+        我已阅读并同意
+        <text class="link" catchtap="openDoc" data-t="常乐隐私政策">《常乐隐私政策》</text>
+        <text class="link" catchtap="openDoc" data-t="用户协议">《用户协议》</text>
+        <text class="link" catchtap="openDoc" data-t="风控规则确认协议">《风控规则确认协议》</text>
+      </view>
+    </view>
+  </view>
+</view>

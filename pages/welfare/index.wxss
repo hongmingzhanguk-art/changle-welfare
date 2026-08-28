@@ -1,0 +1,36 @@
+.wel {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #E8E4FF 0%, #F4F5F9 220rpx);
+  padding-bottom: 40rpx;
+}
+.card {
+  margin: 16rpx 24rpx;
+  border-radius: 28rpx;
+  padding: 32rpx;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.card.purple { background: linear-gradient(135deg, #7B5CFF, #5B6CFF 60%, #8B6CFF); }
+.card.pink { background: linear-gradient(135deg, #E85CFF, #FF6A8A 70%, #FF8A5C); }
+.row1 { display: flex; justify-content: space-between; font-size: 28rpx; }
+.face { opacity: 0.85; font-size: 24rpx; }
+.bal { text-align: center; font-size: 64rpx; font-weight: 700; margin-top: 24rpx; }
+.sub { text-align: center; font-size: 24rpx; opacity: 0.85; }
+.row2 { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 32rpx; font-size: 22rpx; opacity: 0.95; }
+.cvt {
+  background: rgba(255,255,255,0.22);
+  padding: 10rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+}
+.copy { margin-left: 8rpx; }
+.rules {
+  margin: 16rpx 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+}
+.rt { font-size: 30rpx; font-weight: 700; display: flex; align-items: center; margin-bottom: 16rpx; }
+.bar { width: 8rpx; height: 28rpx; background: #6B5CFF; border-radius: 4rpx; margin-right: 10rpx; }
+.rb { color: #666; font-size: 26rpx; line-height: 1.7; }

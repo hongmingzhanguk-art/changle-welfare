@@ -1,0 +1,11 @@
+.ad { min-height: 100vh; background: #F4F5F9; }
+.card {
+  margin: 16rpx 24rpx; background: #fff; border-radius: 24rpx; padding: 28rpx;
+}
+.who { font-size: 30rpx; font-weight: 600; }
+.def {
+  margin-left: 12rpx; font-size: 20rpx; color: #6B5CFF;
+  background: #F0EBFF; padding: 2rpx 10rpx; border-radius: 6rpx; font-weight: 400;
+}
+.full { color: #888; font-size: 24rpx; margin-top: 10rpx; }
+.add { margin: 48rpx 48rpx 0; }
