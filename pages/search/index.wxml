@@ -2,16 +2,27 @@
   <nav-bar title="搜索" background="#fff"></nav-bar>
   <view class="bar">
     <view class="input-wrap">
-      <input placeholder="请输入搜索关键词" value="{{keyword}}" bindinput="onInput" confirm-type="search" bindconfirm="search" />
+      <image class="sicon" src="/images/icons/search-gray.png" mode="aspectFit"></image>
+      <input placeholder="请输入搜索关键词" placeholder-class="ph" value="{{keyword}}" bindinput="onInput" confirm-type="search" bindconfirm="search" />
     </view>
     <text class="go" bindtap="search">搜索</text>
   </view>
-  <view wx:if="{{!list.length}}">
+  <view wx:if="{{!searched}}">
     <view class="ht">历史搜索</view>
     <view class="his">
       <view class="chip" wx:for="{{history}}" wx:key="*this" data-k="{{item}}" bindtap="tapHis">{{item}}</view>
     </view>
   </view>
+  <block wx:elif="{{!list.length}}">
+    <view class="empty">
+      <view class="empty-t">无结果</view>
+      <view class="empty-s">换个词试试</view>
+    </view>
+    <view class="ht">历史搜索</view>
+    <view class="his">
+      <view class="chip" wx:for="{{history}}" wx:key="*this" data-k="{{item}}" bindtap="tapHis">{{item}}</view>
+    </view>
+  </block>
   <view class="row" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
     <image src="{{item.image}}" mode="aspectFill"></image>
     <view class="info">

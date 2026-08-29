@@ -54,10 +54,12 @@
     "ignoreUploadUnusedFiles": true,
     "compileWorklet": false,
     "localPlugins": false,
-    "condition": false
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "3.7.0",
+  "libVersion": "3.17.2",
   "appid": "wx042ebfe52fb1d995",
   "projectname": "changle-welfare",
   "condition": {},

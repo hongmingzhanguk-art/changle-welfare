@@ -5,14 +5,14 @@
   </view>
   <view class="card">
     <view class="hd"><view class="bar"></view>绑定新卡</view>
-    <view class="tip">请扫描指定二维码或输入16位卡密码</view>
+    <view class="tip">请输入卡号和密码</view>
     <view class="field">
       <text>卡号</text>
-      <input placeholder="请输入卡号" value="{{no}}" bindinput="onNo" />
+      <input placeholder="请输入卡号" placeholder-class="ph" value="{{no}}" bindinput="onNo" />
     </view>
     <view class="field">
       <text>密码</text>
-      <input placeholder="请输入密码，卡密码不区分大小写" value="{{pwd}}" bindinput="onPwd" />
+      <input password="true" placeholder="请输入密码，卡密码不区分大小写" placeholder-class="ph" value="{{pwd}}" bindinput="onPwd" />
     </view>
     <view class="btn-primary" bindtap="bind">立即绑定</view>
   </view>

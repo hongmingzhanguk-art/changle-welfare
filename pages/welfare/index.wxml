@@ -9,10 +9,13 @@
     <view class="sub">可用余额(福豆)</view>
     <view class="row2">
       <view>
-        <view>卡　号：{{item.no}} <text class="copy" catchtap="copyNo" data-no="{{item.no}}">❐</text></view>
+        <view>卡　号：{{item.no}} <image class="copy" src="/images/icons/copy-white.png" mode="aspectFit" catchtap="copyNo" data-no="{{item.no}}"></image></view>
         <view>有效期至：{{item.expire}}</view>
       </view>
-      <view class="cvt" wx:if="{{item.convertible}}" catchtap="convert" data-item="{{item}}">⇄ 转换</view>
+      <view class="cvt" wx:if="{{item.convertible}}" catchtap="convert" data-item="{{item}}">
+        <image class="cvt-ic" src="/images/icons/convert.png" mode="aspectFit"></image>
+        <text>转换</text>
+      </view>
     </view>
   </view>
   <view class="rules">
@@ -29,6 +32,6 @@
     bind:close="close"
     bind:confirm="confirm"
   >
-    <view>当前次卡可直接用于观影，无需转换。购买商城商品可转换成积分卡，当前可转换{{current.convertPoints}}积分。转换后不支持二次转换！！！</view>
+    <view>转换后这张次卡变为 {{current.convertPoints}} 积分，且不能再转回。</view>
   </c-modal>
 </view>

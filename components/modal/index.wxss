@@ -1,4 +1,17 @@
 .mask {
+  --bg: #F4F5F9;
+  --card: #ffffff;
+  --text: #1A1A1A;
+  --sub: #6E6E7A;
+  --primary: #6B5CFF;
+  --primary-dark: #4D42B8;
+  --grad: linear-gradient(90deg, #4C6FFF 0%, #8B5CFF 100%);
+  --fs-body: 28rpx;
+  --fs-display: 40rpx;
+  --fw-display: 700;
+  --space-3: 24rpx;
+  --space-5: 40rpx;
+  --hit: 88rpx;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
@@ -12,39 +25,40 @@
   width: 100%;
   background: linear-gradient(180deg, #F7F4FF 0%, #ffffff 28%);
   border-radius: 32rpx;
-  padding: 48rpx 40rpx 36rpx;
+  padding: 48rpx var(--space-5) 36rpx;
 }
 .title {
   text-align: center;
-  font-size: 36rpx;
-  font-weight: 700;
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
   margin-bottom: 28rpx;
 }
 .body {
-  color: #666;
-  font-size: 28rpx;
+  color: var(--sub);
+  font-size: var(--fs-body);
   line-height: 1.7;
   text-align: center;
 }
 .actions {
-  margin-top: 40rpx;
+  margin-top: var(--space-5);
   display: flex;
-  gap: 20rpx;
+  gap: var(--space-3);
 }
 .btn {
   flex: 1;
-  height: 80rpx;
-  line-height: 80rpx;
+  min-height: var(--hit);
+  height: var(--hit);
+  line-height: var(--hit);
   text-align: center;
-  border-radius: 40rpx;
-  font-size: 28rpx;
+  border-radius: 44rpx;
+  font-size: var(--fs-body);
 }
 .ghost {
-  color: #6B5CFF;
-  border: 2rpx solid #6B5CFF;
-  background: #fff;
+  color: var(--primary);
+  border: 2rpx solid var(--primary);
+  background: var(--card);
 }
 .fill {
   color: #fff;
-  background: linear-gradient(90deg, #4C6FFF, #8B5CFF);
+  background: var(--grad);
 }

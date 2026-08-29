@@ -1,92 +1,123 @@
 .order {
   padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
-  background: #F4F5F9;
+  background: var(--bg);
   min-height: 100vh;
 }
 .card {
-  margin: 16rpx 24rpx;
-  background: #fff;
-  border-radius: 24rpx;
-  padding: 24rpx;
+  margin: var(--space-2) var(--space-3);
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: var(--space-3);
 }
-.addr { display: flex; align-items: center; position: relative; padding-bottom: 32rpx; }
+.addr { display: flex; align-items: center; position: relative; padding-bottom: var(--space-4); min-height: var(--hit); }
 .addr-ic {
   width: 48rpx; height: 48rpx; border-radius: 50%;
-  background: #6B5CFF; margin-right: 16rpx; flex-shrink: 0;
+  margin-right: var(--space-2); flex-shrink: 0;
 }
 .addr-info { flex: 1; min-width: 0; }
-.who { font-size: 30rpx; font-weight: 600; }
-.full { font-size: 24rpx; color: #999; margin-top: 8rpx; }
-.arrow { color: #C8C8D0; font-size: 32rpx; }
+.who { font-size: var(--fs-title); font-weight: var(--fw-title); }
+.full { font-size: var(--fs-caption); color: var(--sub); margin-top: var(--space-1); }
+.arrow { color: var(--icon); font-size: var(--fs-title); }
 .stripe {
   position: absolute;
-  left: 0; right: 0; bottom: 0; height: 8rpx;
+  left: 0; right: 0; bottom: 0; height: var(--space-1);
   background: repeating-linear-gradient(90deg, #FF5A5A 0 24rpx, #4C8DFF 24rpx 48rpx, #fff 48rpx 56rpx);
 }
 
-.wh { font-size: 26rpx; font-weight: 600; margin-bottom: 16rpx; }
-.g { display: flex; padding: 16rpx 0; }
-.g image { width: 140rpx; height: 140rpx; border-radius: 16rpx; background: #f6f6f6; }
-.ginfo { flex: 1; margin-left: 16rpx; min-width: 0; }
-.gt { font-size: 28rpx; }
+.wh { font-size: var(--fs-body); font-weight: var(--fw-title); margin-bottom: var(--space-2); display: flex; align-items: center; }
+.wh-ic { width: 32rpx; height: 32rpx; margin-right: var(--space-1); }
+.g { display: flex; padding: var(--space-2) 0; }
+.g image { width: 140rpx; height: 140rpx; border-radius: var(--space-2); background: #f6f6f6; }
+.ginfo { flex: 1; margin-left: var(--space-2); min-width: 0; }
+.gt { font-size: var(--fs-body); }
 .tag {
   display: inline-block;
-  background: #FF3B30; color: #fff;
-  font-size: 18rpx; padding: 0 6rpx; border-radius: 4rpx; margin-right: 8rpx;
+  background: var(--danger); color: #fff;
+  font-size: 18rpx; padding: 0 6rpx; border-radius: 4rpx; margin-right: var(--space-1);
 }
-.gs { color: #999; font-size: 22rpx; margin: 10rpx 0; }
+.gs { color: var(--sub); font-size: var(--fs-caption); margin: 10rpx 0; }
 .gf { display: flex; justify-content: space-between; }
-.gf .price { font-size: 30rpx; }
-.gq { color: #999; }
+.gf .price { font-size: var(--fs-title); }
+.gq { color: var(--sub); }
 
-.pay-title { padding: 8rpx 32rpx; font-size: 30rpx; font-weight: 700; }
-.pay-item { display: flex; align-items: center; padding: 16rpx 0; }
+.pay-title { padding: var(--space-4) var(--space-4) var(--space-2); font-size: var(--fs-title); font-weight: var(--fw-title); }
+.pay-item { display: flex; align-items: center; padding: var(--space-1) 0; min-height: var(--hit); }
 .pic {
   width: 48rpx; height: 48rpx; border-radius: 12rpx;
-  margin-right: 16rpx; display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 28rpx;
+  margin-right: var(--space-2); flex-shrink: 0;
 }
-.pic.star { background: linear-gradient(135deg, #FFC107, #FF9800); }
-.pic.wx { background: #22C55E; font-size: 22rpx; }
 .ptxt { flex: 1; }
-.pn { font-size: 28rpx; font-weight: 600; }
+.pn { font-size: var(--fs-body); font-weight: var(--fw-title); }
 .need { font-weight: 400; margin-left: 12rpx; }
 .radio {
-  width: 36rpx; height: 36rpx; border-radius: 50%;
-  border: 3rpx solid #D0D0D6;
+  width: var(--hit);
+  height: var(--hit);
+  min-width: var(--hit);
+  min-height: var(--hit);
+  border: none;
+  border-radius: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: -26rpx -26rpx -26rpx 0;
+}
+.radio::before {
+  content: '';
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 3rpx solid var(--line-strong);
+  box-sizing: border-box;
 }
 .radio.on {
-  border-color: #6B5CFF; background: #6B5CFF;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+.radio.on::before {
+  border-color: var(--primary);
+  background: var(--primary);
   box-shadow: inset 0 0 0 6rpx #fff;
 }
 .balance {
-  background: #F4F5F9;
+  background: var(--bg);
   border-radius: 12rpx;
-  padding: 16rpx 20rpx;
-  color: #888;
-  font-size: 24rpx;
-  margin-bottom: 8rpx;
+  padding: var(--space-2) var(--space-3);
+  color: var(--sub);
+  font-size: var(--fs-caption);
+  margin-bottom: var(--space-1);
 }
 
 .bar {
   position: fixed; left: 0; right: 0; bottom: 0;
   height: calc(110rpx + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
-  background: #fff;
+  background: var(--card);
   display: flex; align-items: center;
-  padding-left: 32rpx; padding-right: 24rpx;
+  padding-left: var(--space-4); padding-right: var(--space-3);
   box-shadow: 0 -4rpx 16rpx rgba(0,0,0,0.04);
 }
-.sum { flex: 1; font-size: 26rpx; }
-.sum .price { font-size: 36rpx; }
+.sum { flex: 1; font-size: var(--fs-body); }
+.sum .price { font-size: var(--fs-display); }
 .pay-btn {
-  width: 220rpx; height: 80rpx; line-height: 80rpx;
-  text-align: center; color: #fff; border-radius: 40rpx;
-  background: linear-gradient(90deg, #4C6FFF, #8B5CFF);
+  min-width: 220rpx;
+  min-height: var(--hit);
+  height: var(--hit);
+  padding: 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 44rpx;
+  background: var(--grad);
+  font-size: var(--fs-body);
 }
+.pay-btn.dim { opacity: 0.45; }
 
 .cfm { text-align: left; }
-.cl { color: #888; font-size: 26rpx; margin-bottom: 8rpx; }
-.cv { font-size: 28rpx; color: #222; margin-bottom: 8rpx; }
-.div { height: 1rpx; background: #EEE; margin: 16rpx 0; }
-.price.big { font-size: 36rpx; }
+.cl { color: var(--sub); font-size: var(--fs-body); margin-bottom: var(--space-1); }
+.cv { font-size: var(--fs-body); color: var(--text); margin-bottom: var(--space-1); }
+.div { height: 1rpx; background: #EEE; margin: var(--space-2) 0; }
+.price.big { font-size: var(--fs-display); }

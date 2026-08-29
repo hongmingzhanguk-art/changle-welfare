@@ -1,27 +1,28 @@
-.od { min-height: 100vh; padding-bottom: 60rpx; background: #F4F5F9; }
-.status { display: flex; align-items: center; padding: 24rpx 32rpx 12rpx; }
+.od { min-height: 100vh; padding-bottom: 60rpx; background: var(--bg); }
+.status { display: flex; align-items: center; padding: var(--space-3) var(--space-4) 12rpx; }
 .truck {
-  width: 72rpx; height: 48rpx; margin-right: 16rpx;
-  background: #4C8DFF; border-radius: 8rpx 16rpx 8rpx 8rpx;
-  position: relative;
+  width: var(--hit); height: 60rpx; margin-right: var(--space-2); flex-shrink: 0;
 }
-.st { font-size: 40rpx; font-weight: 700; }
-.tip { color: #999; font-size: 24rpx; margin-top: 6rpx; }
-.card { margin: 16rpx 24rpx; background: #fff; border-radius: 24rpx; padding: 24rpx; }
-.who { font-size: 30rpx; }
-.full { color: #999; font-size: 24rpx; margin-top: 8rpx; }
+.st { font-size: var(--fs-display); font-weight: var(--fw-display); }
+.tip { color: var(--sub); font-size: var(--fs-caption); margin-top: 6rpx; }
+.card { margin: var(--space-2) var(--space-3); background: var(--card); border-radius: var(--radius); padding: var(--space-3); }
+.who { font-size: var(--fs-title); }
+.full { color: var(--sub); font-size: var(--fs-caption); margin-top: var(--space-1); }
 .g { display: flex; }
-.g image { width: 140rpx; height: 140rpx; border-radius: 16rpx; }
-.ginfo { flex: 1; margin-left: 16rpx; min-width: 0; }
-.gt { font-size: 28rpx; }
-.tag { background: #FF3B30; color: #fff; font-size: 18rpx; padding: 0 6rpx; border-radius: 4rpx; margin-right: 8rpx; }
-.gs { color: #999; font-size: 22rpx; margin: 10rpx 0; }
+.g image { width: 140rpx; height: 140rpx; border-radius: var(--space-2); }
+.ginfo { flex: 1; margin-left: var(--space-2); min-width: 0; }
+.gt { font-size: var(--fs-body); }
+.tag { background: var(--danger); color: #fff; font-size: 18rpx; padding: 0 6rpx; border-radius: 4rpx; margin-right: var(--space-1); }
+.gs { color: var(--sub); font-size: var(--fs-caption); margin: 10rpx 0; }
 .gf { display: flex; justify-content: space-between; }
-.sec { padding: 8rpx 32rpx; font-size: 30rpx; font-weight: 700; }
+.sec { padding: var(--space-4) var(--space-4) var(--space-2); font-size: var(--fs-title); font-weight: var(--fw-title); }
 .info .row {
   display: flex; justify-content: space-between; padding: 18rpx 0;
-  font-size: 26rpx; color: #888;
+  font-size: var(--fs-body); color: var(--sub);
+  min-height: var(--hit);
+  align-items: center;
 }
-.rval { color: #333; }
-.copy { color: #3B6BFF; margin-left: 8rpx; }
+.rval { color: var(--text); display: flex; align-items: center; }
+.copy-ic { width: 28rpx; height: 28rpx; margin-left: var(--space-1); }
+.copy { color: var(--primary); margin-left: 6rpx; }
 .back { margin: 80rpx 48rpx 0; }

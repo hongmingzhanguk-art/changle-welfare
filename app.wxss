@@ -1,21 +1,45 @@
 page {
-  --primary: #6B5CFF;
-  --primary-dark: #4C6FFF;
-  --primary-light: #9B5CFF;
-  --grad: linear-gradient(90deg, #4C6FFF 0%, #8B5CFF 100%);
-  --grad-v: linear-gradient(180deg, #4C6FFF 0%, #8B5CFF 100%);
-  --price: #FF2A2A;
+  /* Color */
   --bg: #F4F5F9;
   --card: #ffffff;
   --text: #1A1A1A;
-  --sub: #8A8A99;
+  --sub: #6E6E7A;
   --muted: #B4B4BE;
+  --icon: #8A8A99;
   --line: #F0F0F3;
+  --line-strong: #D0D0D6;
+  --primary: #6B5CFF;
+  --primary-dark: #4D42B8;
+  --primary-light: #8B7CFF;
+  --grad-start: #4C6FFF;
+  --grad-end: #8B5CFF;
+  --grad: linear-gradient(90deg, var(--grad-start) 0%, var(--grad-end) 100%);
+  --grad-v: linear-gradient(180deg, var(--grad-start) 0%, var(--grad-end) 100%);
+  --grad-diag: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+  --price: #FF2A2A;
+  --danger: #FF3B30;
   --tag-bg: #F0EBFF;
+
+  /* Type — 4 purpose roles (rpx; 2rpx ≈ 1pt) */
+  --fs-caption: 22rpx;
+  --fs-body: 28rpx;
+  --fs-title: 32rpx;
+  --fs-display: 40rpx;
+  --fw-title: 600;
+  --fw-display: 700;
+
+  /* Space — 8rpx base */
+  --space-1: 8rpx;
+  --space-2: 16rpx;
+  --space-3: 24rpx;
+  --space-4: 32rpx;
+  --space-5: 40rpx;
+  --hit: 88rpx;
   --radius: 24rpx;
   --shadow: 0 8rpx 24rpx rgba(80, 70, 180, 0.06);
+
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
-  font-size: 28rpx;
+  font-size: var(--fs-body);
   color: var(--text);
   background: var(--bg);
   box-sizing: border-box;
@@ -47,38 +71,48 @@ button::after {
 }
 
 .card {
-  background: #fff;
+  background: var(--card);
   border-radius: var(--radius);
+}
+
+.ph {
+  color: var(--sub);
+  font-size: var(--fs-body);
 }
 
 .price {
   color: var(--price);
-  font-weight: 600;
+  font-weight: var(--fw-title);
+  font-size: var(--fs-title);
 }
 .price .yen {
   font-size: 0.72em;
 }
+.price.big {
+  font-size: 48rpx;
+  font-weight: var(--fw-display);
+}
 
 .btn-primary {
-  height: 88rpx;
-  line-height: 88rpx;
+  height: var(--hit);
+  line-height: var(--hit);
   text-align: center;
   color: #fff;
-  font-size: 30rpx;
+  font-size: var(--fs-body);
   font-weight: 500;
   border-radius: 44rpx;
-  background: linear-gradient(90deg, #4C6FFF 0%, #8B5CFF 100%);
+  background: var(--grad);
 }
 
 .btn-ghost {
-  height: 88rpx;
-  line-height: 88rpx;
+  height: var(--hit);
+  line-height: var(--hit);
   text-align: center;
   color: var(--primary);
-  font-size: 30rpx;
+  font-size: var(--fs-body);
   border-radius: 44rpx;
   border: 2rpx solid var(--primary);
-  background: #fff;
+  background: var(--card);
 }
 
 .ellipsis {
@@ -98,30 +132,36 @@ button::after {
   padding-bottom: calc(env(safe-area-inset-bottom) + 20rpx);
 }
 
+/* Visual mark 56rpx; hit box 88rpx */
 .cart-fab {
-  width: 56rpx;
-  height: 56rpx;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #5B6CFF, #9B5CFF);
+  width: var(--hit);
+  height: var(--hit);
+  min-width: var(--hit);
+  min-height: var(--hit);
+  border-radius: 0;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.cart-fab-icon {
-  width: 28rpx;
-  height: 28rpx;
-  border: 3rpx solid #fff;
-  border-radius: 6rpx 6rpx 8rpx 8rpx;
   position: relative;
+  flex-shrink: 0;
 }
-.cart-fab-icon::before {
+.cart-fab::before {
   content: '';
   position: absolute;
-  top: -10rpx;
-  left: 4rpx;
-  width: 14rpx;
-  height: 10rpx;
-  border: 3rpx solid #fff;
-  border-bottom: none;
-  border-radius: 8rpx 8rpx 0 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: var(--grad-diag);
+}
+.cart-fab-icon {
+  width: 32rpx;
+  height: 32rpx;
+  position: relative;
+  z-index: 1;
 }

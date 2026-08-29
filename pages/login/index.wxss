@@ -1,6 +1,6 @@
 .login {
   min-height: 100vh;
-  background: #fff;
+  background: var(--card);
   position: relative;
   overflow: hidden;
 }
@@ -25,7 +25,7 @@
 }
 .c3 {
   width: 200rpx; height: 200rpx;
-  right: 80rpx; top: 40rpx;
+  right: 80rpx; top: var(--space-5);
   background: radial-gradient(circle, rgba(220,180,255,0.35), transparent 70%);
 }
 .center {
@@ -39,7 +39,7 @@
   width: 168rpx;
   height: 168rpx;
   border-radius: 36rpx;
-  background: #fff;
+  background: var(--card);
   box-shadow: 0 12rpx 32rpx rgba(90,80,180,0.12);
 }
 .name {
@@ -50,8 +50,8 @@
 }
 .slogan {
   margin-top: 12rpx;
-  color: #888;
-  font-size: 26rpx;
+  color: var(--sub);
+  font-size: var(--fs-body);
 }
 .login-btn {
   width: 630rpx;
@@ -59,26 +59,45 @@
 }
 .agree {
   width: 630rpx;
-  margin-top: 32rpx;
+  margin-top: var(--space-4);
   display: flex;
   align-items: flex-start;
 }
 .dot {
+  width: var(--hit);
+  height: var(--hit);
+  min-width: var(--hit);
+  min-height: var(--hit);
+  border: none;
+  border-radius: 0;
+  margin: -28rpx 0 -28rpx -28rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+}
+.dot::before {
+  content: '';
   width: 32rpx;
   height: 32rpx;
-  border: 3rpx solid #D0D0D6;
   border-radius: 50%;
-  margin-right: 12rpx;
-  margin-top: 4rpx;
-  flex-shrink: 0;
+  border: 3rpx solid var(--line-strong);
+  box-sizing: border-box;
 }
 .dot.on {
-  border-color: #6B5CFF;
-  background: #6B5CFF;
+  border: none;
+  background: transparent;
+}
+.dot.on::before {
+  border-color: var(--primary);
+  background: var(--primary);
 }
 .agree-txt {
-  font-size: 24rpx;
-  color: #888;
+  font-size: var(--fs-caption);
+  color: var(--sub);
   line-height: 1.6;
+  padding-top: 8rpx;
 }
-.link { color: #3B6BFF; }
+.link { color: var(--primary); }

@@ -6,13 +6,13 @@
       <text class="brand">常乐福利</text>
     </view>
     <view class="search-row">
-      <view class="city">
-        <view class="pin"></view>
+      <view class="city" bindtap="goCity">
+        <image class="pin" src="/images/icons/pin-white.png" mode="aspectFit"></image>
         <text>{{city}}</text>
-        <text class="caret">▾</text>
+        <image class="caret" src="/images/icons/chevron-down-white.png" mode="aspectFit"></image>
       </view>
       <view class="search" bindtap="goSearch">
-        <view class="sicon"></view>
+        <image class="sicon" src="/images/icons/search-white.png" mode="aspectFit"></image>
         <text class="sph">请输入搜索关键词</text>
       </view>
     </view>
@@ -21,7 +21,7 @@
   <view class="banner-wrap">
     <swiper class="banner" autoplay circular interval="4000">
       <swiper-item wx:for="{{banners}}" wx:key="id">
-        <image class="banner-img" src="{{item.image}}" mode="aspectFill" bindtap="goDetail" data-id="p-airpods"></image>
+        <image class="banner-img" src="{{item.image}}" mode="aspectFill" bindtap="goDetail" data-id="{{item.productId}}"></image>
       </swiper-item>
     </swiper>
   </view>
@@ -36,7 +36,6 @@
   <view class="section card">
     <view class="sec-hd">
       <text class="sec-title">电影鉴赏</text>
-      <text class="more">›</text>
     </view>
     <scroll-view scroll-x class="movies" enhanced show-scrollbar="{{false}}">
       <view class="movie" wx:for="{{movies}}" wx:key="id">
@@ -76,15 +75,16 @@
 
   <view class="popular card">
     <view class="sec-hd">
-      <view class="hot-title"><text class="fire">HOT</text> 人气推荐</view>
-      <text class="more">›</text>
+      <view class="hot-title">
+        <image class="fire-ic" src="/images/icons/fire.png" mode="aspectFit"></image>
+        <text>人气推荐</text>
+      </view>
     </view>
     <scroll-view scroll-x class="pop-row" enhanced show-scrollbar="{{false}}">
       <view class="pop-left">
-        <text class="pop-tag">焕新升级 呵护新生</text>
-        <image class="pop-banner" src="/images/products/vida.png" mode="aspectFill"></image>
+        <image class="pop-banner" src="/images/ops/popular-left.png" mode="aspectFill"></image>
       </view>
-      <view class="pop-item" wx:for="{{popular}}" wx:key="id" bindtap="goDetail" data-id="p-dettol">
+      <view class="pop-item" wx:for="{{popular}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
         <image src="{{item.image}}" mode="aspectFit"></image>
         <text>{{item.name}}</text>
       </view>
@@ -109,7 +109,7 @@
         <view class="p-foot">
           <text class="price"><text class="yen">¥</text>{{item.price}}</text>
           <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
-            <view class="cart-fab-icon"></view>
+            <image class="cart-fab-icon" src="/images/icons/cart-white.png" mode="aspectFit"></image>
           </view>
         </view>
       </view>

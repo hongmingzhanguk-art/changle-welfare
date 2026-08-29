@@ -1,7 +1,8 @@
 Component({
   properties: {
     show: { type: Boolean, value: false },
-    product: { type: Object, value: {} }
+    product: { type: Object, value: {} },
+    mode: { type: String, value: 'buy' }
   },
   data: {
     qty: 1,
@@ -41,17 +42,34 @@ Component({
       }
       this.setData(patch)
     },
+    stockCap() {
+      const stock = this.data.product && this.data.product.stock
+      if (typeof stock === 'number' && !Number.isNaN(stock)) return stock
+      return 99
+    },
     minus() {
       if (this.data.qty > 1) this.setData({ qty: this.data.qty - 1 })
     },
     plus() {
+      const cap = this.stockCap()
+      if (this.data.qty >= cap) {
+        wx.showToast({ title: '已达库存上限', icon: 'none' })
+        return
+      }
       this.setData({ qty: this.data.qty + 1 })
     },
-    buy() {
+    emit(action) {
       this.triggerEvent('confirm', {
         qty: this.data.qty,
-        selected: this.data.selected
+        selected: this.data.selected,
+        action
       })
+    },
+    buy() {
+      this.emit('buy')
+    },
+    addCart() {
+      this.emit('cart')
     }
   }
 })

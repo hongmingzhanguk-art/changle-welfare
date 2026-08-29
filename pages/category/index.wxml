@@ -2,7 +2,7 @@
   <view class="top" style="padding-top: {{statusBarHeight}}px;">
     <view class="nav-row"><text class="nt">分类</text></view>
     <view class="search" bindtap="goSearch">
-      <view class="sicon"></view>
+      <image class="sicon" src="/images/icons/search-gray.png" mode="aspectFit"></image>
       <text class="sph">请输入关键词</text>
     </view>
     <scroll-view scroll-x class="h-cats" enhanced show-scrollbar="{{false}}" wx:if="{{!showAll}}">
@@ -19,7 +19,7 @@
       </view>
       <view class="h-all" bindtap="toggleAll">
         <text>全部</text>
-        <text class="eq">≡</text>
+        <image class="eq" src="/images/icons/cate-all.png" mode="aspectFit"></image>
       </view>
     </scroll-view>
     <view class="all-inline" wx:else>
@@ -64,7 +64,7 @@
             <view class="row-foot">
               <text class="price"><text class="yen">¥</text>{{item.price}}</text>
               <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
-                <view class="cart-fab-icon"></view>
+                <image class="cart-fab-icon" src="/images/icons/cart-white.png" mode="aspectFit"></image>
               </view>
             </view>
           </view>

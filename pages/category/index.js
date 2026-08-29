@@ -18,7 +18,10 @@ Page({
 
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({ selected: 1 })
+      this.getTabBar().setData({
+        selected: 1,
+        cartCount: getApp().globalData.cartCount || 0
+      })
     }
     const enter = wx.getStorageSync('cateEnter')
     if (enter && enter.id) {
@@ -51,7 +54,7 @@ Page({
       : require('../../utils/mock').categories
     ).find((c) => c.id === id) || { name: '米面粮油' }
     const subs = this.data.subCategories[id] || require('../../utils/mock').subCategories[id] || []
-    const subIndex = Math.max(0, subs.length - 1)
+    const subIndex = 0
     this.setData({
       current: id,
       currentName: cat.name,
@@ -123,6 +126,7 @@ Page({
 
   addCart(e) {
     api.addCart({ productId: e.currentTarget.dataset.id, qty: 1 }).then(() => {
+      getApp().bumpCartCount(1)
       wx.showToast({ title: '已加入购物车', icon: 'success' })
     })
   }

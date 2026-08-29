@@ -1,4 +1,23 @@
 .wrap {
+  --bg: #F4F5F9;
+  --card: #ffffff;
+  --text: #1A1A1A;
+  --sub: #6E6E7A;
+  --primary: #6B5CFF;
+  --primary-dark: #4D42B8;
+  --price: #FF2A2A;
+  --grad: linear-gradient(90deg, #4C6FFF 0%, #8B5CFF 100%);
+  --fs-caption: 22rpx;
+  --fs-body: 28rpx;
+  --fs-title: 32rpx;
+  --fs-display: 40rpx;
+  --fw-title: 600;
+  --fw-display: 700;
+  --space-1: 8rpx;
+  --space-2: 16rpx;
+  --space-3: 24rpx;
+  --space-4: 32rpx;
+  --hit: 88rpx;
   position: fixed;
   inset: 0;
   z-index: 180;
@@ -15,34 +34,40 @@
   bottom: 0;
   background: linear-gradient(180deg, #F4F0FF 0%, #fff 80rpx);
   border-radius: 32rpx 32rpx 0 0;
-  padding: 28rpx 32rpx calc(env(safe-area-inset-bottom) + 24rpx);
+  padding: 28rpx var(--space-4) calc(env(safe-area-inset-bottom) + var(--space-3));
 }
 .head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24rpx;
+  margin-bottom: var(--space-3);
 }
 .ht {
-  font-size: 30rpx;
-  font-weight: 600;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-title);
 }
 .close {
-  font-size: 44rpx;
-  color: #999;
-  width: 56rpx;
-  text-align: right;
-  line-height: 1;
+  width: var(--hit);
+  height: var(--hit);
+  min-width: var(--hit);
+  min-height: var(--hit);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.close-ic {
+  width: 32rpx;
+  height: 32rpx;
 }
 .prod {
   display: flex;
-  gap: 20rpx;
+  gap: var(--space-3);
   margin-bottom: 28rpx;
 }
 .thumb {
   width: 160rpx;
   height: 160rpx;
-  border-radius: 16rpx;
+  border-radius: var(--space-2);
   background: #f6f6f6;
 }
 .meta {
@@ -50,68 +75,89 @@
   min-width: 0;
 }
 .name {
-  font-size: 28rpx;
-  font-weight: 600;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-title);
 }
 .price {
-  color: #FF2A2A;
-  font-size: 36rpx;
-  font-weight: 700;
-  margin: 8rpx 0 16rpx;
+  color: var(--price);
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
+  margin: var(--space-1) 0 var(--space-2);
 }
-.yen { font-size: 24rpx; }
+.yen { font-size: var(--fs-caption); }
 .stepper {
   display: flex;
   align-items: center;
 }
 .sbtn {
+  width: var(--hit);
+  height: var(--hit);
+  min-width: var(--hit);
+  min-height: var(--hit);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sbtn-mark {
   width: 48rpx;
   height: 48rpx;
-  border-radius: 8rpx;
+  border-radius: var(--space-1);
   background: #F3F4F8;
-  text-align: center;
-  line-height: 44rpx;
-  font-size: 32rpx;
-  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-title);
+  color: var(--sub);
 }
 .snum {
   min-width: 56rpx;
   text-align: center;
-  font-size: 28rpx;
+  font-size: var(--fs-body);
 }
-.spec { margin-bottom: 24rpx; }
+.spec { margin-bottom: var(--space-3); }
 .slabel {
-  font-size: 28rpx;
-  font-weight: 600;
-  margin-bottom: 16rpx;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-title);
+  margin-bottom: var(--space-2);
 }
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 16rpx;
+  gap: var(--space-2);
 }
 .chip {
   padding: 12rpx 22rpx;
   background: #F3F4F8;
   border-radius: 12rpx;
-  font-size: 24rpx;
-  color: #333;
+  font-size: var(--fs-caption);
+  color: var(--text);
   border: 2rpx solid transparent;
 }
 .chip.on {
-  background: #fff;
-  color: #6B5CFF;
-  border-color: #6B5CFF;
+  background: var(--card);
+  color: var(--primary);
+  border-color: var(--primary);
 }
+.cta { margin-top: 12rpx; }
 .buy {
-  margin-top: 12rpx;
-  height: 88rpx;
-  line-height: 88rpx;
+  height: var(--hit);
+  line-height: var(--hit);
   text-align: center;
   color: #fff;
-  font-size: 30rpx;
+  font-size: var(--fs-title);
   border-radius: 44rpx;
-  background: linear-gradient(90deg, #4C6FFF, #8B5CFF);
+  background: var(--grad);
+}
+.ghost {
+  height: var(--hit);
+  line-height: var(--hit);
+  text-align: center;
+  color: var(--primary);
+  font-size: var(--fs-title);
+  border-radius: 44rpx;
+  border: 2rpx solid var(--primary);
+  background: var(--card);
 }
 .ellipsis {
   overflow: hidden;

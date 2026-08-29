@@ -1,7 +1,7 @@
 <view class="navbar" style="padding-top: {{statusBarHeight}}px; background: {{background}};">
   <view class="inner">
     <view class="left" wx:if="{{back}}" bindtap="onBack">
-      <view class="arrow" style="border-color: {{color}};"></view>
+      <image class="back-ic" src="/images/icons/back.png" mode="aspectFit"></image>
     </view>
     <view class="title" style="color: {{color}}; padding-right: {{menuRight}}px;">{{title}}</view>
   </view>

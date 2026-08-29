@@ -1,7 +1,7 @@
 <view class="page od">
   <nav-bar title="订单详情" background="#F4F5F9"></nav-bar>
   <view class="status">
-    <view class="truck"></view>
+    <image class="truck" src="/images/icons/truck.png" mode="aspectFit"></image>
     <view>
       <view class="st">{{order.status}}</view>
       <view class="tip">{{order.statusTip}}</view>
@@ -29,7 +29,7 @@
 
   <view class="sec">订单信息</view>
   <view class="card info">
-    <view class="row"><text>订单编号</text><view class="rval">{{order.no}} <text class="copy" bindtap="copyNo">复制</text></view></view>
+    <view class="row"><text>订单编号</text><view class="rval">{{order.no}} <image class="copy-ic" src="/images/icons/copy.png" mode="aspectFit" bindtap="copyNo"></image><text class="copy" bindtap="copyNo">复制</text></view></view>
     <view class="row"><text>下单时间</text><text>{{order.createdAt}}</text></view>
     <view class="row"><text>订单金额</text><text>{{order.amount}}</text></view>
     <view class="row"><text>支付方式</text><text>{{order.payType}}</text></view>

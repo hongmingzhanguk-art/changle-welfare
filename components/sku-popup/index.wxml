@@ -3,7 +3,9 @@
   <view class="sheet">
     <view class="head">
       <text class="ht">规格选择</text>
-      <view class="close" bindtap="onClose">×</view>
+      <view class="close" bindtap="onClose">
+        <image class="close-ic" src="/images/icons/close.png" mode="aspectFit"></image>
+      </view>
     </view>
     <view class="prod">
       <image class="thumb" src="{{preview || product.image}}" mode="aspectFill"></image>
@@ -11,9 +13,9 @@
         <view class="name ellipsis">{{product.title}}</view>
         <view class="price"><text class="yen">¥</text>{{product.price}}</view>
         <view class="stepper">
-          <view class="sbtn" bindtap="minus">−</view>
+          <view class="sbtn" bindtap="minus"><text class="sbtn-mark">−</text></view>
           <text class="snum">{{qty}}</text>
-          <view class="sbtn" bindtap="plus">+</view>
+          <view class="sbtn" bindtap="plus"><text class="sbtn-mark">+</text></view>
         </view>
       </view>
     </view>
@@ -31,6 +33,9 @@
         >{{v}}</view>
       </view>
     </view>
-    <view class="buy" bindtap="buy">立即购买</view>
+    <view class="cta">
+      <view class="ghost" wx:if="{{mode === 'cart'}}" bindtap="addCart">加入购物车</view>
+      <view class="buy" wx:if="{{mode === 'buy'}}" bindtap="buy">立即购买</view>
+    </view>
   </view>
 </view>

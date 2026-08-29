@@ -5,6 +5,7 @@ const banners = [
     id: 'b1',
     image: '/images/banner/festival.png',
     title: '全民购物节',
+    productId: 'p-airpods',
     url: ''
   }
 ]
@@ -45,11 +46,11 @@ const subCategories = {
 }
 
 const movies = [
-  { id: 'm1', name: '奥德赛', poster: '/images/movies/odyssey.png' },
-  { id: 'm2', name: '怒之杀', poster: '/images/movies/mutiny.png' },
-  { id: 'm3', name: '数到三', poster: '/images/movies/countdown.png' },
-  { id: 'm4', name: '密档', poster: '/images/movies/secret.png' },
-  { id: 'm5', name: '肖申', poster: '/images/movies/xiao.png' }
+  { id: 'm1', name: '奥德赛', poster: '/images/movies/odyssey.jpg' },
+  { id: 'm2', name: '怒之杀', poster: '/images/movies/mutiny.jpg' },
+  { id: 'm3', name: '数到三', poster: '/images/movies/countdown.jpg' },
+  { id: 'm4', name: '密档', poster: '/images/movies/secret.jpg' },
+  { id: 'm5', name: '肖申', poster: '/images/movies/xiao.jpg' }
 ]
 
 const brands = [
@@ -61,9 +62,9 @@ const brands = [
 ]
 
 const popular = [
-  { id: 'vida', name: '维达抽纸', image: '/images/products/vida.png' },
-  { id: 'dettol-s', name: '滴露消毒液', image: '/images/products/dettol-small.png' },
-  { id: 'dove', name: '多芬沐浴露', image: '/images/products/dove.png' }
+  { id: 'p-vida', name: '维达抽纸', image: '/images/products/vida.png' },
+  { id: 'p-dettol', name: '滴露消毒液', image: '/images/products/dettol-small.png' },
+  { id: 'p-dove', name: '多芬沐浴露', image: '/images/products/dove.png' }
 ]
 
 const products = [
@@ -92,7 +93,7 @@ const products = [
         { name: '颜色', values: ['午夜色', '星光色', '蓝色', '橙色', '紫色'] }
       ]
     },
-    recIds: ['p-n1', 'p-n2', 'p-n3', 'p-n4', 'p-franzzi', 'p-huawei'],
+    recIds: ['p-n1', 'p-n2', 'p-n3', 'p-n4', 'p-franzzi', 'p-powerbank'],
     descImage: '/images/products/airpods-lineup.jpg',
     desc: 'AirPods Max 2，主动降噪效果比前代最高提升至 1.5 倍，高保真音质更出色，这款超赞的包耳式耳机，给你非同凡响的聆听体验。'
   },
@@ -164,6 +165,21 @@ const products = [
     tab: 'care'
   },
   {
+    id: 'p-vida',
+    title: '维达抽纸 超韧3层100抽',
+    price: 29.9,
+    image: '/images/products/vida.png',
+    categoryId: 'tissue'
+  },
+  {
+    id: 'p-dove',
+    title: '多芬沐浴露 深层营润',
+    price: 39.9,
+    image: '/images/products/dove.png',
+    categoryId: 'care',
+    tab: 'care'
+  },
+  {
     id: 'p-n1',
     title: '湾琴河小米鸡蛋挂面 小米面条鸡蛋挂面',
     price: 22.96,
@@ -200,10 +216,10 @@ const products = [
     subCate: '面条'
   },
   {
-    id: 'p-huawei',
-    title: 'HUWEI手机P80Pro5G全网通',
-    price: 799,
-    image: '/images/products/huawei.png',
+    id: 'p-powerbank',
+    title: '20000mAh 双向快充移动电源',
+    price: 89,
+    image: '/images/products/powerbank.jpg',
     categoryId: 'digital',
     tab: 'digital'
   },
@@ -211,14 +227,14 @@ const products = [
     id: 'p-luxihe',
     title: '泸溪河云朵八珍鸡蛋糕400g 松软绵密面包',
     price: 32.9,
-    image: '/images/products/luxihe.png',
+    image: '/images/products/luxihe.jpg',
     categoryId: 'snack'
   },
   {
     id: 'p-chicken',
     title: '鲜嫩多汁鸡小胸不干不柴，一口爱上',
     price: 18.9,
-    image: '/images/products/chicken.png',
+    image: '/images/products/chicken.jpg',
     categoryId: 'grain'
   }
 ]
@@ -308,7 +324,7 @@ const orders = [
     id: 'o1',
     no: '20260819164041995358',
     status: '待发货',
-    statusTip: '包裹正在准备中，请耐性等待',
+    statusTip: '包裹正在准备中，请耐心等待',
     createdAt: '2026-08-19 16:40:42',
     payType: '微信支付',
     amount: 2209,
@@ -320,6 +336,66 @@ const orders = [
         price: 2209,
         qty: 1,
         image: '/images/products/airpods-black.png',
+        tag: '超市'
+      }
+    ]
+  },
+  {
+    id: 'o2',
+    no: '20260818121000000001',
+    status: '待付款',
+    statusTip: '请尽快完成支付',
+    createdAt: '2026-08-18 12:10:00',
+    payType: '微信支付',
+    amount: 126.8,
+    address,
+    items: [
+      {
+        title: '滴露（Dettol）消毒液衣物消毒水 洗衣除菌液',
+        spec: '默认规格',
+        price: 126.8,
+        qty: 1,
+        image: '/images/products/dettol.png',
+        tag: '超市'
+      }
+    ]
+  },
+  {
+    id: 'o3',
+    no: '20260810153000000002',
+    status: '已完成',
+    statusTip: '交易已完成',
+    createdAt: '2026-08-10 15:30:00',
+    payType: '积分支付',
+    amount: 32.9,
+    address,
+    items: [
+      {
+        title: '泸溪河云朵八珍鸡蛋糕400g 松软绵密面包',
+        spec: '默认规格',
+        price: 32.9,
+        qty: 1,
+        image: '/images/products/luxihe.jpg',
+        tag: '超市'
+      }
+    ]
+  },
+  {
+    id: 'o4',
+    no: '20260812101800000003',
+    status: '待收货',
+    statusTip: '包裹正在配送中',
+    createdAt: '2026-08-12 10:18:00',
+    payType: '微信支付',
+    amount: 39.9,
+    address,
+    items: [
+      {
+        title: '多芬沐浴露 深层营润',
+        spec: '默认规格',
+        price: 39.9,
+        qty: 1,
+        image: '/images/products/dove.png',
         tag: '超市'
       }
     ]

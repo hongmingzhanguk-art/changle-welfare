@@ -11,7 +11,8 @@ App({
       points: 7652
     },
     cartCount: 2,
-    selectedCity: '常州'
+    selectedCity: '常州',
+    selectedAddress: null
   },
 
   onLaunch() {
@@ -25,5 +26,16 @@ App({
   setLogin(loggedIn, userInfo) {
     this.globalData.loggedIn = loggedIn
     if (userInfo) this.globalData.userInfo = userInfo
+  },
+
+  bumpCartCount(delta) {
+    const next = Math.max(0, (this.globalData.cartCount || 0) + (delta || 0))
+    this.globalData.cartCount = next
+    const pages = getCurrentPages()
+    const page = pages[pages.length - 1]
+    if (page && typeof page.getTabBar === 'function' && page.getTabBar()) {
+      page.getTabBar().setData({ cartCount: next })
+    }
+    return next
   }
 })

@@ -1,21 +1,31 @@
-.os { min-height: 100vh; background: #F4F5F9; }
+.os { min-height: 100vh; background: var(--bg); }
 .tabs {
-  display: flex; background: #fff; padding: 0 8rpx 12rpx;
+  display: flex; background: var(--card); padding: 0 var(--space-1) 12rpx;
 }
-.t { flex: 1; text-align: center; font-size: 26rpx; color: #888; padding: 12rpx 0; }
-.t.on { color: #6B5CFF; font-weight: 600; position: relative; }
+.t {
+  flex: 1;
+  text-align: center;
+  font-size: var(--fs-body);
+  color: var(--sub);
+  min-height: var(--hit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.t.on { color: var(--primary); font-weight: var(--fw-title); position: relative; }
 .t.on::after {
-  content: ''; position: absolute; left: 50%; bottom: 0; width: 40rpx; height: 6rpx;
-  background: #6B5CFF; border-radius: 4rpx; transform: translateX(-50%);
+  content: ''; position: absolute; left: 50%; bottom: 8rpx; width: var(--space-5); height: 6rpx;
+  background: var(--primary); border-radius: 4rpx; transform: translateX(-50%);
 }
-.card { margin: 16rpx 24rpx; background: #fff; border-radius: 24rpx; padding: 24rpx; }
-.hd { display: flex; justify-content: space-between; font-size: 26rpx; margin-bottom: 16rpx; }
-.st { color: #6B5CFF; }
+.card { margin: var(--space-2) var(--space-3); background: var(--card); border-radius: var(--radius); padding: var(--space-3); }
+.hd { display: flex; justify-content: space-between; font-size: var(--fs-body); margin-bottom: var(--space-2); }
+.st { color: var(--primary); }
 .g { display: flex; }
-.g image { width: 140rpx; height: 140rpx; border-radius: 16rpx; }
-.info { flex: 1; margin-left: 16rpx; }
-.name { font-size: 28rpx; }
-.spec { color: #999; font-size: 22rpx; margin: 8rpx 0; }
+.g image { width: 140rpx; height: 140rpx; border-radius: var(--space-2); }
+.info { flex: 1; margin-left: var(--space-2); }
+.name { font-size: var(--fs-body); }
+.spec { color: var(--sub); font-size: var(--fs-caption); margin: var(--space-1) 0; }
 .gf { display: flex; justify-content: space-between; }
-.ft { text-align: right; margin-top: 16rpx; font-size: 26rpx; }
-.empty { text-align: center; color: #999; padding: 80rpx; }
+.ft { text-align: right; margin-top: var(--space-2); font-size: var(--fs-body); }
+.empty { text-align: center; color: var(--sub); padding: 80rpx; }

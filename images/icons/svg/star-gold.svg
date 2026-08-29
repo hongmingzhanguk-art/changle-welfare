@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="24" height="24">
+  <defs>
+    <radialGradient id="coin" cx="38%" cy="34%" r="70%"><stop offset="0" stop-color="#FFE896"/><stop offset="0.55" stop-color="#F0B024"/><stop offset="1" stop-color="#C07810"/></radialGradient>
+    <linearGradient id="star" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0" stop-color="#FFFDF8"/><stop offset="1" stop-color="#F3E8C8"/></linearGradient>
+  </defs>
+  <circle cx="12" cy="12.6" r="9.2" fill="#E0A028" opacity="0.28"/>
+  <circle cx="12" cy="12" r="10.2" fill="url(#coin)" stroke="#A86C0C" stroke-width="0.7"/>
+  <circle cx="12" cy="12" r="7.2" fill="#F2C43A" opacity="0.55"/>
+  <path fill="#B07010" opacity="0.55" d="M12.2 5.55l1.72 4.95h5.2l-4.2 3.05 1.6 4.95L12.2 15.5 8.1 18.5l1.6-4.95-4.2-3.05h5.2z"/>
+  <path fill="url(#star)" d="M12 5.35l1.7 4.9H18.9l-4.15 3.02 1.58 4.9L12 15.28 7.67 18.17l1.58-4.9L5.1 10.25h5.2z"/>
+</svg>

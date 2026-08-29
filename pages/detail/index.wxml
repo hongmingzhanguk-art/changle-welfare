@@ -1,7 +1,15 @@
 <view class="page detail">
   <view class="nav {{sticky ? 'solid' : ''}}" style="padding-top: {{statusBarHeight}}px;">
     <view class="nav-inner">
-      <view class="circle" bindtap="onBack"><view class="arrow"></view></view>
+      <view class="nav-tools">
+        <view class="circle" bindtap="onBack">
+          <image class="nav-ic" src="{{sticky ? '/images/icons/back.png' : '/images/icons/back-white.png'}}" mode="aspectFit"></image>
+        </view>
+        <view class="nav-div"></view>
+        <view class="circle" bindtap="onMenu">
+          <image class="nav-ic" src="{{sticky ? '/images/icons/hamburger.png' : '/images/icons/hamburger-white.png'}}" mode="aspectFit"></image>
+        </view>
+      </view>
       <view class="tabs" wx:if="{{sticky}}">
         <view class="dt {{tab==='goods'?'on':''}}" data-tab="goods" bindtap="switchTab">商品</view>
         <view class="dt {{tab==='rec'?'on':''}}" data-tab="rec" bindtap="switchTab">推荐</view>
@@ -10,11 +18,13 @@
     </view>
   </view>
 
-  <swiper class="gallery" indicator-dots circular>
-    <swiper-item wx:for="{{product.images || [product.image]}}" wx:key="*this">
-      <image src="{{item}}" mode="aspectFit" class="gimg"></image>
-    </swiper-item>
-  </swiper>
+  <view id="goods">
+    <swiper class="gallery" indicator-dots circular>
+      <swiper-item wx:for="{{product.images || [product.image]}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFit" class="gimg"></image>
+      </swiper-item>
+    </swiper>
+  </view>
 
   <view class="info card">
     <view class="title">
@@ -28,14 +38,14 @@
   <view class="card rows">
     <view class="kv" bindtap="openSku">
       <text class="k">已选</text>
-      <text class="v ellipsis">默认规格</text>
+      <text class="v ellipsis">{{specText}}</text>
       <text class="arrow">›</text>
     </view>
-    <view class="kv">
+    <view class="kv" bindtap="goAddress">
       <text class="k">送至</text>
       <view class="vcol">
-        <text class="v">江苏省常州金坛区东城街道中兴路(双俊检...</text>
-        <text class="hint">有货 17:00前完成支付,预计(2026-08-19)发货</text>
+        <text class="v ellipsis">{{address.full}}</text>
+        <text class="hint">有货 17:00前完成支付,预计({{shipDate}})发货</text>
         <text class="hint">预计1-5天送达(偏远地区除外)，具体送达时间以实际物流配送时间为准</text>
       </view>
       <text class="arrow">›</text>
@@ -44,7 +54,6 @@
       <text class="k">运费</text>
       <view class="vcol">
         <text class="v">免运费</text>
-        <text class="hint">预计1-5天送达(偏远地区除外)，具体送达时间以实际物流配送时间为准</text>
       </view>
     </view>
   </view>
@@ -58,8 +67,8 @@
           <view class="p-name ellipsis-2">{{item.title}}</view>
           <view class="p-foot">
             <text class="price"><text class="yen">¥</text>{{item.price}}</text>
-            <view class="cart-fab" catchtap="addCart">
-              <view class="cart-fab-icon"></view>
+            <view class="cart-fab" catchtap="addRec" data-id="{{item.id}}">
+              <image class="cart-fab-icon" src="/images/icons/cart-white.png" mode="aspectFit"></image>
             </view>
           </view>
         </view>
@@ -75,20 +84,26 @@
 
   <view class="bar">
     <view class="tools">
-      <view class="tool" bindtap="goHome">
-        <view class="ticon home"></view><text>客服</text>
+      <view class="tool" bindtap="goService">
+        <image class="ticon" src="/images/icons/service.png" mode="aspectFit"></image>
+        <text>客服</text>
       </view>
       <view class="tool" bindtap="goCart">
-        <view class="ticon bag"></view><text>购物车</text>
+        <view class="cart-wrap">
+          <image class="ticon" src="/images/icons/cart-smile.png" mode="aspectFit"></image>
+          <view class="badge" wx:if="{{cartCount > 0}}">{{cartCount > 99 ? '99+' : cartCount}}</view>
+        </view>
+        <text>购物车</text>
       </view>
     </view>
-    <view class="ghost" bindtap="addCart">加入购物车</view>
+    <view class="ghost" bindtap="openSkuCart">加入购物车</view>
     <view class="fill" bindtap="openSku">立即购买</view>
   </view>
 
   <sku-popup
     show="{{skuShow}}"
     product="{{product}}"
+    mode="{{skuMode}}"
     bind:close="closeSku"
     bind:confirm="onSkuConfirm"
   ></sku-popup>

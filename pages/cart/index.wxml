@@ -5,18 +5,17 @@
     </view>
     <view class="addr-row">
       <view class="addr" bindtap="goAddress">
-        <view class="pin"></view>
-        <text>点击添加收货地址</text>
+        <image class="pin" src="/images/icons/pin-red.png" mode="aspectFit"></image>
+        <text class="addr-txt ellipsis" wx:if="{{address.name}}">{{address.name}} {{address.full}}</text>
+        <text class="addr-txt" wx:else>点击添加收货地址</text>
         <text class="caret">›</text>
       </view>
-      <text class="manage">管理</text>
+      <view class="manage" bindtap="toggleManage">{{managing ? '完成' : '管理'}}</view>
     </view>
   </view>
 
   <view class="empty" wx:if="{{!groups.length}}">
-    <view class="empty-icon">
-      <view class="empty-cart"></view>
-    </view>
+    <image class="empty-illust" src="/images/ops/cart-empty.png" mode="aspectFit"></image>
     <view class="empty-t">购物车空空如也</view>
     <view class="empty-s">赶快加入喜欢的商品吧~</view>
     <view class="btn-primary empty-btn" bindtap="goHome">去逛逛</view>
@@ -26,7 +25,7 @@
     <view class="shop" wx:for="{{groups}}" wx:for-index="gi" wx:key="shopId">
       <view class="shop-hd">
         <view class="ck {{item.checked ? 'on' : ''}}" data-gi="{{gi}}" bindtap="toggleShop"></view>
-        <view class="shop-logo s{{gi}}"></view>
+        <image class="shop-logo" src="{{gi === 0 ? '/images/icons/shop-jingxuan.png' : '/images/icons/shop-yanxuan.png'}}" mode="aspectFill"></image>
         <text class="shop-name">{{item.shop}}</text>
       </view>
       <view class="item-wrap" wx:for="{{item.items}}" wx:for-item="it" wx:for-index="ii" wx:key="id">
@@ -34,11 +33,16 @@
           <movable-view
             class="mview"
             direction="horizontal"
-            damping="40"
+            inertia="{{false}}"
+            damping="50"
+            animation="{{it.anim != false}}"
             x="{{it.x}}"
             data-gi="{{gi}}"
             data-ii="{{ii}}"
             bindchange="onChange"
+            bindtouchstart="onMoveStart"
+            bindtouchend="onMoveEnd"
+            bindtouchcancel="onMoveEnd"
           >
             <view class="item">
               <view class="ck {{it.checked ? 'on' : ''}}" data-gi="{{gi}}" data-ii="{{ii}}" catchtap="toggleItem"></view>
@@ -46,13 +50,29 @@
               <view class="meta">
                 <view class="name ellipsis">{{it.title}}</view>
                 <view class="spec">{{it.spec}}</view>
-                <view class="iprice"><text class="yen">¥</text>{{it.price}}</view>
+                <view class="iprice-row">
+                  <view class="iprice"><text class="yen">¥</text>{{it.price}}</view>
+                  <view class="stepper">
+                    <view class="sbtn" catchtap="changeQty" data-gi="{{gi}}" data-ii="{{ii}}" data-delta="-1">
+                      <text class="sbtn-mark">−</text>
+                    </view>
+                    <text class="snum">{{it.qty}}</text>
+                    <view class="sbtn" catchtap="changeQty" data-gi="{{gi}}" data-ii="{{ii}}" data-delta="1">
+                      <text class="sbtn-mark">+</text>
+                    </view>
+                  </view>
+                </view>
               </view>
-              <text class="qty">x{{it.qty}}</text>
             </view>
             <view class="actions">
-              <view class="act fav" catchtap="favItem">移入收藏</view>
-              <view class="act del" data-gi="{{gi}}" data-ii="{{ii}}" catchtap="delItem">删除</view>
+              <view class="act fav" catchtap="favItem">
+                <image class="act-ic" src="/images/icons/swipe-star.png" mode="aspectFit"></image>
+                <text>移入收藏</text>
+              </view>
+              <view class="act del" data-gi="{{gi}}" data-ii="{{ii}}" catchtap="delItem">
+                <image class="act-ic" src="/images/icons/swipe-trash.png" mode="aspectFit"></image>
+                <text>删除</text>
+              </view>
             </view>
           </movable-view>
         </movable-area>
@@ -69,7 +89,7 @@
         <view class="p-foot">
           <text class="price"><text class="yen">¥</text>{{item.price}}</text>
           <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
-            <view class="cart-fab-icon"></view>
+            <image class="cart-fab-icon" src="/images/icons/cart-white.png" mode="aspectFit"></image>
           </view>
         </view>
       </view>
@@ -80,7 +100,8 @@
   <view class="bar" wx:if="{{groups.length}}">
     <view class="ck {{allChecked ? 'on' : ''}}" bindtap="toggleAll"></view>
     <text class="all-txt">全选</text>
-    <view class="sum">合计：<text class="price"><text class="yen">¥</text>{{total}}</text></view>
-    <view class="pay" bindtap="checkout">结算</view>
+    <view class="sum" wx:if="{{!managing}}">合计：<text class="price"><text class="yen">¥</text>{{total}}</text></view>
+    <view class="sum" wx:else></view>
+    <view class="pay" bindtap="onBarPrimary">{{managing ? '删除' : '结算'}}</view>
   </view>
 </view>

@@ -7,7 +7,10 @@
     data-path="{{item.pagePath}}"
     bindtap="switchTab"
   >
-    <image class="icon" src="{{selected === index ? item.active : item.icon}}" mode="aspectFit"></image>
+    <view class="icon-wrap">
+      <image class="icon" src="{{selected === index ? item.active : item.icon}}" mode="aspectFit"></image>
+      <view class="badge" wx:if="{{index === 2 && cartCount > 0}}">{{cartCount > 99 ? '99+' : cartCount}}</view>
+    </view>
     <text class="txt {{selected === index ? 'on' : ''}}">{{item.text}}</text>
   </view>
 </view>

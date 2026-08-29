@@ -1,28 +1,29 @@
 .bind {
   min-height: 100vh;
-  background: linear-gradient(180deg, #E8E4FF 0%, #F4F5F9 240rpx);
+  background: linear-gradient(180deg, #E8E4FF 0%, var(--bg) 240rpx);
 }
-.illus { margin: 8rpx 24rpx 0; border-radius: 24rpx; overflow: hidden; }
+.illus { margin: var(--space-1) var(--space-3) 0; border-radius: var(--radius); overflow: hidden; }
 .illus image { width: 100%; }
 .card {
-  margin: 20rpx 24rpx;
-  background: #fff;
-  border-radius: 24rpx;
-  padding: 28rpx 24rpx 36rpx;
+  margin: var(--space-3) var(--space-3);
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28rpx var(--space-3) 36rpx;
 }
-.hd { font-size: 30rpx; font-weight: 700; display: flex; align-items: center; }
-.bar { width: 8rpx; height: 28rpx; background: #6B5CFF; border-radius: 4rpx; margin-right: 10rpx; }
-.tip { color: #888; font-size: 24rpx; margin: 16rpx 0 20rpx; }
+.hd { font-size: var(--fs-title); font-weight: var(--fw-title); display: flex; align-items: center; }
+.bar { width: var(--space-1); height: 28rpx; background: var(--primary); border-radius: 4rpx; margin-right: 10rpx; }
+.tip { color: var(--sub); font-size: var(--fs-caption); margin: var(--space-2) 0 var(--space-3); }
 .field {
-  background: #F4F5F9;
-  border-radius: 16rpx;
-  height: 88rpx;
+  background: var(--bg);
+  border-radius: var(--space-2);
+  height: var(--hit);
+  min-height: var(--hit);
   display: flex;
   align-items: center;
-  padding: 0 24rpx;
-  margin-bottom: 16rpx;
-  font-size: 28rpx;
+  padding: 0 var(--space-3);
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-body);
 }
-.field text { width: 80rpx; color: #333; }
-.field input { flex: 1; }
-.btn-primary { margin-top: 16rpx; }
+.field text { width: 80rpx; color: var(--text); }
+.field input { flex: 1; font-size: var(--fs-body); color: var(--text); }
+.btn-primary { margin-top: var(--space-2); }

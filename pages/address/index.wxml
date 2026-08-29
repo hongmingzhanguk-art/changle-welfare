@@ -1,6 +1,6 @@
 <view class="page ad">
   <nav-bar title="收货地址" background="#F4F5F9"></nav-bar>
-  <view class="card" wx:for="{{list}}" wx:key="id" bindtap="pick">
+  <view class="card" wx:for="{{list}}" wx:key="id" bindtap="pick" data-id="{{item.id}}">
     <view class="who">{{item.name}}  {{item.phone}} <text class="def" wx:if="{{item.isDefault}}">默认</text></view>
     <view class="full">{{item.full}}</view>
   </view>

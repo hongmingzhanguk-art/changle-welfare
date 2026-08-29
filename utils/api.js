@@ -68,7 +68,7 @@ function getProductDetail(id) {
   return request('/product/detail', { id }).then((res) => {
     if (res) return res
     const p = mock.products.find((x) => x.id === id) || mock.products[0]
-    const rec = (p.recIds || ['p-n1', 'p-n2', 'p-n3', 'p-n4', 'p-franzzi', 'p-huawei'])
+    const rec = (p.recIds || ['p-n1', 'p-n2', 'p-n3', 'p-n4', 'p-franzzi', 'p-powerbank'])
       .map((rid) => mock.products.find((x) => x.id === rid))
       .filter(Boolean)
     const sku = p.sku || { specs: [{ name: '规格', values: ['默认'] }] }
@@ -80,27 +80,113 @@ function searchProducts(keyword) {
   return request('/product/search', { keyword }).then((res) => {
     if (res) return res
     const k = (keyword || '').trim()
-    const list = k
-      ? mock.products.filter((p) => p.title.indexOf(k) > -1)
-      : mock.products
+    if (!k) return { list: [] }
+    const list = mock.products.filter((p) => p.title.indexOf(k) > -1)
     return { list }
   })
 }
 
+const CART_KEY = 'cartGroups'
+
+function clone(v) {
+  return JSON.parse(JSON.stringify(v))
+}
+
+function loadCartGroups() {
+  try {
+    const stored = wx.getStorageSync(CART_KEY)
+    if (Array.isArray(stored)) return stored
+  } catch (e) { /* ignore */ }
+  const seed = clone(mock.cartGroups || [])
+  wx.setStorageSync(CART_KEY, seed)
+  return seed
+}
+
+function saveCartGroups(groups) {
+  wx.setStorageSync(CART_KEY, groups)
+}
+
+function specFromPayload(payload) {
+  if (payload && payload.spec) return payload.spec
+  if (payload && payload.selected && typeof payload.selected === 'object') {
+    const vals = Object.values(payload.selected).filter(Boolean)
+    if (vals.length) return vals.join(' | ')
+  }
+  return '默认规格'
+}
+
 function getCart() {
-  return request('/cart/list').then((res) => res || { groups: mock.cartGroups })
+  return request('/cart/list').then((res) => {
+    if (res) return res
+    return { groups: clone(loadCartGroups()) }
+  })
 }
 
 function addCart(payload) {
-  return request('/cart/add', payload, 'POST').then((res) => res || { ok: true })
+  return request('/cart/add', payload, 'POST').then((res) => {
+    if (res) return res
+    const productId = payload && payload.productId
+    const qty = Number((payload && payload.qty) || 1) || 1
+    const spec = specFromPayload(payload)
+    const p = mock.products.find((x) => x.id === productId) || {}
+    const shop = p.shop || '满满京选'
+    const groups = loadCartGroups()
+    for (let i = 0; i < groups.length; i++) {
+      const item = (groups[i].items || []).find((it) => it.productId === productId && it.spec === spec)
+      if (item) {
+        item.qty = (item.qty || 0) + qty
+        saveCartGroups(groups)
+        return { ok: true, groups }
+      }
+    }
+    let g = groups.find((x) => x.shop === shop)
+    if (!g) {
+      g = { shop, shopId: 's-' + shop, checked: true, items: [] }
+      groups.push(g)
+    }
+    g.items.push({
+      id: 'c-' + Date.now() + '-' + Math.floor(Math.random() * 10000),
+      productId,
+      title: p.title || '',
+      spec,
+      price: p.price || 0,
+      qty,
+      image: p.image || '',
+      checked: true
+    })
+    saveCartGroups(groups)
+    return { ok: true, groups }
+  })
 }
 
 function updateCart(payload) {
-  return request('/cart/update', payload, 'POST').then((res) => res || { ok: true })
+  return request('/cart/update', payload, 'POST').then((res) => {
+    if (res) return res
+    const id = payload && payload.id
+    const qty = Math.max(1, Number(payload && payload.qty) || 1)
+    const groups = loadCartGroups()
+    groups.forEach((g) => {
+      (g.items || []).forEach((it) => {
+        if (it.id === id) it.qty = qty
+      })
+    })
+    saveCartGroups(groups)
+    return { ok: true, groups }
+  })
 }
 
 function deleteCart(payload) {
-  return request('/cart/delete', payload, 'POST').then((res) => res || { ok: true })
+  return request('/cart/delete', payload, 'POST').then((res) => {
+    if (res) return res
+    const ids = (payload && payload.ids) || (payload && payload.id ? [payload.id] : [])
+    const set = {}
+    ids.forEach((id) => { set[id] = true })
+    const groups = loadCartGroups()
+      .map((g) => ({ ...g, items: (g.items || []).filter((it) => !set[it.id]) }))
+      .filter((g) => g.items.length)
+    saveCartGroups(groups)
+    return { ok: true, groups }
+  })
 }
 
 function createOrder(payload) {
@@ -117,7 +203,7 @@ function createOrder(payload) {
       id: 'o-' + no,
       no,
       status: '待发货',
-      statusTip: '包裹正在准备中，请耐性等待',
+      statusTip: '包裹正在准备中，请耐心等待',
       createdAt: now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate())
         + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()),
       payType,

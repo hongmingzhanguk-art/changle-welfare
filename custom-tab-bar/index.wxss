@@ -1,31 +1,65 @@
 .tabbar {
+  --fs-caption: 22rpx;
+  --sub: #6E6E7A;
+  --primary: #6B5CFF;
+  --fw-title: 600;
+  --danger: #FF3B30;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 90;
-  height: calc(110rpx + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
-  background: #fff;
+  height: calc(128rpx + env(safe-area-inset-bottom));
+  padding: 8rpx 0 env(safe-area-inset-bottom);
+  background: #ffffff;
   display: flex;
-  border-top: 1rpx solid #F2F2F5;
+  border-top: 1rpx solid rgba(24, 20, 48, 0.06);
+  box-shadow: 0 -10rpx 28rpx rgba(32, 24, 72, 0.06);
+  box-sizing: border-box;
 }
 .item {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 10rpx;
+  gap: 6rpx;
+}
+.icon-wrap {
+  position: relative;
+  width: 56rpx;
+  height: 56rpx;
 }
 .icon {
-  width: 48rpx;
-  height: 48rpx;
-  margin-bottom: 4rpx;
+  width: 56rpx;
+  height: 56rpx;
+  display: block;
+}
+.badge {
+  position: absolute;
+  top: -8rpx;
+  right: -14rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  padding: 0 8rpx;
+  background: var(--danger);
+  color: #fff;
+  font-size: 18rpx;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 16rpx;
+  font-weight: 600;
+  box-shadow: 0 0 0 3rpx #fff;
+  box-sizing: border-box;
 }
 .txt {
-  font-size: 20rpx;
-  color: #B8B8B8;
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--sub);
+  line-height: 1.1;
 }
 .txt.on {
-  color: #6B5CFF;
+  color: var(--primary);
+  font-weight: var(--fw-title);
 }

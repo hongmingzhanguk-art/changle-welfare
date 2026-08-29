@@ -1,4 +1,6 @@
 .navbar {
+  --fs-title: 32rpx;
+  --fw-title: 600;
   position: fixed;
   left: 0;
   right: 0;
@@ -19,20 +21,16 @@
   justify-content: center;
   z-index: 2;
 }
-.arrow {
-  width: 18rpx;
-  height: 18rpx;
-  border-left: 4rpx solid #1A1A1A;
-  border-bottom: 4rpx solid #1A1A1A;
-  transform: rotate(45deg);
-  margin-left: 8rpx;
+.back-ic {
+  width: 36rpx;
+  height: 36rpx;
 }
 .title {
   position: absolute;
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 34rpx;
-  font-weight: 600;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-title);
   pointer-events: none;
 }

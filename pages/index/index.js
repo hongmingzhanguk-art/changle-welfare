@@ -19,8 +19,12 @@ Page({
 
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({ selected: 0 })
+      this.getTabBar().setData({
+        selected: 0,
+        cartCount: getApp().globalData.cartCount || 0
+      })
     }
+    this.setData({ city: app.globalData.selectedCity })
   },
 
   onLoad() {
@@ -66,6 +70,18 @@ Page({
     wx.navigateTo({ url: '/pages/search/index' })
   },
 
+  goCity() {
+    const cities = ['常州', '南京', '苏州', '无锡']
+    wx.showActionSheet({
+      itemList: cities,
+      success: (res) => {
+        const city = cities[res.tapIndex]
+        app.globalData.selectedCity = city
+        this.setData({ city })
+      }
+    })
+  },
+
   goCate(e) {
     const { id, name } = e.currentTarget.dataset
     if (id === 'all') {
@@ -85,6 +101,7 @@ Page({
     const id = e.currentTarget.dataset.id
     // TODO: 接口联调 addCart
     api.addCart({ productId: id, qty: 1 }).then(() => {
+      getApp().bumpCartCount(1)
       wx.showToast({ title: '已加入购物车', icon: 'success' })
     })
   },
