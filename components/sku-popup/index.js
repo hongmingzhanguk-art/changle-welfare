@@ -1,4 +1,8 @@
+const cdnBehavior = require('../../behaviors/cdn')
+const { resolve } = require('../../utils/cdn')
+
 Component({
+  behaviors: [cdnBehavior],
   properties: {
     show: { type: Boolean, value: false },
     product: { type: Object, value: {} },
@@ -18,7 +22,7 @@ Component({
         specs.forEach((s) => {
           selected[s.name] = s.values[0]
         })
-        this.setData({ qty: 1, selected, preview: p.image })
+        this.setData({ qty: 1, selected, preview: resolve(p.image) })
       }
     }
   },
@@ -31,14 +35,14 @@ Component({
       const { name, value } = e.currentTarget.dataset
       const patch = { [`selected.${name}`]: value }
       const colorMap = {
-        '午夜色': '/images/products/airpods-black.png',
-        '星光色': '/images/products/airpods-star.png',
+        '午夜色': '/images/products/airpods-black.jpg',
+        '星光色': '/images/products/airpods-star.jpg',
         '蓝色': '/images/products/airpods-blue.jpg',
         '橙色': '/images/products/airpods-orange.jpg',
         '紫色': '/images/products/airpods-purple.jpg'
       }
       if (name === '颜色' && colorMap[value]) {
-        patch.preview = colorMap[value]
+        patch.preview = resolve(colorMap[value])
       }
       this.setData(patch)
     },

@@ -6,9 +6,10 @@
   padding: var(--space-3);
 }
 .hd { font-size: var(--fs-title); font-weight: var(--fw-title); display: flex; align-items: center; margin-bottom: var(--space-2); }
+.hd-ic { width: 36rpx; height: 36rpx; margin-right: 10rpx; flex-shrink: 0; }
 .bar { width: var(--space-1); height: 28rpx; background: var(--primary); border-radius: 4rpx; margin-right: 10rpx; }
 .pick {
-  background: var(--bg);
+  background: var(--fill);
   border-radius: var(--space-2);
   min-height: var(--hit);
   height: var(--hit);
@@ -18,9 +19,14 @@
   padding: 0 var(--space-3);
   color: var(--text);
 }
+.caret {
+  width: 16rpx;
+  height: 8rpx;
+  flex-shrink: 0;
+}
 .hint { color: var(--sub); font-size: var(--fs-caption); line-height: 1.6; margin-bottom: var(--space-2); }
 .area-wrap {
-  background: var(--bg);
+  background: var(--fill);
   border-radius: var(--space-2);
   padding: var(--space-3);
   position: relative;

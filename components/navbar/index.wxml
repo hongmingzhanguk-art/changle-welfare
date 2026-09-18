@@ -1,9 +1,9 @@
 <view class="navbar" style="padding-top: {{statusBarHeight}}px; background: {{background}};">
   <view class="inner">
     <view class="left" wx:if="{{back}}" bindtap="onBack">
-      <image class="back-ic" src="/images/icons/back.png" mode="aspectFit"></image>
+      <image class="back-ic" src="{{img['/images/icons/back.png']}}" mode="aspectFit"></image>
     </view>
-    <view class="title" style="color: {{color}}; padding-right: {{menuRight}}px;">{{title}}</view>
+    <view class="title" style="color: {{color}}; padding-left: {{menuRight}}px; padding-right: {{menuRight}}px;">{{title}}</view>
   </view>
 </view>
 <view style="height: {{navBarHeight}}px;"></view>

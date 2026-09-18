@@ -2,8 +2,10 @@ const api = require('../../utils/api')
 const util = require('../../utils/util')
 const mock = require('../../utils/mock')
 const app = getApp()
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: {
     statusBarHeight: 20,
     navBarHeight: 64,

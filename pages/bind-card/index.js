@@ -1,6 +1,8 @@
 const api = require('../../utils/api')
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: { no: '', pwd: '' },
   onNo(e) { this.setData({ no: e.detail.value }) },
   onPwd(e) { this.setData({ pwd: e.detail.value }) },

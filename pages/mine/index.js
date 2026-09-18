@@ -1,6 +1,8 @@
 const app = getApp()
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: {
     statusBarHeight: 20,
     loggedIn: true,

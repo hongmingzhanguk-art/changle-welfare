@@ -6,6 +6,7 @@
  * 3. 去掉各方法中的 mock 返回
  */
 const mock = require('./mock')
+const { resolve } = require('./cdn')
 
 const BASE_URL = '' // TODO: 替换为真实接口地址，例如 https://api.changle.com
 
@@ -88,14 +89,63 @@ function searchProducts(keyword) {
 
 const CART_KEY = 'cartGroups'
 
+/** 压包时 png→jpg 的旧路径，本地缓存可能仍持有 */
+const IMAGE_ALIASES = {
+  '/images/products/watch.png': '/images/products/watch.jpg',
+  '/images/products/airpods-black.png': '/images/products/airpods-black.jpg',
+  '/images/products/airpods-star.png': '/images/products/airpods-star.jpg',
+  '/images/banner/festival.png': '/images/banner/festival.jpg'
+}
+
 function clone(v) {
   return JSON.parse(JSON.stringify(v))
+}
+
+function resolveLocalImage(src, productId) {
+  if (productId) {
+    const p = mock.products.find((x) => x.id === productId)
+    if (p && p.image) return p.image
+  }
+  if (!src || typeof src !== 'string') return src || ''
+  return resolve(IMAGE_ALIASES[src] || src)
+}
+
+function hydrateItems(items) {
+  if (!Array.isArray(items)) return []
+  return items.map((it) => {
+    const image = resolveLocalImage(it.image, it.productId)
+    return image === it.image ? it : { ...it, image }
+  })
+}
+
+function itemsDirty(before, after) {
+  if (!before || before.length !== after.length) return true
+  for (let i = 0; i < after.length; i++) {
+    if (after[i] !== before[i]) return true
+  }
+  return false
+}
+
+function hydrateOrder(order) {
+  if (!order || !Array.isArray(order.items)) return order
+  const items = hydrateItems(order.items)
+  return itemsDirty(order.items, items) ? { ...order, items } : order
 }
 
 function loadCartGroups() {
   try {
     const stored = wx.getStorageSync(CART_KEY)
-    if (Array.isArray(stored)) return stored
+    if (Array.isArray(stored)) {
+      let dirty = false
+      const groups = stored.map((g) => {
+        const items = hydrateItems(g.items)
+        const changed = itemsDirty(g.items, items)
+        if (changed) dirty = true
+        return changed ? { ...g, items } : g
+      })
+      if (dirty) wx.setStorageSync(CART_KEY, groups)
+      return groups
+    }
   } catch (e) { /* ignore */ }
   const seed = clone(mock.cartGroups || [])
   wx.setStorageSync(CART_KEY, seed)
@@ -225,25 +275,36 @@ function payOrder(payload) {
 
 function getOrderDetail(id) {
   return request('/order/detail', { id }).then((res) => {
-    if (res) return res
-    const last = wx.getStorageSync('lastOrder')
+    if (res) return hydrateOrder(res)
+    const rawLast = wx.getStorageSync('lastOrder')
+    const last = hydrateOrder(rawLast)
+    if (last && last !== rawLast) wx.setStorageSync('lastOrder', last)
     if (last && (!id || last.id === id)) return last
     const list = wx.getStorageSync('localOrders') || []
     const found = list.find((o) => o.id === id)
-    return found || mock.orders[0]
+    return hydrateOrder(found) || mock.orders[0]
   })
 }
 
 function getOrders(payload) {
   return request('/order/list', payload).then((res) => {
-    if (res) return res
+    if (res) {
+      return { list: (res.list || []).map(hydrateOrder) }
+    }
     const local = wx.getStorageSync('localOrders') || []
+    let dirty = false
+    const hydratedLocal = local.map((o) => {
+      const next = hydrateOrder(o)
+      if (next !== o) dirty = true
+      return next
+    })
+    if (dirty) wx.setStorageSync('localOrders', hydratedLocal)
     const map = {}
     const list = []
-    local.concat(mock.orders).forEach((o) => {
+    hydratedLocal.concat(mock.orders).forEach((o) => {
       if (!map[o.id]) {
         map[o.id] = true
-        list.push(o)
+        list.push(hydrateOrder(o))
       }
     })
     return { list }
@@ -306,5 +367,6 @@ module.exports = {
   convertCard,
   bindCard,
   submitFeedback,
-  getAddressList
+  getAddressList,
+  hydrateItems
 }

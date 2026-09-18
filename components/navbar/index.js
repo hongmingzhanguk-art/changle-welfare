@@ -1,6 +1,8 @@
 const app = getApp()
+const cdnBehavior = require('../../behaviors/cdn')
 
 Component({
+  behaviors: [cdnBehavior],
   properties: {
     title: { type: String, value: '' },
     back: { type: Boolean, value: true },

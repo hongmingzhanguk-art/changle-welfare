@@ -7,8 +7,13 @@
   position: relative;
 }
 .top {
-  background: linear-gradient(180deg, #E8E4FF 0%, var(--card) 100%);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--wash) 0%, var(--card) 100%);
   padding-bottom: var(--space-1);
+}
+.top-bg {
+  height: 176rpx;
 }
 .nav-row {
   height: var(--hit);
@@ -17,25 +22,40 @@
   justify-content: center;
 }
 .nt { font-size: var(--fs-title); font-weight: var(--fw-title); }
-.search {
+.search-hit {
   margin: 0 var(--space-3) var(--space-2);
-  height: var(--hit);
   min-height: var(--hit);
-  background: #F3F4F8;
-  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+}
+.search {
+  flex: 1;
+  height: 68rpx;
+  min-height: 68rpx;
+  background: #EBEEF2;
+  border-radius: var(--radius-pill);
   display: flex;
   align-items: center;
   padding: 0 var(--space-3);
 }
 .sicon {
-  width: 28rpx;
-  height: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
   margin-right: 12rpx;
   flex-shrink: 0;
 }
 .sph { color: var(--sub); font-size: var(--fs-body); }
 
+.h-cats-row {
+  display: flex;
+  align-items: stretch;
+  height: 160rpx;
+  background: var(--card);
+}
 .h-cats {
+  flex: 1;
+  min-width: 0;
+  height: 160rpx;
   white-space: nowrap;
   padding: var(--space-1) var(--space-2) 12rpx;
 }
@@ -56,24 +76,34 @@
 }
 .h-cat.on image {
   border-color: var(--primary);
-  box-shadow: 0 0 0 4rpx rgba(107,92,255,0.15);
+  box-shadow: 0 0 0 4rpx var(--primary-soft);
 }
 .h-cat text { font-size: var(--fs-caption); margin-top: var(--space-1); color: var(--text); }
 .h-all {
-  display: inline-flex;
+  flex-shrink: 0;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: var(--hit);
-  min-width: var(--hit);
-  height: 140rpx;
-  vertical-align: top;
+  width: 64rpx;
+  min-width: 64rpx;
+  min-height: 160rpx;
+  height: 160rpx;
   color: var(--sub);
-  font-size: var(--fs-caption);
+  font-size: 20rpx;
   background: var(--card);
-  box-shadow: -8rpx 0 12rpx rgba(0,0,0,0.04);
+  box-shadow: -8rpx 0 16rpx rgba(0, 0, 0, 0.06);
+  z-index: 1;
 }
-.eq { width: 28rpx; height: var(--space-5); margin-top: 4rpx; }
+.eq {
+  width: 24rpx;
+  height: 24rpx;
+  margin-bottom: 6rpx;
+}
+.h-all-txt {
+  line-height: 1.15;
+  text-align: center;
+}
 
 .body {
   flex: 1;
@@ -84,7 +114,7 @@
 .side {
   width: 176rpx;
   height: 100%;
-  background: #EEF0F5;
+  background: var(--fill);
 }
 .side-item {
   min-height: var(--hit);
@@ -150,13 +180,13 @@
 .row {
   display: flex;
   padding: var(--space-2) 0;
-  border-bottom: 1rpx solid #F4F4F6;
+  border-bottom: 1rpx solid var(--line);
 }
 .thumb {
   width: 176rpx;
   height: 176rpx;
   border-radius: var(--space-2);
-  background: #f6f6f6;
+  background: var(--fill);
   flex-shrink: 0;
 }
 .info {
@@ -170,7 +200,7 @@
 .tag {
   align-self: flex-start;
   margin-top: var(--space-1);
-  font-size: 20rpx;
+  font-size: var(--fs-caption);
   color: var(--primary);
   background: var(--tag-bg);
   padding: 2rpx 10rpx;
@@ -183,7 +213,7 @@
   justify-content: space-between;
 }
 .row-foot .price { font-size: var(--fs-title); }
-.row-foot .cart-fab { margin: -16rpx -16rpx -16rpx 0; }
+.row-foot .cart-fab { margin: -16rpx 0; }
 
 .all-mask {
   position: fixed;
@@ -191,7 +221,7 @@
   right: 0;
   bottom: calc(128rpx + env(safe-area-inset-bottom));
   top: 0;
-  background: rgba(0,0,0,0.35);
+  background: var(--scrim);
   z-index: 8;
   pointer-events: auto;
 }
@@ -224,11 +254,19 @@
 .all-item.on image { border-color: var(--primary); }
 .all-item text { font-size: var(--fs-caption); margin-top: var(--space-1); }
 .fold {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--primary);
   font-size: var(--fs-body);
   padding: var(--space-2) 0 28rpx;
   min-height: var(--hit);
-  background: linear-gradient(180deg, #fff, #F6F4FF);
+  background: linear-gradient(180deg, var(--card), var(--wash));
   border-radius: 0 0 var(--space-4) var(--space-4);
+}
+.fold-caret {
+  width: 20rpx;
+  height: 12rpx;
+  margin-left: 14rpx;
+  flex-shrink: 0;
 }

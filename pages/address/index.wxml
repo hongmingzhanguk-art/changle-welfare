@@ -4,5 +4,5 @@
     <view class="who">{{item.name}}  {{item.phone}} <text class="def" wx:if="{{item.isDefault}}">默认</text></view>
     <view class="full">{{item.full}}</view>
   </view>
-  <view class="btn-primary add" bindtap="add">新增收货地址</view>
+  <view class="btn-primary add" bindtap="add" hover-class="btn-on" hover-stay-time="80">新增收货地址</view>
 </view>

@@ -1,9 +1,25 @@
 /** 静态 mock 数据，接口联调后由 utils/api.js 替换 */
+const { resolve } = require('./cdn')
+
+function rewriteImages(node) {
+  if (typeof node === 'string') return resolve(node)
+  if (Array.isArray(node)) {
+    for (let i = 0; i < node.length; i++) node[i] = rewriteImages(node[i])
+    return node
+  }
+  if (node && typeof node === 'object') {
+    Object.keys(node).forEach((k) => {
+      node[k] = rewriteImages(node[k])
+    })
+    return node
+  }
+  return node
+}
 
 const banners = [
   {
     id: 'b1',
-    image: '/images/banner/festival.png',
+    image: '/images/banner/festival.jpg',
     title: '全民购物节',
     productId: 'p-airpods',
     url: ''
@@ -72,10 +88,10 @@ const products = [
     id: 'p-airpods',
     title: 'Apple AirPods Max 2-午夜暗色',
     price: 2209,
-    image: '/images/products/airpods-black.png',
+    image: '/images/products/airpods-black.jpg',
     images: [
-      '/images/products/airpods-black.png',
-      '/images/products/airpods-star.png',
+      '/images/products/airpods-black.jpg',
+      '/images/products/airpods-star.jpg',
       '/images/products/airpods-blue.jpg',
       '/images/products/airpods-orange.jpg',
       '/images/products/airpods-purple.jpg'
@@ -101,7 +117,7 @@ const products = [
     id: 'p-airpods-star',
     title: '苹果 AirPods Max 2 星光色',
     price: 3599,
-    image: '/images/products/airpods-star.png',
+    image: '/images/products/airpods-star.jpg',
     tag: '超市',
     shop: '特惠严选',
     categoryId: 'digital'
@@ -110,7 +126,7 @@ const products = [
     id: 'p-watch',
     title: '苹果 Watch S11 智能手表 GPS 款',
     price: 2209,
-    image: '/images/products/watch.png',
+    image: '/images/products/watch.jpg',
     tag: '超市',
     shop: '满满京选',
     spec: 'S11铝金属 *1件',
@@ -252,7 +268,7 @@ const cartGroups = [
         spec: 'S11铝金属 *1件',
         price: 2209,
         qty: 1,
-        image: '/images/products/watch.png',
+        image: '/images/products/watch.jpg',
         checked: true
       }
     ]
@@ -269,7 +285,7 @@ const cartGroups = [
         spec: 'S11铝金属 *1件',
         price: 3599,
         qty: 1,
-        image: '/images/products/airpods-star.png',
+        image: '/images/products/airpods-star.jpg',
         checked: false
       }
     ]
@@ -335,7 +351,7 @@ const orders = [
         spec: 'AirPods Max2 | 午夜色',
         price: 2209,
         qty: 1,
-        image: '/images/products/airpods-black.png',
+        image: '/images/products/airpods-black.jpg',
         tag: '超市'
       }
     ]
@@ -417,6 +433,8 @@ const homeTabs = [
   { id: 'digital', name: '电子产品' },
   { id: 'virtual', name: '虚拟商城' }
 ]
+
+;[banners, categories, movies, brands, popular, products, cartGroups, orders].forEach(rewriteImages)
 
 module.exports = {
   banners,

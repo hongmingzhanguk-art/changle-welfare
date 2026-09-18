@@ -1,7 +1,9 @@
 const api = require('../../utils/api')
 const mock = require('../../utils/mock')
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: {
     types: mock.feedbackTypes,
     typeIndex: 0,

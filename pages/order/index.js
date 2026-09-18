@@ -1,6 +1,7 @@
 const api = require('../../utils/api')
 const util = require('../../utils/util')
 const mock = require('../../utils/mock')
+const cdnBehavior = require('../../behaviors/cdn')
 
 function formatPoints(n) {
   const x = Number(n)
@@ -24,6 +25,7 @@ function pointsCopy(payType, points, total) {
 }
 
 Page({
+  behaviors: [cdnBehavior],
   data: {
     address: {},
     items: [],
@@ -53,7 +55,7 @@ Page({
   applyItems(q) {
     let items = []
     if (q.from === 'cart') {
-      items = wx.getStorageSync('checkoutItems') || []
+      items = api.hydrateItems(wx.getStorageSync('checkoutItems') || [])
     } else if (q.id) {
       const p = mock.products.find((x) => x.id === q.id)
       if (p) {
@@ -67,7 +69,7 @@ Page({
         }]
       }
     } else {
-      items = wx.getStorageSync('checkoutItems') || []
+      items = api.hydrateItems(wx.getStorageSync('checkoutItems') || [])
     }
     if (!Array.isArray(items)) items = []
     if (!items.length) {

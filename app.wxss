@@ -2,29 +2,37 @@ page {
   /* Color */
   --bg: #F4F5F9;
   --card: #ffffff;
+  --fill: #F3F4F8;
   --text: #1A1A1A;
   --sub: #6E6E7A;
-  --muted: #B4B4BE;
   --icon: #8A8A99;
   --line: #F0F0F3;
   --line-strong: #D0D0D6;
   --primary: #6B5CFF;
   --primary-dark: #4D42B8;
   --primary-light: #8B7CFF;
+  --primary-soft: rgba(107, 92, 255, 0.16);
   --grad-start: #4C6FFF;
   --grad-end: #8B5CFF;
   --grad: linear-gradient(90deg, var(--grad-start) 0%, var(--grad-end) 100%);
   --grad-v: linear-gradient(180deg, var(--grad-start) 0%, var(--grad-end) 100%);
   --grad-diag: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+  --wash: #E6E0FF;
   --price: #FF2A2A;
   --danger: #FF3B30;
+  --warn: #FF8A1A;
   --tag-bg: #F0EBFF;
+  --on-inverse: #ffffff;
+  --overlay: rgba(0, 0, 0, 0.45);
+  --scrim: rgba(0, 0, 0, 0.35);
 
-  /* Type — 4 purpose roles (rpx; 2rpx ≈ 1pt) */
+  /* Type — 4 purpose roles + price/hero (rpx; 2rpx ≈ 1pt) */
   --fs-caption: 22rpx;
   --fs-body: 28rpx;
   --fs-title: 32rpx;
   --fs-display: 40rpx;
+  --fs-price: 48rpx;
+  --fs-hero: 64rpx;
   --fw-title: 600;
   --fw-display: 700;
 
@@ -36,7 +44,10 @@ page {
   --space-5: 40rpx;
   --hit: 88rpx;
   --radius: 24rpx;
+  --radius-pill: 44rpx;
   --shadow: 0 8rpx 24rpx rgba(80, 70, 180, 0.06);
+  --shadow-bar: 0 -8rpx 24rpx rgba(32, 24, 72, 0.06);
+  --shadow-cta: 0 8rpx 20rpx rgba(76, 111, 255, 0.28);
 
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
   font-size: var(--fs-body);
@@ -70,6 +81,19 @@ button::after {
   background: var(--bg);
 }
 
+.deco-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.deco-front {
+  position: relative;
+  z-index: 1;
+}
+
 .card {
   background: var(--card);
   border-radius: var(--radius);
@@ -89,30 +113,39 @@ button::after {
   font-size: 0.72em;
 }
 .price.big {
-  font-size: 48rpx;
+  font-size: var(--fs-price);
   font-weight: var(--fw-display);
 }
 
 .btn-primary {
   height: var(--hit);
+  min-height: var(--hit);
   line-height: var(--hit);
   text-align: center;
-  color: #fff;
+  color: var(--on-inverse);
   font-size: var(--fs-body);
-  font-weight: 500;
-  border-radius: 44rpx;
+  font-weight: var(--fw-title);
+  letter-spacing: 1rpx;
+  border-radius: var(--radius-pill);
   background: var(--grad);
+  box-shadow: var(--shadow-cta);
 }
 
 .btn-ghost {
   height: var(--hit);
+  min-height: var(--hit);
   line-height: var(--hit);
   text-align: center;
   color: var(--primary);
   font-size: var(--fs-body);
-  border-radius: 44rpx;
+  font-weight: var(--fw-title);
+  border-radius: var(--radius-pill);
   border: 2rpx solid var(--primary);
   background: var(--card);
+}
+
+.btn-on {
+  opacity: 0.88;
 }
 
 .ellipsis {
@@ -132,7 +165,7 @@ button::after {
   padding-bottom: calc(env(safe-area-inset-bottom) + 20rpx);
 }
 
-/* Visual mark 56rpx; hit box 88rpx */
+/* Visual mark 48rpx (24pt); hit box 88rpx */
 .cart-fab {
   width: var(--hit);
   height: var(--hit);
@@ -146,22 +179,9 @@ button::after {
   position: relative;
   flex-shrink: 0;
 }
-.cart-fab::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 56rpx;
-  height: 56rpx;
-  border-radius: 50%;
-  background: var(--grad-diag);
-}
 .cart-fab-icon {
-  width: 32rpx;
-  height: 32rpx;
+  width: 48rpx;
+  height: 48rpx;
   position: relative;
   z-index: 1;
 }

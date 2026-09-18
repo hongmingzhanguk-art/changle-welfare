@@ -2,7 +2,7 @@
   <nav-bar title="提交订单" background="#F4F5F9"></nav-bar>
 
   <view class="addr card" bindtap="goAddress">
-    <image class="addr-ic" src="/images/icons/addr-pin.png" mode="aspectFit"></image>
+    <image class="addr-ic" src="{{img['/images/icons/addr-pin.png']}}" mode="aspectFit"></image>
     <view class="addr-info">
       <view class="who">{{address.name}}  {{address.phone}}</view>
       <view class="full">{{address.full}}</view>
@@ -13,7 +13,7 @@
 
   <view class="card goods">
     <view class="wh">
-      <image class="wh-ic" src="/images/icons/warehouse.png" mode="aspectFit"></image>
+      <image class="wh-ic" src="{{img['/images/ui/warehouse.png']}}" mode="aspectFit"></image>
       <text>仓库 LB190410002</text>
     </view>
     <view class="g" wx:for="{{items}}" wx:key="index">
@@ -32,18 +32,18 @@
   <view class="pay-title">支付方式</view>
   <view class="card pay">
     <view class="pay-item" data-t="points" bindtap="setPay">
-      <image class="pic" src="/images/icons/star-gold.png" mode="aspectFit"></image>
+      <image class="pic" src="{{img['/images/icons/star-gold.png']}}" mode="aspectFit"></image>
       <view class="ptxt">
-        <view class="pn">积分支付 <text class="need">需支付 <text class="price">{{pointsAmount}}</text> 积分</text></view>
+        <view class="pn">积分支付 <text class="need">需支付 <text class="pay-amt">{{pointsAmount}}</text> 积分</text></view>
       </view>
       <view class="radio {{payType==='points'?'on':''}}"></view>
     </view>
     <view class="balance" wx:if="{{payType==='points' && pointsShort}}">余额不足，还差 {{pointsGap}} 积分</view>
     <view class="balance" wx:elif="{{payType==='points'}}">积分余额：{{pointsText}}</view>
     <view class="pay-item" data-t="wx" bindtap="setPay">
-      <image class="pic" src="/images/icons/wechat.png" mode="aspectFit"></image>
+      <image class="pic" src="{{img['/images/icons/wechat.png']}}" mode="aspectFit"></image>
       <view class="ptxt">
-        <view class="pn">微信支付 <text class="need">需支付 <text class="price"><text class="yen">¥</text>{{total}}</text></text></view>
+        <view class="pn">微信支付 <text class="need">需支付 <text class="pay-amt"><text class="yen">¥</text>{{total}}</text></text></view>
       </view>
       <view class="radio {{payType==='wx'?'on':''}}"></view>
     </view>
@@ -52,7 +52,7 @@
   <view class="bar">
     <view class="sum" wx:if="{{payType==='points'}}">应付：<text class="price">{{pointsAmount}}</text> 积分</view>
     <view class="sum" wx:else>应付：<text class="price"><text class="yen">¥</text>{{total}}</text></view>
-    <view class="pay-btn {{pointsShort ? 'dim' : ''}}" bindtap="submit">确认支付</view>
+    <view class="pay-btn {{pointsShort ? 'dim' : ''}}" bindtap="submit" hover-class="{{pointsShort ? '' : 'btn-on'}}" hover-stay-time="80">确认支付</view>
   </view>
 
   <c-modal

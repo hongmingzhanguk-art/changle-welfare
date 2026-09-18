@@ -1,7 +1,7 @@
 <view class="page bind">
   <nav-bar title="绑定新卡" background="transparent"></nav-bar>
   <view class="illus" bindtap="scan">
-    <image src="/images/ops/bind-card.png" mode="widthFix"></image>
+    <image src="{{img['/images/ops/bind-card.png']}}" mode="widthFix"></image>
   </view>
   <view class="card">
     <view class="hd"><view class="bar"></view>绑定新卡</view>
@@ -14,6 +14,6 @@
       <text>密码</text>
       <input password="true" placeholder="请输入密码，卡密码不区分大小写" placeholder-class="ph" value="{{pwd}}" bindinput="onPwd" />
     </view>
-    <view class="btn-primary" bindtap="bind">立即绑定</view>
+    <view class="btn-primary" bindtap="bind" hover-class="btn-on" hover-stay-time="80">立即绑定</view>
   </view>
 </view>

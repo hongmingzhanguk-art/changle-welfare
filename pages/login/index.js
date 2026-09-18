@@ -1,7 +1,9 @@
 const api = require('../../utils/api')
 const app = getApp()
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: {
     agreed: false
   },

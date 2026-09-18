@@ -4,7 +4,7 @@
     <view class="head">
       <text class="ht">规格选择</text>
       <view class="close" bindtap="onClose">
-        <image class="close-ic" src="/images/icons/close.png" mode="aspectFit"></image>
+        <image class="close-ic" src="{{img['/images/ui/sku-close.png']}}" mode="aspectFit"></image>
       </view>
     </view>
     <view class="prod">
@@ -23,19 +23,21 @@
       <view class="slabel">{{item.name}}</view>
       <view class="chips">
         <view
-          class="chip {{selected[item.name] === v ? 'on' : ''}}"
+          class="chip-hit"
           wx:for="{{item.values}}"
           wx:for-item="v"
           wx:key="*this"
           data-name="{{item.name}}"
           data-value="{{v}}"
           bindtap="pick"
-        >{{v}}</view>
+        >
+          <view class="chip {{selected[item.name] === v ? 'on' : ''}}">{{v}}</view>
+        </view>
       </view>
     </view>
     <view class="cta">
-      <view class="ghost" wx:if="{{mode === 'cart'}}" bindtap="addCart">加入购物车</view>
-      <view class="buy" wx:if="{{mode === 'buy'}}" bindtap="buy">立即购买</view>
+      <view class="ghost" wx:if="{{mode === 'cart'}}" bindtap="addCart" hover-class="btn-on" hover-stay-time="80">加入购物车</view>
+      <view class="buy" wx:if="{{mode === 'buy'}}" bindtap="buy" hover-class="btn-on" hover-stay-time="80">立即购买</view>
     </view>
   </view>
 </view>

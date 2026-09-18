@@ -1,6 +1,8 @@
 const api = require('../../utils/api')
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: { cards: [], rules: '', convertShow: false, current: null },
   onLoad() {
     // TODO: 接口联调 getWelfare

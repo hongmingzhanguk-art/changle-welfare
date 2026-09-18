@@ -1,62 +1,67 @@
 <view class="page mine">
-  <view class="hero" style="padding-top: {{statusBarHeight}}px;">
-    <view class="blob b1"></view>
-    <view class="blob b2"></view>
-    <view class="user">
-      <image wx:if="{{loggedIn && user.avatar}}" class="avatar" src="{{user.avatar}}" mode="aspectFill"></image>
-      <image wx:else class="avatar" src="/images/icons/guest.png" mode="aspectFill"></image>
-      <view class="uinfo">
-        <view class="nick">{{user.nickname}}</view>
-        <view class="phone">{{user.phone}}</view>
+  <image class="deco-bg hero-bg" src="{{bg.mineHero}}" mode="scaleToFill"></image>
+  <view class="hero">
+    <view class="deco-front" style="padding-top: {{statusBarHeight}}px;">
+      <view class="user">
+        <view class="user-hit" bindtap="goLogin" hover-class="user-hit-on" hover-stay-time="80">
+          <image wx:if="{{loggedIn && user.avatar}}" class="avatar" src="{{user.avatar}}" mode="aspectFit"></image>
+          <image wx:else class="avatar" src="{{img['/images/ui/avatar-crab.png']}}" mode="aspectFit"></image>
+          <view class="uinfo">
+            <view class="nick">{{user.nickname}}</view>
+            <view class="phone">{{user.phone}}</view>
+          </view>
+        </view>
+        <view class="bind-hit" catchtap="goBind">
+          <view class="bind-btn">
+            <image class="star-ic" src="{{img['/images/ui/star-gold.png']}}" mode="aspectFit"></image>
+            <text>积分绑定</text>
+            <image class="caret-ic" src="{{img['/images/ui/chevron-right.png']}}" mode="aspectFit"></image>
+          </view>
+        </view>
       </view>
-      <view class="bind-btn" bindtap="goBind">
-        <image class="star-ic" src="/images/icons/star-gold.png" mode="aspectFit"></image>
-        <text>积分绑定</text>
-        <text class="caret">›</text>
+      <view class="welfare" bindtap="goWelfare">
+        <image class="deco-bg welfare-bg" src="{{bg.welfareCard}}" mode="aspectFill"></image>
+        <view class="deco-front">
+          <view class="w-title">
+            <image class="w-mark" src="{{img['/images/ui/welfare-mark.png']}}" mode="aspectFit"></image>
+            <text class="w-name">我的福利</text>
+            <text class="w-count">{{welfareCount}}</text>
+          </view>
+          <view class="w-sub">各项福利享不停，立即查看我的福利</view>
+        </view>
       </view>
     </view>
-  </view>
-
-  <view class="welfare" bindtap="goWelfare">
-    <view>
-      <view class="w-title">
-        <image class="w-mark" src="/images/icons/welfare-mark.png" mode="aspectFit"></image>
-        <text>我的福利  {{welfareCount}}</text>
-      </view>
-      <view class="w-sub">各项福利享不停，立即查看我的福利</view>
-    </view>
-    <image class="flower" src="/images/icons/flower.png" mode="aspectFit"></image>
   </view>
 
   <view class="card order-card">
     <view class="card-hd">
       <text>我的订单</text>
-      <text class="all" bindtap="goOrders">全部订单 ›</text>
+      <view class="all" bindtap="goOrders">全部订单<image class="caret-ic" src="{{img['/images/ui/chevron-right.png']}}" mode="aspectFit"></image></view>
     </view>
     <view class="order-icons">
-      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="/images/icons/order-film.png" mode="aspectFit"></image><text>电影</text></view>
-      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="/images/icons/order-vip.png" mode="aspectFit"></image><text>会员</text></view>
-      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="/images/icons/order-bag.png" mode="aspectFit"></image><text>商品</text></view>
-      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="/images/icons/order-cake.png" mode="aspectFit"></image><text>蛋糕</text></view>
-      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="/images/icons/order-food.png" mode="aspectFit"></image><text>点餐</text></view>
+      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="{{img['/images/ui/order-film.png']}}" mode="aspectFit"></image><text>电影</text></view>
+      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="{{img['/images/ui/order-vip.png']}}" mode="aspectFit"></image><text>会员</text></view>
+      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="{{img['/images/ui/order-bag.png']}}" mode="aspectFit"></image><text>商品</text></view>
+      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="{{img['/images/ui/order-cake.png']}}" mode="aspectFit"></image><text>蛋糕</text></view>
+      <view class="oi" bindtap="goOrders"><image class="oi-ic" src="{{img['/images/ui/order-food.png']}}" mode="aspectFit"></image><text>点餐</text></view>
     </view>
   </view>
 
   <view class="card menu-card">
     <view class="menu" bindtap="goAddress">
-      <image class="mi" src="/images/icons/menu-pin.png" mode="aspectFit"></image><text>收货地址</text><text class="arrow">›</text>
+      <image class="mi" src="{{img['/images/ui/menu-pin.png']}}" mode="aspectFit"></image><text>收货地址</text><image class="caret-ic" src="{{img['/images/ui/chevron-right.png']}}" mode="aspectFit"></image>
     </view>
     <view class="menu" bindtap="goProfile">
-      <image class="mi" src="/images/icons/menu-profile.png" mode="aspectFit"></image><text>个人资料</text><text class="arrow">›</text>
+      <image class="mi" src="{{img['/images/ui/menu-profile.png']}}" mode="aspectFit"></image><text>个人资料</text><image class="caret-ic" src="{{img['/images/ui/chevron-right.png']}}" mode="aspectFit"></image>
     </view>
     <view class="menu" bindtap="goService">
-      <image class="mi" src="/images/icons/menu-chat.png" mode="aspectFit"></image><text>联系客服</text><text class="arrow">›</text>
+      <image class="mi" src="{{img['/images/ui/menu-chat.png']}}" mode="aspectFit"></image><text>联系客服</text><image class="caret-ic" src="{{img['/images/ui/chevron-right.png']}}" mode="aspectFit"></image>
     </view>
     <view class="menu" bindtap="goFeedback">
-      <image class="mi" src="/images/icons/menu-mail.png" mode="aspectFit"></image><text>意见反馈</text><text class="arrow">›</text>
+      <image class="mi" src="{{img['/images/ui/menu-mail.png']}}" mode="aspectFit"></image><text>意见反馈</text><image class="caret-ic" src="{{img['/images/ui/chevron-right.png']}}" mode="aspectFit"></image>
     </view>
     <view class="menu" bindtap="goAbout">
-      <image class="mi" src="/images/icons/menu-info.png" mode="aspectFit"></image><text>关于我们</text><text class="arrow">›</text>
+      <image class="mi" src="{{img['/images/ui/menu-info.png']}}" mode="aspectFit"></image><text>关于我们</text><image class="caret-ic" src="{{img['/images/ui/chevron-right.png']}}" mode="aspectFit"></image>
     </view>
   </view>
 

@@ -12,7 +12,7 @@
 .g image { width: 140rpx; height: 140rpx; border-radius: var(--space-2); }
 .ginfo { flex: 1; margin-left: var(--space-2); min-width: 0; }
 .gt { font-size: var(--fs-body); }
-.tag { background: var(--danger); color: #fff; font-size: 18rpx; padding: 0 6rpx; border-radius: 4rpx; margin-right: var(--space-1); }
+.tag { background: var(--danger); color: var(--on-inverse); font-size: var(--fs-caption); padding: 0 6rpx; border-radius: 4rpx; margin-right: var(--space-1); }
 .gs { color: var(--sub); font-size: var(--fs-caption); margin: 10rpx 0; }
 .gf { display: flex; justify-content: space-between; }
 .sec { padding: var(--space-4) var(--space-4) var(--space-2); font-size: var(--fs-title); font-weight: var(--fw-title); }

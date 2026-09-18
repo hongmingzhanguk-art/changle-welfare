@@ -1,6 +1,8 @@
 const api = require('../../utils/api')
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: { keyword: '', list: [], history: ['挂面', '耳机', '蛋糕'], searched: false },
   onInput(e) { this.setData({ keyword: e.detail.value }) },
   search(e) {

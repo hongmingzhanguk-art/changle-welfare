@@ -2,7 +2,7 @@
   <nav-bar title="搜索" background="#fff"></nav-bar>
   <view class="bar">
     <view class="input-wrap">
-      <image class="sicon" src="/images/icons/search-gray.png" mode="aspectFit"></image>
+      <image class="sicon" src="{{img['/images/icons/search-gray.png']}}" mode="aspectFit"></image>
       <input placeholder="请输入搜索关键词" placeholder-class="ph" value="{{keyword}}" bindinput="onInput" confirm-type="search" bindconfirm="search" />
     </view>
     <text class="go" bindtap="search">搜索</text>

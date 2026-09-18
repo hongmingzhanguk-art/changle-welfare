@@ -1,29 +1,31 @@
 <view class="page home">
-  <view class="hero" style="padding-top: {{statusBarHeight}}px;">
-    <view class="blob b1"></view>
-    <view class="blob b2"></view>
-    <view class="nav-row">
-      <text class="brand">常乐福利</text>
-    </view>
-    <view class="search-row">
-      <view class="city" bindtap="goCity">
-        <image class="pin" src="/images/icons/pin-white.png" mode="aspectFit"></image>
-        <text>{{city}}</text>
-        <image class="caret" src="/images/icons/chevron-down-white.png" mode="aspectFit"></image>
+  <view class="hero">
+    <image class="deco-bg hero-bg" src="{{bg.homeHero}}" mode="aspectFill"></image>
+    <view class="deco-front" style="padding-top: {{statusBarHeight}}px;">
+      <view class="nav-row">
+        <image class="brand-mark" src="{{img['/images/brand-mark-white.png']}}" mode="aspectFit" aria-label="常乐福利"></image>
       </view>
-      <view class="search" bindtap="goSearch">
-        <image class="sicon" src="/images/icons/search-white.png" mode="aspectFit"></image>
-        <text class="sph">请输入搜索关键词</text>
+      <view class="search-row">
+        <view class="city" bindtap="goCity">
+          <image class="pin" src="{{img['/images/icons/pin-white.png']}}" mode="aspectFit"></image>
+          <text>{{city}}</text>
+          <image class="caret" src="{{img['/images/icons/chevron-down-white.png']}}" mode="aspectFit"></image>
+        </view>
+        <view class="search-hit" bindtap="goSearch">
+          <view class="search">
+            <image class="sicon" src="{{img['/images/icons/search-white.png']}}" mode="aspectFit"></image>
+            <text class="sph">请输入搜索关键词</text>
+          </view>
+        </view>
+      </view>
+      <view class="banner-wrap">
+        <swiper class="banner" autoplay circular interval="4000">
+          <swiper-item wx:for="{{banners}}" wx:key="id">
+            <image class="banner-img" src="{{item.image}}" mode="aspectFill" bindtap="goDetail" data-id="{{item.productId}}"></image>
+          </swiper-item>
+        </swiper>
       </view>
     </view>
-  </view>
-
-  <view class="banner-wrap">
-    <swiper class="banner" autoplay circular interval="4000">
-      <swiper-item wx:for="{{banners}}" wx:key="id">
-        <image class="banner-img" src="{{item.image}}" mode="aspectFill" bindtap="goDetail" data-id="{{item.productId}}"></image>
-      </swiper-item>
-    </swiper>
   </view>
 
   <view class="cats card">
@@ -33,7 +35,7 @@
     </view>
   </view>
 
-  <view class="section card">
+  <view class="section card movies-sec">
     <view class="sec-hd">
       <text class="sec-title">电影鉴赏</text>
     </view>
@@ -41,7 +43,9 @@
       <view class="movie" wx:for="{{movies}}" wx:key="id">
         <image class="poster" src="{{item.poster}}" mode="aspectFill"></image>
         <text class="mname">{{item.name}}</text>
-        <view class="ticket" bindtap="buyTicket">购票</view>
+        <view class="ticket-hit" bindtap="buyTicket" hover-class="btn-on" hover-stay-time="80">
+          <image class="ticket" src="{{img['/images/ui/btn-ticket.png']}}" mode="aspectFit"></image>
+        </view>
       </view>
     </scroll-view>
   </view>
@@ -52,20 +56,21 @@
         <text>生活卡券</text>
         <text class="more">›</text>
       </view>
-      <image class="op-img" src="/images/ops/coupon.png" mode="aspectFill"></image>
+      <image class="op-img" src="{{img['/images/ops/coupon.png']}}" mode="aspectFill"></image>
     </view>
     <view class="op op-gift" bindtap="goOps" data-t="节日礼包">
       <view class="op-hd">
         <text>节日礼包</text>
         <text class="more">›</text>
       </view>
-      <image class="op-img" src="/images/ops/gift.png" mode="aspectFill"></image>
+      <image class="op-img" src="{{img['/images/ops/gift.png']}}" mode="aspectFill"></image>
     </view>
   </view>
 
   <view class="local card">
-    <view class="local-title">本地生活 应有尽有</view>
-    <view class="brands">
+    <image class="deco-bg local-bg" src="{{bg.localLife}}" mode="aspectFill"></image>
+    <view class="local-title deco-front">本地生活 应有尽有</view>
+    <view class="brands deco-front">
       <view class="brand-item" wx:for="{{brands}}" wx:key="id" bindtap="goOps" data-t="{{item.name}}">
         <image class="brand-icon" src="{{item.icon}}" mode="aspectFill"></image>
         <text>{{item.name}}</text>
@@ -74,15 +79,16 @@
   </view>
 
   <view class="popular card">
-    <view class="sec-hd">
+    <image class="deco-bg popular-bg" src="{{bg.popular}}" mode="aspectFill"></image>
+    <view class="sec-hd deco-front">
       <view class="hot-title">
-        <image class="fire-ic" src="/images/icons/fire.png" mode="aspectFit"></image>
+        <image class="fire-ic" src="{{img['/images/icons/fire.png']}}" mode="aspectFit"></image>
         <text>人气推荐</text>
       </view>
     </view>
-    <scroll-view scroll-x class="pop-row" enhanced show-scrollbar="{{false}}">
+    <scroll-view scroll-x class="pop-row deco-front" enhanced show-scrollbar="{{false}}">
       <view class="pop-left">
-        <image class="pop-banner" src="/images/ops/popular-left.png" mode="aspectFill"></image>
+        <image class="pop-banner" src="{{img['/images/ops/popular-left.png']}}" mode="aspectFill"></image>
       </view>
       <view class="pop-item" wx:for="{{popular}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
         <image src="{{item.image}}" mode="aspectFit"></image>
@@ -108,8 +114,8 @@
         <view class="p-name ellipsis-2">{{item.title}}</view>
         <view class="p-foot">
           <text class="price"><text class="yen">¥</text>{{item.price}}</text>
-          <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
-            <image class="cart-fab-icon" src="/images/icons/cart-white.png" mode="aspectFit"></image>
+          <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}" hover-class="btn-on" hover-stay-time="80">
+            <image class="cart-fab-icon" src="{{img['/images/ui/btn-cart.png']}}" mode="aspectFit"></image>
           </view>
         </view>
       </view>

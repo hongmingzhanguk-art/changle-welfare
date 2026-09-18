@@ -1,6 +1,8 @@
 const api = require('../../utils/api')
+const cdnBehavior = require('../../behaviors/cdn')
 
 Page({
+  behaviors: [cdnBehavior],
   data: { order: {} },
   onLoad(q) {
     // TODO: 接口联调 getOrderDetail

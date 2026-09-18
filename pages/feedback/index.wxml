@@ -1,11 +1,14 @@
 <view class="page fb">
   <nav-bar title="意见反馈" background="#F4F5F9"></nav-bar>
   <view class="card">
-    <view class="hd"><view class="bar"></view>反馈问题</view>
+    <view class="hd">
+      <image class="hd-ic" src="{{img['/images/ui/feedback-list.png']}}" mode="aspectFit"></image>
+      反馈问题
+    </view>
     <picker range="{{types}}" value="{{typeIndex}}" bindchange="onType">
       <view class="pick">
         <text>{{types[typeIndex]}}</text>
-        <text class="caret">▾</text>
+        <image class="caret" src="{{img['/images/ui/caret-down.png']}}" mode="aspectFit"></image>
       </view>
     </picker>
   </view>
@@ -22,6 +25,6 @@
       ></textarea>
       <view class="count">{{content.length}}/240</view>
     </view>
-    <view class="btn-primary" bindtap="submit">提交</view>
+    <view class="btn-primary" bindtap="submit" hover-class="btn-on" hover-stay-time="80">提交</view>
   </view>
 </view>

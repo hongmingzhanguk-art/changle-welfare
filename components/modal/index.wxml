@@ -5,8 +5,8 @@
       <slot></slot>
     </view>
     <view class="actions">
-      <view class="btn ghost" wx:if="{{showCancel}}" bindtap="onCancel">{{cancelText}}</view>
-      <view class="btn fill" bindtap="onConfirm">{{confirmText}}</view>
+      <view class="btn ghost" wx:if="{{showCancel}}" bindtap="onCancel" hover-class="btn-on" hover-stay-time="80">{{cancelText}}</view>
+      <view class="btn fill" bindtap="onConfirm" hover-class="btn-on" hover-stay-time="80">{{confirmText}}</view>
     </view>
   </view>
 </view>

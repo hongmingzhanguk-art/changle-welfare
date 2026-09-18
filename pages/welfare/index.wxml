@@ -1,20 +1,31 @@
 <view class="page wel">
+  <image class="deco-bg wel-bg" src="{{bg.welfareTop}}" mode="widthFix"></image>
   <nav-bar title="福利详情" background="transparent"></nav-bar>
   <view class="card {{item.theme}}" wx:for="{{cards}}" wx:key="id">
-    <view class="row1">
-      <text>{{item.name}}</text>
-      <text class="face" wx:if="{{item.theme==='purple'}}">面值{{item.face}}.00福豆</text>
-    </view>
-    <view class="bal">{{item.balance}}.00</view>
-    <view class="sub">可用余额(福豆)</view>
-    <view class="row2">
-      <view>
-        <view>卡　号：{{item.no}} <image class="copy" src="/images/icons/copy-white.png" mode="aspectFit" catchtap="copyNo" data-no="{{item.no}}"></image></view>
-        <view>有效期至：{{item.expire}}</view>
+    <image
+      class="card-face"
+      src="{{item.theme === 'purple' ? img['/images/ui/welfare-card-purple.png'] : img['/images/ui/welfare-card-pink.png']}}"
+      mode="aspectFill"
+    ></image>
+    <view class="card-body">
+      <view class="row1">
+        <text class="cname">{{item.name}}</text>
+        <text class="face" wx:if="{{item.theme==='purple'}}">面值{{item.face}}.00福豆</text>
       </view>
-      <view class="cvt" wx:if="{{item.convertible}}" catchtap="convert" data-item="{{item}}">
-        <image class="cvt-ic" src="/images/icons/convert.png" mode="aspectFit"></image>
-        <text>转换</text>
+      <view class="bal">{{item.balance}}.00</view>
+      <view class="sub">可用余额(福豆)</view>
+      <view class="row2">
+        <view class="meta">
+          <view class="meta-line">
+            <text>卡　号：{{item.no}}</text>
+            <image class="copy" src="{{img['/images/ui/copy-white.png']}}" mode="aspectFit" catchtap="copyNo" data-no="{{item.no}}"></image>
+          </view>
+          <view>有效期至：{{item.expire}}</view>
+        </view>
+        <view class="cvt" wx:if="{{item.convertible}}" catchtap="convert" data-item="{{item}}">
+          <image class="cvt-ic" src="{{img['/images/ui/convert.png']}}" mode="aspectFit"></image>
+          <text>转换</text>
+        </view>
       </view>
     </view>
   </view>

@@ -1,27 +1,34 @@
 <view class="page cate-page">
-  <view class="top" style="padding-top: {{statusBarHeight}}px;">
+  <view class="top">
+    <image class="deco-bg top-bg" src="{{bg.cateTop}}" mode="aspectFill"></image>
+    <view class="deco-front" style="padding-top: {{statusBarHeight}}px;">
     <view class="nav-row"><text class="nt">分类</text></view>
-    <view class="search" bindtap="goSearch">
-      <image class="sicon" src="/images/icons/search-gray.png" mode="aspectFit"></image>
-      <text class="sph">请输入关键词</text>
+    <view class="search-hit" bindtap="goSearch">
+      <view class="search">
+        <image class="sicon" src="{{img['/images/icons/search-gray.png']}}" mode="aspectFit"></image>
+        <text class="sph">请输入关键词</text>
+      </view>
     </view>
-    <scroll-view scroll-x class="h-cats" enhanced show-scrollbar="{{false}}" wx:if="{{!showAll}}">
-      <view
-        class="h-cat {{current === item.id ? 'on' : ''}}"
-        wx:for="{{categories}}"
-        wx:key="id"
-        wx:if="{{item.id !== 'all'}}"
-        data-id="{{item.id}}"
-        bindtap="onCat"
-      >
-        <image src="{{item.icon}}" mode="aspectFill"></image>
-        <text>{{item.name}}</text>
-      </view>
+    <view class="h-cats-row" wx:if="{{!showAll}}">
+      <scroll-view scroll-x class="h-cats" enhanced show-scrollbar="{{false}}">
+        <view
+          class="h-cat {{current === item.id ? 'on' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="id"
+          wx:if="{{item.id !== 'all'}}"
+          data-id="{{item.id}}"
+          bindtap="onCat"
+        >
+          <image src="{{item.icon}}" mode="aspectFill"></image>
+          <text>{{item.name}}</text>
+        </view>
+      </scroll-view>
       <view class="h-all" bindtap="toggleAll">
-        <text>全部</text>
-        <image class="eq" src="/images/icons/cate-all.png" mode="aspectFit"></image>
+        <image class="eq" src="{{img['/images/ui/cate-all.png']}}" mode="aspectFit"></image>
+        <text class="h-all-txt">全</text>
+        <text class="h-all-txt">部</text>
       </view>
-    </scroll-view>
+    </view>
     <view class="all-inline" wx:else>
       <view class="all-title">全部分类</view>
       <view class="all-grid">
@@ -36,7 +43,11 @@
           <text>{{item.name}}</text>
         </view>
       </view>
-      <view class="fold" bindtap="toggleAll">收起分类 ∧</view>
+      <view class="fold" bindtap="toggleAll">
+        <text>收起分类</text>
+        <image class="fold-caret" src="{{img['/images/ui/chevron-up.png']}}" mode="aspectFit"></image>
+      </view>
+    </view>
     </view>
   </view>
 
@@ -63,8 +74,8 @@
             <view class="tag" wx:if="{{item.postage}}">包邮</view>
             <view class="row-foot">
               <text class="price"><text class="yen">¥</text>{{item.price}}</text>
-              <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}">
-                <image class="cart-fab-icon" src="/images/icons/cart-white.png" mode="aspectFit"></image>
+              <view class="cart-fab" catchtap="addCart" data-id="{{item.id}}" hover-class="btn-on" hover-stay-time="80">
+              <image class="cart-fab-icon" src="{{img['/images/ui/btn-cart.png']}}" mode="aspectFit"></image>
               </view>
             </view>
           </view>

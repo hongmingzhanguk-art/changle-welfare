@@ -4,8 +4,13 @@
   min-height: 100vh;
 }
 .top {
-  background: linear-gradient(180deg, #E4DEFF 0%, var(--bg) 100%);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--wash) 0%, var(--bg) 100%);
   padding-bottom: var(--space-1);
+}
+.top-bg {
+  height: 500rpx;
 }
 .nav-row {
   height: var(--hit);
@@ -26,7 +31,7 @@
 .addr {
   display: flex;
   align-items: center;
-  color: var(--primary);
+  color: #5F687E;
   font-size: var(--fs-body);
   min-height: var(--hit);
   flex: 1;
@@ -37,13 +42,18 @@
   min-width: 0;
 }
 .pin {
-  width: 28rpx;
+  width: 20rpx;
   height: 28rpx;
   margin-right: 10rpx;
 }
-.caret { margin-left: 6rpx; color: var(--icon); }
+.caret-ic {
+  width: 16rpx;
+  height: 32rpx;
+  margin-left: 6rpx;
+  flex-shrink: 0;
+}
 .manage {
-  color: var(--sub);
+  color: #18191A;
   font-size: var(--fs-body);
   min-width: var(--hit);
   min-height: var(--hit);
@@ -80,19 +90,18 @@
   border-color: var(--primary);
   background: var(--primary);
 }
-.ck.on::after {
-  content: '';
+.ck-mark {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 8rpx;
-  height: 16rpx;
-  margin-left: -6rpx;
-  margin-top: -12rpx;
-  border: 3rpx solid #fff;
-  border-top: none;
-  border-left: none;
-  transform: rotate(45deg);
+  width: 36rpx;
+  height: 36rpx;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+.ck.on .ck-mark {
+  opacity: 1;
 }
 
 .empty {
@@ -102,8 +111,8 @@
   align-items: center;
 }
 .empty-illust {
-  width: 280rpx;
-  height: 240rpx;
+  width: 230rpx;
+  height: 230rpx;
 }
 .empty-t {
   margin-top: var(--space-3);
@@ -156,7 +165,7 @@
 }
 .thumb {
   width: 140rpx; height: 140rpx; border-radius: var(--space-2); margin: 0 var(--space-2);
-  background: #f6f6f6; border: 1rpx solid var(--line);
+  background: var(--fill); border: 1rpx solid var(--line);
 }
 .meta { flex: 1; min-width: 0; }
 .name { font-size: var(--fs-body); }
@@ -186,7 +195,7 @@
   width: 48rpx;
   height: 48rpx;
   border-radius: var(--space-1);
-  background: #F3F4F8;
+  background: var(--fill);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -211,11 +220,11 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-1);
-  color: #fff;
+  color: var(--on-inverse);
   font-size: var(--fs-caption);
 }
-.act-ic { width: var(--space-5); height: var(--space-5); }
-.fav { background: #FF8A1A; }
+.act-ic { width: 32rpx; height: 32rpx; }
+.fav { background: var(--warn); }
 .del { background: var(--danger); }
 
 .guess-title {
@@ -251,7 +260,7 @@
   display: flex;
   align-items: center;
   padding: 0 var(--space-3);
-  box-shadow: 0 -4rpx 16rpx rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-bar);
   z-index: 20;
 }
 .bar .ck { margin: 0; }
@@ -259,15 +268,18 @@
 .sum { flex: 1; text-align: right; margin-right: var(--space-2); font-size: var(--fs-body); }
 .sum .price { font-size: var(--fs-title); }
 .pay {
-  min-width: 168rpx;
-  min-height: var(--hit);
-  height: var(--hit);
+  min-width: 160rpx;
+  min-height: 72rpx;
+  height: 72rpx;
   padding: 0 var(--space-4);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  border-radius: 44rpx;
+  color: var(--on-inverse);
+  border-radius: var(--radius-pill);
   background: var(--grad);
   font-size: var(--fs-body);
+  font-weight: var(--fw-title);
+  letter-spacing: 1rpx;
+  box-shadow: var(--shadow-cta);
 }

@@ -3,11 +3,11 @@
     <view class="nav-inner">
       <view class="nav-tools">
         <view class="circle" bindtap="onBack">
-          <image class="nav-ic" src="{{sticky ? '/images/icons/back.png' : '/images/icons/back-white.png'}}" mode="aspectFit"></image>
+          <image class="nav-ic" src="{{sticky ? img['/images/icons/back.png'] : img['/images/icons/back-white.png']}}" mode="aspectFit"></image>
         </view>
         <view class="nav-div"></view>
         <view class="circle" bindtap="onMenu">
-          <image class="nav-ic" src="{{sticky ? '/images/icons/hamburger.png' : '/images/icons/hamburger-white.png'}}" mode="aspectFit"></image>
+          <image class="nav-ic" src="{{sticky ? img['/images/icons/hamburger.png'] : img['/images/icons/hamburger-white.png']}}" mode="aspectFit"></image>
         </view>
       </view>
       <view class="tabs" wx:if="{{sticky}}">
@@ -67,8 +67,8 @@
           <view class="p-name ellipsis-2">{{item.title}}</view>
           <view class="p-foot">
             <text class="price"><text class="yen">¥</text>{{item.price}}</text>
-            <view class="cart-fab" catchtap="addRec" data-id="{{item.id}}">
-              <image class="cart-fab-icon" src="/images/icons/cart-white.png" mode="aspectFit"></image>
+            <view class="cart-fab" catchtap="addRec" data-id="{{item.id}}" hover-class="btn-on" hover-stay-time="80">
+              <image class="cart-fab-icon" src="{{img['/images/ui/btn-cart.png']}}" mode="aspectFit"></image>
             </view>
           </view>
         </view>
@@ -85,19 +85,19 @@
   <view class="bar">
     <view class="tools">
       <view class="tool" bindtap="goService">
-        <image class="ticon" src="/images/icons/service.png" mode="aspectFit"></image>
+        <image class="ticon" src="{{img['/images/ui/service-bubble.png']}}" mode="aspectFit"></image>
         <text>客服</text>
       </view>
       <view class="tool" bindtap="goCart">
         <view class="cart-wrap">
-          <image class="ticon" src="/images/icons/cart-smile.png" mode="aspectFit"></image>
+          <image class="ticon" src="{{img['/images/ui/cart-line.png']}}" mode="aspectFit"></image>
           <view class="badge" wx:if="{{cartCount > 0}}">{{cartCount > 99 ? '99+' : cartCount}}</view>
         </view>
         <text>购物车</text>
       </view>
     </view>
-    <view class="ghost" bindtap="openSkuCart">加入购物车</view>
-    <view class="fill" bindtap="openSku">立即购买</view>
+    <view class="ghost" bindtap="openSkuCart" hover-class="btn-on" hover-stay-time="80">加入购物车</view>
+    <view class="fill" bindtap="openSku" hover-class="btn-on" hover-stay-time="80">立即购买</view>
   </view>
 
   <sku-popup

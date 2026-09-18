@@ -4,6 +4,9 @@
   --primary: #6B5CFF;
   --fw-title: 600;
   --danger: #FF3B30;
+  --card: #ffffff;
+  --on-inverse: #ffffff;
+  --shadow-bar: 0 -8rpx 24rpx rgba(32, 24, 72, 0.06);
   position: fixed;
   left: 0;
   right: 0;
@@ -11,10 +14,10 @@
   z-index: 90;
   height: calc(128rpx + env(safe-area-inset-bottom));
   padding: 8rpx 0 env(safe-area-inset-bottom);
-  background: #ffffff;
+  background: var(--card);
   display: flex;
   border-top: 1rpx solid rgba(24, 20, 48, 0.06);
-  box-shadow: 0 -10rpx 28rpx rgba(32, 24, 72, 0.06);
+  box-shadow: var(--shadow-bar);
   box-sizing: border-box;
 }
 .item {
@@ -44,13 +47,13 @@
   height: 32rpx;
   padding: 0 8rpx;
   background: var(--danger);
-  color: #fff;
-  font-size: 18rpx;
+  color: var(--on-inverse);
+  font-size: var(--fs-caption);
   line-height: 32rpx;
   text-align: center;
   border-radius: 16rpx;
   font-weight: 600;
-  box-shadow: 0 0 0 3rpx #fff;
+  box-shadow: 0 0 0 3rpx var(--card);
   box-sizing: border-box;
 }
 .txt {

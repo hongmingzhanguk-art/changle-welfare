@@ -1,6 +1,7 @@
 .navbar {
   --fs-title: 32rpx;
   --fw-title: 600;
+  --hit: 88rpx;
   position: fixed;
   left: 0;
   right: 0;
@@ -8,14 +9,14 @@
   z-index: 100;
 }
 .inner {
-  height: 88rpx;
+  height: var(--hit);
   display: flex;
   align-items: center;
   position: relative;
 }
 .left {
-  width: 88rpx;
-  height: 88rpx;
+  width: var(--hit);
+  height: var(--hit);
   display: flex;
   align-items: center;
   justify-content: center;

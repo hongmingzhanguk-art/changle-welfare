@@ -1,3 +1,5 @@
+const { resolve } = require('./utils/cdn')
+
 App({
   globalData: {
     statusBarHeight: 20,
@@ -7,7 +9,7 @@ App({
     userInfo: {
       nickname: '在海边摸螃蟹',
       phone: '13856786789',
-      avatar: '/images/avatar.png',
+      avatar: resolve('/images/ui/avatar-crab.png'),
       points: 7652
     },
     cartCount: 2,
