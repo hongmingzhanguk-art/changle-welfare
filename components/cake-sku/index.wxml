@@ -1,0 +1,40 @@
+<view class="wrap" wx:if="{{show}}" catchtouchmove="noop">
+  <view class="mask" bindtap="onClose"></view>
+  <view class="sheet">
+    <image class="sheet-bg" src="{{img['/images/cake/sku-sheet.png']}}" mode="scaleToFill"></image>
+    <view class="sheet-inner">
+      <view class="head">
+        <text class="ht">规格选择</text>
+        <view class="close" bindtap="onClose">
+          <image class="close-ic" src="{{img['/images/cake/sku-close.png']}}" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="prod">
+        <image class="thumb" src="{{product.image}}" mode="aspectFill"></image>
+        <view class="meta">
+          <view class="name ellipsis">{{product.title}}</view>
+          <view class="price"><text class="yen">¥</text>{{price}}</view>
+          <view class="stepper">
+            <view class="sbtn" bindtap="minus"><text class="sbtn-mark">−</text></view>
+            <text class="snum">{{qty}}</text>
+            <view class="sbtn" bindtap="plus"><text class="sbtn-mark">+</text></view>
+          </view>
+        </view>
+      </view>
+      <view class="slabel">规格</view>
+      <view class="chips">
+        <view
+          class="chip {{spec === v ? 'on' : ''}}"
+          wx:for="{{specs}}"
+          wx:for-item="v"
+          wx:key="*this"
+          data-v="{{v}}"
+          bindtap="pick"
+        >{{v}}</view>
+      </view>
+      <view class="cta" bindtap="confirm" hover-class="btn-on" hover-stay-time="80">
+        <image class="cta-bg" src="{{img['/images/cake/sku-ok.png']}}" mode="scaleToFill"></image>
+      </view>
+    </view>
+  </view>
+</view>

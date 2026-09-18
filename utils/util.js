@@ -45,6 +45,18 @@ function requireLogin() {
   return false
 }
 
+function isCakeProductId(id) {
+  if (!id) return false
+  const list = require('./mock').cakeProducts || []
+  return list.some((p) => p.id === id)
+}
+
+function productDetailUrl(id) {
+  const pid = id || ''
+  if (isCakeProductId(pid)) return '/pages/cake-detail/index?id=' + pid
+  return '/pages/detail/index?id=' + pid
+}
+
 module.exports = {
   formatPrice,
   formatShipDate,
@@ -52,5 +64,7 @@ module.exports = {
   toast,
   navTo,
   switchTab,
-  requireLogin
+  requireLogin,
+  isCakeProductId,
+  productDetailUrl
 }

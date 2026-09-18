@@ -1,0 +1,53 @@
+<view class="page cl">
+  <image class="deco-bg hero-bg" src="{{bg.cakeListHero}}" mode="aspectFill"></image>
+  <view class="deco-front" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-row">
+      <view class="home-hit" bindtap="goHome">
+        <image class="home-ic" src="{{img['/images/cake/home-white.png']}}" mode="aspectFit"></image>
+      </view>
+      <view class="search-hit" bindtap="goSearch">
+        <view class="search">
+          <image class="sicon" src="{{img['/images/cake/search-white.png']}}" mode="aspectFit"></image>
+          <text class="sph">请输入商品或商家名称</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cats-card deco-front">
+    <scroll-view scroll-x class="cats" show-scrollbar="{{false}}">
+      <view
+        class="cat {{catId === item.id ? 'on' : ''}} {{item.id === 'birthday' ? 'baked' : ''}}"
+        wx:for="{{cats}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onCat"
+      >
+        <image class="cat-icon" src="{{item.icon}}" mode="aspectFill"></image>
+        <text class="cat-name">{{item.name}}</text>
+      </view>
+    </scroll-view>
+    <view class="cats-fade"></view>
+  </view>
+
+  <view class="filters deco-front">
+    <view class="pill {{delivery === 'sameCity' ? 'on' : ''}}" data-d="sameCity" bindtap="onDelivery">同城配送</view>
+    <view class="pill {{delivery === 'nextDay' ? 'on' : ''}}" data-d="nextDay" bindtap="onDelivery">次日达</view>
+  </view>
+
+  <view class="grid deco-front">
+    <view class="p-card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image class="p-img" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="p-body">
+        <view class="p-name">{{item.title}}</view>
+        <view class="p-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tg" wx:key="*this">{{tg}}</text>
+        </view>
+        <view class="p-price">
+          <image class="star" src="{{img['/images/cake/star-price.png']}}" mode="aspectFit"></image>
+          <text>{{item.price}}.00</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

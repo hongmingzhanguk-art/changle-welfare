@@ -1,0 +1,111 @@
+<view class="page bd">
+  <image class="deco-bg hero-bg" src="{{bg.birthdayHero}}" mode="aspectFill"></image>
+  <nav-bar title="生日快乐" color="#ffffff" light="{{true}}" title-size="36rpx" title-weight="500" back-size="44rpx"></nav-bar>
+
+  <view class="search-row deco-front">
+    <view class="city" bindtap="goCity">
+      <image class="pin" src="{{img['/images/cake/pin-white.png']}}" mode="aspectFit"></image>
+      <text>{{city}}</text>
+      <image class="caret" src="{{img['/images/cake/caret-white.png']}}" mode="aspectFit"></image>
+    </view>
+    <view class="search-hit" bindtap="goSearch">
+      <view class="search">
+        <image class="sicon" src="{{img['/images/cake/search-white.png']}}" mode="aspectFit"></image>
+        <text class="sph">请输入搜索关键词</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="banner-wrap deco-front">
+    <image class="banner" src="{{img['/images/cake/banner-melon.png']}}" mode="aspectFill"></image>
+    <view class="banner-pager">
+      <view class="banner-pill"></view>
+      <view class="banner-dot"></view>
+      <view class="banner-dot"></view>
+    </view>
+  </view>
+
+  <view class="cats-card deco-front">
+    <view class="cat" wx:for="{{cats}}" wx:key="id" bindtap="goCakeList" data-id="{{item.id}}">
+      <image class="cat-icon" src="{{item.icon}}" mode="aspectFill"></image>
+      <text class="cat-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="brand-card deco-front">
+    <image class="deco-bg brand-bg" src="{{img['/images/cake/brand-strip.png']}}" mode="aspectFill"></image>
+    <view class="brand-hd deco-front">
+      <text class="brand-title">品牌馆</text>
+      <view class="brand-all" bindtap="goBrandHall">
+        <text>全部</text>
+        <image class="mini-chev" src="{{img['/images/cake/chevron-green.png']}}" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="brand-row deco-front">
+      <view class="brand-item" wx:for="{{brands}}" wx:key="id" bindtap="goBrand" data-id="{{item.id}}">
+        <view class="brand-logo-wrap">
+          <image class="brand-logo" src="{{item.icon}}" mode="aspectFit"></image>
+          <text class="brand-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="ops deco-front">
+    <view class="op" bindtap="goCakeList" data-id="birthday">
+      <image class="op-img" src="{{img['/images/cake/op-cake.png']}}" mode="aspectFill"></image>
+      <view class="op-copy">
+        <view class="op-title-row">
+          <text class="op-title">订蛋糕</text>
+          <view class="go-pill go-blue">
+            <text>前往</text>
+            <image class="mini-chev" src="{{img['/images/cake/chevron-blue.png']}}" mode="aspectFit"></image>
+          </view>
+        </view>
+        <text class="op-sub">线上预订 直送到家</text>
+      </view>
+    </view>
+    <view class="op" bindtap="goCakeList" data-id="pastry">
+      <image class="op-img" src="{{img['/images/cake/op-tea.png']}}" mode="aspectFill"></image>
+      <view class="op-copy">
+        <view class="op-title-row">
+          <text class="op-title">下午茶</text>
+          <view class="go-pill go-orange">
+            <text>前往</text>
+            <image class="mini-chev" src="{{img['/images/cake/chevron-orange.png']}}" mode="aspectFit"></image>
+          </view>
+        </view>
+        <text class="op-sub">午后小憩 享受好味</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tabs deco-front">
+    <view
+      class="tab {{tabId === item.id ? 'on' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onTab"
+    >{{item.name}}</view>
+  </view>
+
+  <view class="grid deco-front">
+    <view class="p-card" wx:for="{{products}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image class="p-img" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="p-body">
+        <view class="p-name">{{item.title}}</view>
+        <view class="p-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tg" wx:key="*this">{{tg}}</text>
+        </view>
+        <view class="p-sold">已购{{item.sold}}件</view>
+        <view class="p-foot">
+          <text class="price"><text class="yen">¥</text>{{item.price}}.00</text>
+          <view class="cart-hit" catchtap="addCart" data-id="{{item.id}}">
+            <image class="cart-ic" src="{{img['/images/cake/cart-fab.png']}}" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

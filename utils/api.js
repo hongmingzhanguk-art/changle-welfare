@@ -77,13 +77,15 @@ function getProductDetail(id) {
   })
 }
 
-function searchProducts(keyword) {
-  return request('/product/search', { keyword }).then((res) => {
+function searchProducts(keyword, payload) {
+  const channel = (payload && payload.channel) || ''
+  return request('/product/search', { keyword, channel }).then((res) => {
     if (res) return res
     const k = (keyword || '').trim()
     if (!k) return { list: [] }
-    const list = mock.products.filter((p) => p.title.indexOf(k) > -1)
-    return { list }
+    const source = channel === 'cake' ? (mock.cakeProducts || []) : mock.products
+    const list = source.filter((p) => p.title.indexOf(k) > -1)
+    return { list: channel === 'cake' ? mapCdnFields(list, ['image']) : list }
   })
 }
 
@@ -104,6 +106,7 @@ function clone(v) {
 function resolveLocalImage(src, productId) {
   if (productId) {
     const p = mock.products.find((x) => x.id === productId)
+      || (mock.cakeProducts || []).find((x) => x.id === productId)
     if (p && p.image) return p.image
   }
   if (!src || typeof src !== 'string') return src || ''
@@ -178,7 +181,9 @@ function addCart(payload) {
     const productId = payload && payload.productId
     const qty = Number((payload && payload.qty) || 1) || 1
     const spec = specFromPayload(payload)
-    const p = mock.products.find((x) => x.id === productId) || {}
+    const p = mock.products.find((x) => x.id === productId)
+      || (mock.cakeProducts || []).find((x) => x.id === productId)
+      || {}
     const shop = p.shop || '满满京选'
     const groups = loadCartGroups()
     for (let i = 0; i < groups.length; i++) {
@@ -345,6 +350,111 @@ function getAddressList() {
   return request('/address/list').then((res) => res || { list: mock.addresses })
 }
 
+function mapCdnFields(list, keys) {
+  return (list || []).map((it) => {
+    const o = { ...it }
+    keys.forEach((k) => {
+      if (o[k]) o[k] = resolve(o[k])
+    })
+    return o
+  })
+}
+
+function getBirthdayHome() {
+  return request('/cake/birthday').then((res) => res || {
+    cats: mapCdnFields(mock.birthdayCats, ['icon']),
+    brands: mapCdnFields(mock.birthdayPreviewBrands, ['icon']),
+    products: mapCdnFields(mock.cakeProducts.filter((p) => p.id !== 'c-yuni'), ['image']),
+    tabs: [
+      { id: 'rec', name: '为你推荐' },
+      { id: 'new', name: '新品上市' },
+      { id: 'pastry', name: '面包糕点' },
+      { id: 'cream', name: '奶油蛋糕' }
+    ]
+  })
+}
+
+function getBrandHall(payload) {
+  return request('/cake/brands', payload).then((res) => {
+    if (res) return res
+    const k = ((payload && payload.keyword) || '').trim()
+    let list = mock.cakeBrands.slice()
+    if (k) list = list.filter((b) => b.name.toLowerCase().indexOf(k.toLowerCase()) > -1)
+    return { list: mapCdnFields(list, ['icon']) }
+  })
+}
+
+function getCakeList(payload) {
+  return request('/cake/list', payload).then((res) => {
+    if (res) return res
+    const cat = (payload && payload.cat) || 'birthday'
+    const delivery = (payload && payload.delivery) || 'sameCity'
+    let list = mock.cakeProducts.filter((p) => p.id !== 'c-yuni')
+    if (delivery === 'nextDay') list = list.filter((p) => p.nextDay)
+    else list = list.filter((p) => p.sameCity)
+    return {
+      cats: mapCdnFields(mock.cakeListCats, ['icon']),
+      list: mapCdnFields(list, ['image']),
+      cat,
+      delivery
+    }
+  })
+}
+
+function getBrandShop(payload) {
+  return request('/cake/shop', payload).then((res) => {
+    if (res) return res
+    const brandId = (payload && payload.brandId) || 'ganso'
+    const brand = mock.cakeBrands.find((b) => b.id === brandId) || { id: 'ganso', name: '元祖' }
+    const sort = (payload && payload.sort) || 'new'
+    let list = mock.cakeProducts.filter((p) => p.id !== 'c-yuni')
+    if (sort === 'sales') list = list.slice().sort((a, b) => (b.shopSold || 0) - (a.shopSold || 0))
+    if (sort === 'price') list = list.slice().sort((a, b) => a.price - b.price)
+    if (sort === 'hot') list = list.slice().sort((a, b) => (b.sold || 0) - (a.sold || 0))
+    return { brand, list: mapCdnFields(list, ['image']), sort }
+  })
+}
+
+function getCakeDetail(id) {
+  return request('/cake/detail', { id }).then((res) => {
+    if (res) return res
+    const p = mock.cakeProducts.find((x) => x.id === id) || mock.cakeProducts.find((x) => x.id === 'c-yuni')
+    const sku = (p && p.sku) || { specs: [{ name: '规格', values: ['1磅', '2磅', '3磅'] }] }
+    return {
+      ...p,
+      image: resolve(p.image || '/images/cake/product-hero.png'),
+      images: (p.images || [p.image || '/images/cake/product-hero.png']).map(resolve),
+      promo: resolve(p.promo || '/images/cake/detail-promo.png'),
+      shopLogo: resolve(p.shopLogo || '/images/cake/shop-ganso.png'),
+      delivery: p.delivery || '蛋糕配送原则单笔订单满100元，骑行距离附近门店0-7公里以内免运费7-9公里20元9-11公里30元11-13公里40元13-15公里50元15公里以外不配送 亲可选择自提。',
+      sku
+    }
+  })
+}
+
+function getCakeStores(payload) {
+  return request('/cake/stores', payload).then((res) => {
+    if (res) return res
+    const k = ((payload && payload.keyword) || '').trim()
+    let list = mock.cakeStores.slice()
+    if (k) list = list.filter((s) => (s.name + s.addr).indexOf(k) > -1)
+    return { list }
+  })
+}
+
+function getMovieChannel(payload) {
+  return request('/movie/channel', payload).then((res) => {
+    if (res) return res
+    return {
+      cinemas: mock.movieCinemas,
+      districts: mock.movieDistricts,
+      brands: mock.movieBrands,
+      movies: mapCdnFields(mock.movies, ['poster']),
+      banner: resolve('/images/cake/movie-banner.png')
+    }
+  })
+}
+
 module.exports = {
   BASE_URL,
   request,
@@ -353,6 +463,13 @@ module.exports = {
   getCategoryProducts,
   getProductDetail,
   searchProducts,
+  getBirthdayHome,
+  getBrandHall,
+  getCakeList,
+  getBrandShop,
+  getCakeDetail,
+  getCakeStores,
+  getMovieChannel,
   getCart,
   addCart,
   updateCart,

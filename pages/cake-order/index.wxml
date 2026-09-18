@@ -1,0 +1,105 @@
+<view class="page co">
+  <nav-bar title="提交订单" background="#F5F6F7" title-size="36rpx" title-weight="500" back-size="44rpx" back-icon="/images/cake/back-dark.png"></nav-bar>
+
+  <view class="card addr" bindtap="goAddress">
+    <image class="avatar" src="{{img['/images/cake/avatar-order.png']}}" mode="aspectFill"></image>
+    <view class="addr-info">
+      <view class="who">{{address.name}}  {{address.phone}}</view>
+      <view class="full">{{address.full}}</view>
+    </view>
+    <image class="chev" src="{{img['/images/cake/chevron-right.png']}}" mode="aspectFit"></image>
+    <image class="stripe" src="{{img['/images/cake/order-stripe.png']}}" mode="scaleToFill"></image>
+  </view>
+
+  <view class="card goods">
+    <view class="shop">
+      <image class="house" src="{{img['/images/cake/shop-house.png']}}" mode="aspectFit"></image>
+      <text>{{item.shop}}</text>
+    </view>
+    <view class="g">
+      <image class="gimg" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="ginfo">
+        <view class="gt">{{item.title}}</view>
+        <view class="gs">规格：{{item.spec}}</view>
+        <view class="gf">
+          <text class="gprice"><text class="yen">¥</text>{{item.price}}</text>
+          <text class="gq">x{{item.qty}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="row">
+      <text class="rk">配送方式</text>
+      <view class="ships">
+        <view class="ship" data-s="delivery" bindtap="setShip">
+          <image class="radio" src="{{ship === 'delivery' ? img['/images/cake/radio-on.png'] : img['/images/cake/radio-off.png']}}" mode="aspectFit"></image>
+          <text>送货上门</text>
+        </view>
+        <view class="ship" data-s="pickup" bindtap="setShip">
+          <image class="radio" src="{{ship === 'pickup' ? img['/images/cake/radio-on.png'] : img['/images/cake/radio-off.png']}}" mode="aspectFit"></image>
+          <text>门店自取</text>
+        </view>
+      </view>
+    </view>
+
+    <block wx:if="{{ship === 'pickup'}}">
+      <view class="row" bindtap="goStore">
+        <text class="rk">自取门店</text>
+        <view class="rv">
+          <text>{{store.name}}</text>
+          <image class="chev sm" src="{{img['/images/cake/chevron-right-dark.png']}}" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="row" bindtap="pickTime">
+        <text class="rk">自取时间</text>
+        <view class="rv">
+          <text>{{pickupTime}}</text>
+          <image class="chev sm" src="{{img['/images/cake/chevron-right-dark.png']}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="row">
+        <text class="rk">配送费</text>
+        <text class="rv muted">¥ {{fee}}</text>
+      </view>
+      <view class="row" bindtap="pickTime">
+        <text class="rk">配送时间</text>
+        <view class="rv">
+          <text class="{{deliveryTime ? '' : 'ph'}}">{{deliveryTime || '请选择'}}</text>
+          <image class="chev sm" src="{{img['/images/cake/chevron-right.png']}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </block>
+    <view class="row remark">
+      <text class="rk">备注</text>
+      <input class="rmk" value="{{remark}}" bindinput="onRemark" placeholder="有什么想对商家说的..." placeholder-class="ph" />
+    </view>
+  </view>
+
+  <view class="pay-title">支付方式</view>
+  <view class="card pay">
+    <view class="pay-item" data-t="points" bindtap="setPay">
+      <image class="pic" src="{{img['/images/cake/pay-star.png']}}" mode="aspectFit"></image>
+      <view class="ptxt">
+        <text class="pn">积分支付</text>
+        <text class="need">需支付 <text class="amt">{{pointsNeed}}</text></text>
+      </view>
+      <image class="radio" src="{{payType === 'points' ? img['/images/cake/radio-on.png'] : img['/images/cake/radio-off.png']}}" mode="aspectFit"></image>
+    </view>
+    <view class="balance">积分余额：<text class="bal">{{pointsText}}</text></view>
+    <view class="pay-item" data-t="wx" bindtap="setPay">
+      <image class="pic" src="{{img['/images/cake/pay-wechat.png']}}" mode="aspectFit"></image>
+      <view class="ptxt">
+        <text class="pn">微信支付</text>
+        <text class="need">需支付 <text class="amt">{{price}}</text></text>
+      </view>
+      <image class="radio" src="{{payType === 'wx' ? img['/images/cake/radio-on.png'] : img['/images/cake/radio-off.png']}}" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <view class="bar">
+    <view class="sum">应付：<text class="sum-price"><text class="yen">¥</text>{{price}}</text> <text class="unit">积分</text></view>
+    <view class="pay-btn" bindtap="submit" hover-class="btn-on" hover-stay-time="80">确认支付</view>
+  </view>
+</view>

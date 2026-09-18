@@ -1,0 +1,43 @@
+<view class="page sp">
+  <nav-bar title="选择门店" background="#ffffff" title-size="36rpx" title-weight="500" back-size="44rpx" back-icon="/images/cake/back-dark.png"></nav-bar>
+
+  <view class="search-row">
+    <view class="city" bindtap="goCity">
+      <image class="pin" src="{{img['/images/cake/pin-dark.png']}}" mode="aspectFit"></image>
+      <text>{{city}}</text>
+      <image class="caret" src="{{img['/images/cake/caret-gray.png']}}" mode="aspectFit"></image>
+    </view>
+    <view class="input-wrap">
+      <image class="sicon" src="{{img['/images/cake/search-gray.png']}}" mode="aspectFit"></image>
+      <input
+        placeholder="请输入地址搜索"
+        placeholder-class="ph"
+        value="{{keyword}}"
+        bindinput="onInput"
+        confirm-type="search"
+        bindconfirm="search"
+      />
+      <view class="go" bindtap="search">
+        <image class="go-bg" src="{{img['/images/cake/store-search.png']}}" mode="scaleToFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="list">
+    <view class="card" wx:for="{{list}}" wx:key="id">
+      <view class="main">
+        <view class="name">{{item.name}}</view>
+        <view class="addr">
+          <image class="spin" src="{{img['/images/cake/store-pin.png']}}" mode="aspectFit"></image>
+          <text>{{item.addr}}</text>
+        </view>
+      </view>
+      <view class="side">
+        <view class="act" bindtap="pick" data-id="{{item.id}}">
+          <view class="order">去下单</view>
+          <text class="dist">{{item.dist}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

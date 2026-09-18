@@ -1,0 +1,230 @@
+.cd {
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+  background: #F5F6F7;
+  min-height: 100vh;
+}
+.nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 40;
+}
+.nav-inner {
+  height: var(--hit);
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+.back-hit {
+  width: var(--hit);
+  height: var(--hit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.back-ic { width: 44rpx; height: 44rpx; }
+
+.gallery { height: 700rpx; }
+.gimg { width: 750rpx; height: 700rpx; }
+
+.info {
+  background: #ffffff;
+  margin-top: -24rpx;
+  position: relative;
+  padding: 30rpx 24rpx 0;
+}
+.price {
+  color: #EB0000;
+  font-size: 44rpx;
+  font-weight: 500;
+  line-height: 44rpx;
+}
+.yen { font-size: 28rpx; }
+.title {
+  margin-top: 12rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1A1A1A;
+  line-height: 32rpx;
+}
+.meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24rpx;
+}
+.tag {
+  height: 40rpx;
+  padding: 0 10rpx;
+  border: 1rpx solid #FD3F3F;
+  border-radius: 8rpx;
+  color: #FD3F3F;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.sold { font-size: 24rpx; color: #808080; line-height: 24rpx; }
+
+.spec-box {
+  margin-top: 30rpx;
+  background: #F7F7F7;
+  border-radius: 10rpx;
+  height: 156rpx;
+  display: flex;
+  align-items: center;
+}
+.spec-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sk { font-size: 24rpx; color: #808080; }
+.sv {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1A1A1A;
+}
+.spec-div {
+  width: 1rpx;
+  height: 44rpx;
+  background: #E6E6E6;
+}
+
+.guarantee {
+  display: flex;
+  align-items: center;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #BF983B;
+}
+.shield {
+  width: 28rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+}
+
+.line {
+  height: 2rpx;
+  background: #EBEBEB;
+  margin: 24rpx 0;
+}
+.ship {
+  font-size: 24rpx;
+  color: #808080;
+  line-height: 36rpx;
+}
+
+.shop-row {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 0 32rpx;
+}
+.shop-logo {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+}
+.shop-name {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1A1A1A;
+}
+.enter {
+  position: relative;
+  width: 140rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.enter-bg {
+  position: absolute;
+  inset: 0;
+  width: 140rpx;
+  height: 56rpx;
+}
+
+.promo {
+  width: 750rpx;
+  display: block;
+}
+
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(160rpx + env(safe-area-inset-bottom));
+  padding: 20rpx 24rpx env(safe-area-inset-bottom);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -8rpx 24rpx rgba(32, 24, 72, 0.06);
+}
+.bar-act {
+  width: 131rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.bar-act image { width: 40rpx; height: 40rpx; }
+.bar-act text {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #17181A;
+}
+.badge {
+  position: absolute;
+  top: -8rpx;
+  right: 34rpx;
+  min-width: 28rpx;
+  height: 28rpx;
+  padding: 0 6rpx;
+  background: #EB0000;
+  color: #ffffff;
+  border-radius: 14rpx;
+  font-size: 20rpx;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ghost {
+  width: 220rpx;
+  height: 76rpx;
+  flex: none;
+  box-sizing: border-box;
+  margin-left: 0;
+  border: 2rpx solid #4C41FF;
+  border-radius: 38rpx;
+  color: #4C41FF;
+  font-size: 28rpx;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+.buy {
+  position: relative;
+  width: 200rpx;
+  height: 76rpx;
+  flex: none;
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buy-bg {
+  position: absolute;
+  inset: 0;
+  width: 200rpx;
+  height: 76rpx;
+}

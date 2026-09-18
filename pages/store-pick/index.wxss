@@ -1,0 +1,132 @@
+.sp {
+  min-height: 100vh;
+  background: #F5F6F7;
+}
+.search-row {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 24rpx 24rpx;
+  background: #ffffff;
+  gap: 24rpx;
+}
+.city {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #1A1A1A;
+  flex-shrink: 0;
+  min-height: var(--hit);
+}
+.pin {
+  width: 20rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+.caret {
+  width: 12rpx;
+  height: 6rpx;
+  margin-left: 8rpx;
+}
+.input-wrap {
+  flex: 1;
+  height: 68rpx;
+  background: #F7F7F7;
+  border-radius: 16rpx;
+  padding: 0 0 0 20rpx;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.sicon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+.input-wrap input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1A1A1A;
+}
+.ph { color: #999999; font-size: 28rpx; }
+.go {
+  width: 108rpx;
+  height: 68rpx;
+  flex-shrink: 0;
+}
+.go-bg {
+  width: 108rpx;
+  height: 68rpx;
+}
+
+.list { padding: 24rpx 24rpx 40rpx; }
+.card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  height: 152rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+.main { flex: 1; min-width: 0; }
+.name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1A1A1A;
+}
+.addr {
+  margin-top: 28rpx;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #1A1A1A;
+}
+.spin {
+  width: 28rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+.addr text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.side {
+  width: 140rpx;
+  flex-shrink: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-left: 16rpx;
+  margin-left: 16rpx;
+}
+.side::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -36rpx;
+  width: 2rpx;
+  height: 72rpx;
+  background: #E6E6E6;
+}
+.act {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22rpx;
+}
+.order {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #D01B1B;
+}
+.dist {
+  font-size: 24rpx;
+  color: #A6A6A6;
+}

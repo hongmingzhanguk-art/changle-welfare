@@ -325,17 +325,43 @@ Page({
     this.data.groups.forEach((g) => {
       g.items.forEach((it) => {
         if (it.checked) {
+          const cake = util.isCakeProductId(it.productId)
           items.push({
+            productId: it.productId,
             title: it.title,
             spec: it.spec,
             price: it.price,
             qty: it.qty,
             image: it.image,
-            tag: '超市'
+            shop: g.shop,
+            tag: cake ? '蛋糕' : '超市'
           })
         }
       })
     })
+    const cakeItems = items.filter((it) => it.tag === '蛋糕')
+    if (cakeItems.length && cakeItems.length !== items.length) {
+      wx.showToast({ title: '蛋糕与超市商品请分开结算', icon: 'none' })
+      return
+    }
+    if (cakeItems.length > 1) {
+      wx.showToast({ title: '请单独结算每件蛋糕', icon: 'none' })
+      return
+    }
+    if (cakeItems.length === 1) {
+      const it = cakeItems[0]
+      wx.setStorageSync('cakeOrderDraft', {
+        productId: it.productId,
+        title: it.title,
+        spec: it.spec,
+        price: Number(it.price),
+        qty: it.qty,
+        image: it.image,
+        shop: it.shop
+      })
+      wx.navigateTo({ url: '/pages/cake-order/index' })
+      return
+    }
     wx.setStorageSync('checkoutItems', items)
     wx.navigateTo({ url: '/pages/order/index?from=cart' })
   },
@@ -345,7 +371,7 @@ Page({
   },
 
   goDetail(e) {
-    wx.navigateTo({ url: '/pages/detail/index?id=' + e.currentTarget.dataset.id })
+    wx.navigateTo({ url: util.productDetailUrl(e.currentTarget.dataset.id) })
   },
 
   addCart(e) {

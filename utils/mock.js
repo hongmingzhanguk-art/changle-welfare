@@ -434,7 +434,260 @@ const homeTabs = [
   { id: 'virtual', name: '虚拟商城' }
 ]
 
-;[banners, categories, movies, brands, popular, products, cartGroups, orders].forEach(rewriteImages)
+const cakeBrands = [
+  { id: 'weiernasi', name: '维尔纳斯', icon: '/images/cake/brand-134.png' },
+  { id: 'xingfu', name: '幸福西饼', icon: '/images/cake/brand-135.png' },
+  { id: 'ganso', name: '元祖', icon: '/images/cake/brand-136.png' },
+  { id: 'tianyueji', name: '甜悦纪', icon: '/images/cake/brand-137.png' },
+  { id: 'liumang', name: '榴芒一刻', icon: '/images/cake/brand-164.png' },
+  { id: 'lecake', name: '诺心', icon: '/images/cake/brand-139.png' },
+  { id: 'lexiang', name: '乐享烘焙', icon: '/images/cake/brand-140.png' },
+  { id: 'yingyue', name: '映悦', icon: '/images/cake/brand-141.png' },
+  { id: 'aicake', name: 'Aicake', icon: '/images/cake/brand-142.png' },
+  { id: 'zaoanchengyu', name: '早安橙语', icon: '/images/cake/brand-143.png' },
+  { id: 'yanyu', name: '颜予甜社', icon: '/images/cake/brand-144.png' },
+  { id: 'waffleboy', name: '窝夫小子', icon: '/images/cake/brand-145.png' },
+  { id: 'bedream', name: 'BeDream', icon: '/images/cake/brand-146.png' },
+  { id: 'peipindao', name: '焙品道', icon: '/images/cake/brand-147.png' },
+  { id: 'haagen', name: '哈根达斯', icon: '/images/cake/brand-148.png' },
+  { id: 'beikeer', name: '贝客尔蛋糕', icon: '/images/cake/brand-149.png' },
+  { id: 'weizhichu', name: '味之初', icon: '/images/cake/brand-150.png' },
+  { id: 'sijiliulian', name: '四季榴莲', icon: '/images/cake/brand-151.png' },
+  { id: 'qianmo', name: '阡陌', icon: '/images/cake/brand-152.png' },
+  { id: 'guaihou', name: '怪兽不厌食', icon: '/images/cake/brand-153.png' },
+  { id: 'kaoai', name: '烤爱', icon: '/images/cake/brand-154.png' },
+  { id: 'zaoanbali', name: '早安巴黎', icon: '/images/cake/brand-155.png' },
+  { id: 'xifulai', name: '喜芙来', icon: '/images/cake/brand-156.png' },
+  { id: 'mai5', name: '麦5', icon: '/images/cake/brand-157.png' },
+  { id: 'maiwulaoke', name: '麦物酪客', icon: '/images/cake/brand-158.png' },
+  { id: 'musangking', name: 'Musangking', icon: '/images/cake/brand-159.png' },
+  { id: 'shengtian', name: '圣田烘焙', icon: '/images/cake/brand-160.png' },
+  { id: 'wojia', name: '窝家甜品', icon: '/images/cake/brand-161.png' },
+  { id: 'shouyingmen', name: '寿盈门', icon: '/images/cake/brand-162.png' },
+  { id: 'cake36', name: '36cake', icon: '/images/cake/brand-163.png' }
+]
+
+const birthdayCats = [
+  { id: 'pastry', name: '面包甜点', icon: '/images/cake/cat-b-pastry.png' },
+  { id: 'cookie', name: '饼干糕点', icon: '/images/cake/cat-b-cookie.png' },
+  { id: 'flower', name: '鲜花', icon: '/images/cake/cat-b-flower.png' },
+  { id: 'snack', name: '休闲零食', icon: '/images/cake/cat-b-snack.png' },
+  { id: 'drink', name: '饮品', icon: '/images/cake/cat-b-drink.png' }
+]
+
+const cakeListCats = [
+  { id: 'birthday', name: '生日蛋糕', icon: '/images/cake/cat-l-birthday.png' },
+  { id: 'pastry', name: '面包甜点', icon: '/images/cake/cat-l-pastry.png' },
+  { id: 'cookie', name: '饼干糕点', icon: '/images/cake/cat-l-cookie.png' },
+  { id: 'choco', name: '巧克力', icon: '/images/cake/cat-l-choco.png' },
+  { id: 'drink', name: '饮品饮料', icon: '/images/cake/cat-l-drink.png' },
+  { id: 'snack', name: '休闲零食', icon: '/images/cake/cat-b-snack.png' }
+]
+
+const birthdayPreviewBrands = [
+  { id: 'ganso', name: '元祖食品', icon: '/images/cake/logo-ganso-sm.png' },
+  { id: 'haagen', name: '哈根达斯', icon: '/images/cake/logo-haagen-sm.png' },
+  { id: 'liumang', name: '榴芒一刻', icon: '/images/cake/logo-liumang-sm.png' },
+  { id: 'weiernasi', name: '维尔纳斯', icon: '/images/cake/logo-weiernasi-sm.png' }
+]
+
+const cakeProducts = [
+  {
+    id: 'c-taotao',
+    title: '桃桃碎碎念',
+    price: 198,
+    originPrice: 318,
+    image: '/images/cake/p-taotao.png',
+    sold: 560,
+    shopSold: 368,
+    tags: ['同城配送'],
+    sameCity: true,
+    nextDay: false,
+    brandId: 'ganso',
+    shop: '元祖蛋糕',
+    tab: 'rec',
+    storage: '冷藏',
+    shelfLife: '1',
+    reason: '新鲜现做'
+  },
+  {
+    id: 'c-tianjing',
+    title: '甜境回响',
+    price: 168,
+    originPrice: 318,
+    image: '/images/cake/p-tianjing.png',
+    sold: 340,
+    shopSold: 112,
+    tags: ['同城配送', '当日达'],
+    sameCity: true,
+    nextDay: true,
+    brandId: 'ganso',
+    shop: '元祖蛋糕',
+    tab: 'rec',
+    storage: '冷藏',
+    shelfLife: '1',
+    reason: '新鲜现做'
+  },
+  {
+    id: 'c-xingxu',
+    title: '星絮漫糕',
+    price: 198,
+    originPrice: 318,
+    image: '/images/cake/p-xingxu.png',
+    sold: 560,
+    shopSold: 26,
+    tags: ['同城配送'],
+    sameCity: true,
+    nextDay: false,
+    brandId: 'ganso',
+    shop: '元祖蛋糕',
+    tab: 'rec',
+    storage: '冷藏',
+    shelfLife: '1',
+    reason: '新鲜现做'
+  },
+  {
+    id: 'c-tiannuo',
+    title: '甜糯小星球',
+    price: 168,
+    originPrice: 318,
+    image: '/images/cake/p-tiannuo.png',
+    sold: 340,
+    shopSold: 10,
+    tags: ['同城配送', '当日达'],
+    sameCity: true,
+    nextDay: true,
+    brandId: 'ganso',
+    shop: '元祖蛋糕',
+    tab: 'rec',
+    storage: '冷藏',
+    shelfLife: '1',
+    reason: '新鲜现做'
+  },
+  {
+    id: 'c-yuni',
+    title: '芋泥在一起奶油蛋糕',
+    price: 168,
+    skuPrice: 198,
+    originPrice: 318,
+    image: '/images/cake/product-hero.png',
+    images: ['/images/cake/product-hero.png'],
+    promo: '/images/cake/detail-promo.png',
+    sold: 112,
+    shopSold: 112,
+    tags: ['同城配送'],
+    sameCity: true,
+    nextDay: false,
+    brandId: 'ganso',
+    shop: '元祖',
+    shopLogo: '/images/cake/shop-ganso.png',
+    tab: 'new',
+    storage: '冷藏',
+    shelfLife: '1',
+    reason: '新鲜现做',
+    delivery: '蛋糕配送原则单笔订单满100元，骑行距离附近门店0-7公里以内免运费7-9公里20元9-11公里30元11-13公里40元13-15公里50元15公里以外不配送 亲可选择自提。',
+    sku: {
+      specs: [{ name: '规格', values: ['1磅', '2磅', '3磅'] }]
+    }
+  }
+]
+
+const cakeStores = [
+  {
+    id: 's-jintan',
+    name: '金坛店J',
+    addr: '金坛市金城镇北门大街1号(华润大厦...',
+    dist: '约4.87Km',
+    distKm: 4.87
+  },
+  {
+    id: 's-baolong',
+    name: '宝龙城市广场店',
+    addr: '常州市钟楼区宝龙国际花园33-3',
+    dist: '约26.23Km',
+    distKm: 26.23
+  },
+  {
+    id: 's-qinye',
+    name: '勤业路店',
+    addr: '勤业路金地花苑3-147、3-148',
+    dist: '约29.32Km',
+    distKm: 29.32
+  },
+  {
+    id: 's-wenchang',
+    name: '文昌店',
+    addr: '常州市天宁区文昌路',
+    dist: '约8.20Km',
+    distKm: 8.2
+  }
+]
+
+const movieDistricts = [
+  { id: 'all', name: '全部', count: 281 },
+  { id: 'xuanwu', name: '玄武区', count: 62 },
+  { id: 'qinhuai', name: '秦淮区', count: 21 },
+  { id: 'jianye', name: '建邺区', count: 19 },
+  { id: 'gulou', name: '鼓楼区', count: 17 },
+  { id: 'pukou', name: '浦口区', count: 13 },
+  { id: 'qixia', name: '栖霞区', count: 12 },
+  { id: 'yuhuatai', name: '雨花台区', count: 11 },
+  { id: 'jiangning', name: '江宁区', count: 10 },
+  { id: 'liuhe', name: '六合区', count: 10 }
+]
+
+const movieBrands = [
+  { id: 'dadi', name: '大地影院' },
+  { id: 'zhongying', name: '中影国际' },
+  { id: 'hengdian', name: '横店影视' },
+  { id: 'wanda', name: '万达影视' },
+  { id: 'jinyi', name: '金逸' },
+  { id: 'perfect', name: '完美世界' },
+  { id: 'suning', name: '苏宁影城' },
+  { id: 'broadway', name: '百老汇' },
+  { id: 'huayi', name: '华谊兄弟' },
+  { id: 'bona', name: '博纳影城' },
+  { id: 'zhichao', name: '至潮影城' },
+  { id: 'xingyi', name: '星轶' }
+]
+
+const movieCinemas = [
+  {
+    id: 'cin-1',
+    name: '幸福蓝海影城白马店',
+    addr: '溧水区白马镇康居路3号3楼',
+    dist: '600m',
+    distKm: 0.6,
+    price: 28,
+    district: 'lishui',
+    brand: 'xingfu'
+  },
+  {
+    id: 'cin-2',
+    name: '万达影城(溧水万达广场XLAND店)',
+    addr: '溧水区高平大街55号万达广场4楼',
+    dist: '1.6km',
+    distKm: 1.6,
+    price: 28,
+    district: 'lishui',
+    brand: 'wanda'
+  },
+  {
+    id: 'cin-3',
+    name: '金逸影城(溧水时代广场IMAX店)',
+    addr: '溧水区天生桥大道388号时代国际广场3楼',
+    dist: '1.8km',
+    distKm: 1.8,
+    price: 28,
+    district: 'lishui',
+    brand: 'jinyi'
+  }
+]
+
+;[
+  banners, categories, movies, brands, popular, products, cartGroups, orders,
+  cakeBrands, birthdayCats, cakeListCats, birthdayPreviewBrands, cakeProducts
+].forEach(rewriteImages)
 
 module.exports = {
   banners,
@@ -450,5 +703,14 @@ module.exports = {
   welfareCards,
   orders,
   feedbackTypes,
-  homeTabs
+  homeTabs,
+  cakeBrands,
+  birthdayCats,
+  cakeListCats,
+  birthdayPreviewBrands,
+  cakeProducts,
+  cakeStores,
+  movieDistricts,
+  movieBrands,
+  movieCinemas
 }

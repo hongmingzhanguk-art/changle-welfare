@@ -1,9 +1,9 @@
 <view class="navbar" style="padding-top: {{statusBarHeight}}px; background: {{background}};">
   <view class="inner">
     <view class="left" wx:if="{{back}}" bindtap="onBack">
-      <image class="back-ic" src="{{img['/images/icons/back.png']}}" mode="aspectFit"></image>
+      <image class="back-ic" style="width: {{backSize}}; height: {{backSize}};" src="{{backIcon ? img[backIcon] : (light ? img['/images/cake/back-white.png'] : img['/images/icons/back.png'])}}" mode="aspectFit"></image>
     </view>
-    <view class="title" style="color: {{color}}; padding-left: {{menuRight}}px; padding-right: {{menuRight}}px;">{{title}}</view>
+    <view class="title" style="color: {{color}}; font-size: {{titleSize}}; font-weight: {{titleWeight}}; padding-left: {{menuRight}}px; padding-right: {{menuRight}}px;">{{title}}</view>
   </view>
 </view>
 <view style="height: {{navBarHeight}}px;"></view>

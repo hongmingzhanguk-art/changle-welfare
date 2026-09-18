@@ -1,0 +1,78 @@
+<view class="page cd">
+  <view class="nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-inner">
+      <view class="back-hit" bindtap="onBack">
+        <image class="back-ic" src="{{img['/images/cake/back-white.png']}}" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <swiper class="gallery" indicator-dots circular indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+    <swiper-item wx:for="{{product.images || [product.image]}}" wx:key="*this">
+      <image class="gimg" src="{{item}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="info">
+    <view class="price"><text class="yen">¥</text>{{product.price}}.00</view>
+    <view class="title">{{product.title}}</view>
+    <view class="meta-row">
+      <text class="tag">同城配送</text>
+      <text class="sold">已购{{product.sold}}件</text>
+    </view>
+
+    <view class="spec-box">
+      <view class="spec-col">
+        <text class="sk">存储条件</text>
+        <text class="sv">{{product.storage}}</text>
+      </view>
+      <view class="spec-div"></view>
+      <view class="spec-col">
+        <text class="sk">保质期</text>
+        <text class="sv">{{product.shelfLife}}</text>
+      </view>
+      <view class="spec-div"></view>
+      <view class="spec-col">
+        <text class="sk">推荐理由</text>
+        <text class="sv">{{product.reason}}</text>
+      </view>
+    </view>
+
+    <view class="guarantee">
+      <image class="shield" src="{{img['/images/cake/shield.png']}}" mode="aspectFit"></image>
+      <text>慢必赔 · 优先赔付 · 品质保障</text>
+    </view>
+
+    <view class="line"></view>
+    <view class="ship">配送描述：{{product.delivery}}</view>
+    <view class="line"></view>
+
+    <view class="shop-row">
+      <image class="shop-logo" src="{{product.shopLogo}}" mode="aspectFill"></image>
+      <text class="shop-name">{{product.shop}}</text>
+      <view class="enter" bindtap="goShop">
+        <image class="enter-bg" src="{{img['/images/cake/btn-enter-shop.png']}}" mode="scaleToFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <image class="promo" src="{{product.promo}}" mode="widthFix"></image>
+
+  <view class="bar">
+    <view class="bar-act" bindtap="goService">
+      <image src="{{img['/images/cake/icon-service.png']}}" mode="aspectFit"></image>
+      <text>客服</text>
+    </view>
+    <view class="bar-act" bindtap="goCart">
+      <image src="{{img['/images/cake/icon-cart.png']}}" mode="aspectFit"></image>
+      <text>购物车</text>
+      <view class="badge" wx:if="{{cartCount}}">{{cartCount}}</view>
+    </view>
+    <view class="ghost" bindtap="openSkuCart">加入购物车</view>
+    <view class="buy" bindtap="openSkuBuy">
+      <image class="buy-bg" src="{{img['/images/cake/btn-buy-now.png']}}" mode="scaleToFill"></image>
+    </view>
+  </view>
+
+  <cake-sku show="{{skuShow}}" product="{{product}}" bind:close="closeSku" bind:confirm="onSkuConfirm"></cake-sku>
+</view>

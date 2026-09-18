@@ -8,7 +8,12 @@ Component({
     back: { type: Boolean, value: true },
     color: { type: String, value: '#1A1A1A' },
     background: { type: String, value: 'transparent' },
-    home: { type: Boolean, value: false }
+    home: { type: Boolean, value: false },
+    light: { type: Boolean, value: false },
+    titleSize: { type: String, value: '32rpx' },
+    titleWeight: { type: String, value: '600' },
+    backSize: { type: String, value: '36rpx' },
+    backIcon: { type: String, value: '' }
   },
   data: {
     statusBarHeight: 20,

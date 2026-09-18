@@ -1,0 +1,116 @@
+<view class="page mv">
+  <image class="deco-bg hero-bg" src="{{bg.movieHero}}" mode="aspectFill"></image>
+  <nav-bar title="电影频道" color="#ffffff" light="{{true}}" title-size="36rpx" title-weight="500" back-size="44rpx"></nav-bar>
+
+  <view class="search-row deco-front">
+    <view class="city" bindtap="goCity">
+      <image class="pin" src="{{img['/images/cake/pin-white.png']}}" mode="aspectFit"></image>
+      <text>{{city}}</text>
+      <image class="caret" src="{{img['/images/cake/caret-white.png']}}" mode="aspectFit"></image>
+    </view>
+    <view class="search">
+      <image class="sicon" src="{{img['/images/cake/search-white.png']}}" mode="aspectFit"></image>
+      <input value="{{keyword}}" bindinput="onInput" confirm-type="search" bindconfirm="search" placeholder="请输入影片或影院" placeholder-class="sph" />
+      <view class="query" bindtap="search">
+        <image class="query-bg" src="{{img['/images/cake/movie-query.png']}}" mode="scaleToFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="panel deco-front">
+    <view class="tabs">
+      <view class="tab {{tab === 'hot' ? 'on' : ''}}" data-t="hot" bindtap="onTab">热映</view>
+      <view class="tab {{tab === 'cinema' ? 'on' : ''}}" data-t="cinema" bindtap="onTab">影院</view>
+      <view class="tab {{tab === 'soon' ? 'on' : ''}}" data-t="soon" bindtap="onTab">待映</view>
+    </view>
+
+    <image class="mbanner" src="{{banner || img['/images/cake/movie-banner.png']}}" mode="aspectFill"></image>
+
+    <view class="filter-anchor" wx:if="{{tab === 'cinema'}}">
+      <view class="filters">
+        <view class="ft {{filter === 'city' ? 'on' : ''}}" data-f="city" bindtap="toggleFilter">
+          <text>全城</text>
+          <image class="fcaret" src="{{filter === 'city' ? img['/images/cake/caret-up-blue.png'] : img['/images/cake/caret-down.png']}}" mode="aspectFit"></image>
+        </view>
+        <view class="fdiv"></view>
+        <view class="ft {{filter === 'brand' ? 'on' : ''}}" data-f="brand" bindtap="toggleFilter">
+          <text>品牌</text>
+          <image class="fcaret" src="{{filter === 'brand' ? img['/images/cake/caret-up-blue.png'] : img['/images/cake/caret-down.png']}}" mode="aspectFit"></image>
+        </view>
+        <view class="fdiv"></view>
+        <view class="ft {{filter === 'sort' ? 'on' : ''}}" data-f="sort" bindtap="toggleFilter">
+          <text>{{sort === 'price' ? '价格低' : '距离近'}}</text>
+          <image class="fcaret" src="{{filter === 'sort' ? img['/images/cake/caret-up-blue.png'] : img['/images/cake/caret-down.png']}}" mode="aspectFit"></image>
+        </view>
+      </view>
+
+      <view class="drop" wx:if="{{filter}}" catchtouchmove="noop">
+        <view class="drop-sheet {{filter}}">
+          <scroll-view wx:if="{{filter === 'city'}}" scroll-y class="dist-list">
+            <view
+              class="dist {{districtId === item.id ? 'on' : ''}}"
+              wx:for="{{districts}}"
+              wx:key="id"
+              data-id="{{item.id}}"
+              bindtap="pickDistrict"
+            >
+              <text>{{item.name}}（{{item.count}}）</text>
+              <image wx:if="{{districtId === item.id}}" class="dcheck" src="{{img['/images/cake/check-blue.png']}}" mode="aspectFit"></image>
+            </view>
+          </scroll-view>
+
+          <view wx:if="{{filter === 'brand'}}" class="brand-pane">
+            <view class="bgrid">
+              <view
+                class="bcell {{brandIds.indexOf(item.id) > -1 ? 'on' : ''}}"
+                wx:for="{{brands}}"
+                wx:key="id"
+                data-id="{{item.id}}"
+                bindtap="pickBrand"
+              >{{item.name}}</view>
+            </view>
+            <view class="bacts">
+              <view class="bact-reset" bindtap="resetBrand">
+                <image class="bact-bg" src="{{img['/images/cake/filter-reset.png']}}" mode="scaleToFill"></image>
+              </view>
+              <view class="bact-ok" bindtap="confirmBrand">
+                <image class="bact-bg" src="{{img['/images/cake/filter-ok.png']}}" mode="scaleToFill"></image>
+              </view>
+            </view>
+          </view>
+
+          <view wx:if="{{filter === 'sort'}}" class="sort-pane">
+            <view class="srow {{sort === 'near' ? 'on' : ''}}" data-s="near" bindtap="pickSort">距离近</view>
+            <view class="srow {{sort === 'price' ? 'on' : ''}}" data-s="price" bindtap="pickSort">价格低</view>
+          </view>
+        </view>
+        <view class="drop-mask" wx:if="{{filter !== 'city'}}" bindtap="closeFilter"></view>
+      </view>
+    </view>
+
+    <view class="cin-list" wx:if="{{tab === 'cinema'}}">
+      <view class="cin" wx:for="{{shownCinemas}}" wx:key="id">
+        <view class="cin-main">
+          <view class="cin-name">{{item.name}}</view>
+          <view class="cin-addr">{{item.addr}}</view>
+        </view>
+        <view class="cin-side">
+          <view class="cin-price">
+            <image class="fire" src="{{img['/images/cake/fire-gold.png']}}" mode="aspectFit"></image>
+            <text class="pnum">{{item.price}}</text>
+            <text class="pqi">起</text>
+          </view>
+          <text class="cin-dist">{{item.dist}}</text>
+        </view>
+      </view>
+    </view>
+
+    <scroll-view wx:if="{{tab === 'hot'}}" scroll-x class="mrow" enhanced show-scrollbar="{{false}}">
+      <view class="mcard" wx:for="{{movies}}" wx:key="id">
+        <image class="poster" src="{{item.poster}}" mode="aspectFill"></image>
+        <text class="mname">{{item.name}}</text>
+      </view>
+    </scroll-view>
+    <view wx:if="{{tab === 'soon'}}" class="empty">暂无待映影片</view>
+  </view>
+</view>

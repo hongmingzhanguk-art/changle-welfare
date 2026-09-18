@@ -96,8 +96,8 @@
   min-height: var(--hit);
 }
 .cat-icon {
-  width: 96rpx;
-  height: 96rpx;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%;
   background: var(--fill);
 }

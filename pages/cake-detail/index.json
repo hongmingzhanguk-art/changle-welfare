@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cake-sku": "/components/cake-sku/index"
+  }
+}

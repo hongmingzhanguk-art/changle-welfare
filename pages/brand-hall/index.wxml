@@ -1,0 +1,28 @@
+<view class="page hall">
+  <image class="deco-bg hero-bg" src="{{bg.brandHallHero}}" mode="aspectFill"></image>
+  <nav-bar title="品牌馆" color="#000000" title-size="36rpx" title-weight="500" back-size="44rpx" back-icon="/images/cake/back-dark.png"></nav-bar>
+
+  <view class="search-row deco-front">
+    <view class="input-wrap">
+      <image class="sicon" src="{{img['/images/cake/search-gray.png']}}" mode="aspectFit"></image>
+      <input
+        placeholder="请输入关键字"
+        placeholder-class="ph"
+        value="{{keyword}}"
+        bindinput="onInput"
+        confirm-type="search"
+        bindconfirm="search"
+      />
+    </view>
+    <view class="go" bindtap="search">搜索</view>
+  </view>
+
+  <view class="grid deco-front">
+    <view class="item" wx:for="{{list}}" wx:key="id" bindtap="goShop" data-id="{{item.id}}">
+      <view class="tile">
+        <image src="{{item.icon}}" mode="aspectFit"></image>
+      </view>
+      <text class="name">{{item.name}}</text>
+    </view>
+  </view>
+</view>

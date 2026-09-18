@@ -1,0 +1,31 @@
+<view class="page shop">
+  <nav-bar title="{{brand.name}}" background="#ffffff" title-size="36rpx" title-weight="500" back-size="44rpx" back-icon="/images/cake/back-dark.png"></nav-bar>
+  <view class="sorts">
+    <view
+      class="st {{sort === item.id ? 'on' : ''}}"
+      wx:for="{{sorts}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onSort"
+    >
+      <text>{{item.name}}</text>
+      <image wx:if="{{item.id === 'price'}}" class="scaret" src="{{img['/images/cake/sort-caret.png']}}" mode="aspectFit"></image>
+    </view>
+  </view>
+  <view class="grid">
+    <view class="p-card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image class="p-img" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="p-body">
+        <view class="p-name">{{item.title}}</view>
+        <view class="p-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tg" wx:key="*this">{{tg}}</text>
+        </view>
+        <view class="p-sold">已购{{item.shopSold}}件</view>
+        <view class="p-foot">
+          <text class="price"><text class="yen">¥</text>{{item.price}}.00</text>
+          <text class="origin">¥{{item.originPrice}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

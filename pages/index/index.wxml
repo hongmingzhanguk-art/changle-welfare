@@ -30,7 +30,7 @@
 
   <view class="cats card">
     <view class="cat" wx:for="{{categories}}" wx:key="id" bindtap="goCate" data-id="{{item.id}}" data-name="{{item.name}}">
-      <image class="cat-icon" src="{{item.icon}}" mode="aspectFill"></image>
+      <image class="cat-icon" src="{{item.icon}}" mode="aspectFit"></image>
       <text class="cat-name">{{item.name}}</text>
     </view>
   </view>

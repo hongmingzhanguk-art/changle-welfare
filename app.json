@@ -13,7 +13,15 @@
     "pages/feedback/index",
     "pages/search/index",
     "pages/address/index",
-    "pages/orders/index"
+    "pages/orders/index",
+    "pages/birthday/index",
+    "pages/brand-hall/index",
+    "pages/movie/index",
+    "pages/cake-list/index",
+    "pages/brand-shop/index",
+    "pages/cake-detail/index",
+    "pages/store-pick/index",
+    "pages/cake-order/index"
   ],
   "window": {
     "navigationBarTitleText": "常乐福利",

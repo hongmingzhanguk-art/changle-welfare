@@ -86,6 +86,14 @@ Page({
 
   goCate(e) {
     const { id, name } = e.currentTarget.dataset
+    if (id === 'movie') {
+      wx.navigateTo({ url: '/pages/movie/index' })
+      return
+    }
+    if (id === 'cake') {
+      wx.navigateTo({ url: '/pages/cake-list/index' })
+      return
+    }
     if (id === 'all') {
       wx.switchTab({ url: '/pages/category/index' })
       return
@@ -109,11 +117,15 @@ Page({
   },
 
   buyTicket() {
-    wx.showToast({ title: '购票功能待接口联调', icon: 'none' })
+    wx.navigateTo({ url: '/pages/movie/index' })
   },
 
   goOps(e) {
     const t = e.currentTarget.dataset.t
+    if (t === '节日礼包') {
+      wx.navigateTo({ url: '/pages/birthday/index' })
+      return
+    }
     wx.showToast({ title: (t || '功能') + '待接口联调', icon: 'none' })
   }
 })
