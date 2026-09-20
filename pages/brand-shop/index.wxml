@@ -12,7 +12,7 @@
       <image wx:if="{{item.id === 'price'}}" class="scaret" src="{{img['/images/cake/sort-caret.png']}}" mode="aspectFit"></image>
     </view>
   </view>
-  <view class="grid">
+  <view class="grid" wx:if="{{list.length}}">
     <view class="p-card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
       <image class="p-img" src="{{item.image}}" mode="aspectFill"></image>
       <view class="p-body">
@@ -27,5 +27,9 @@
         </view>
       </view>
     </view>
+  </view>
+  <view class="list-empty" wx:elif="{{loaded}}">
+    <text class="list-empty-t">暂无相关商品</text>
+    <text class="list-empty-s">换个排序看看</text>
   </view>
 </view>

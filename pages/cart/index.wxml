@@ -53,7 +53,8 @@
               <view class="ck {{it.checked ? 'on' : ''}}" data-gi="{{gi}}" data-ii="{{ii}}" catchtap="toggleItem">
                 <image class="ck-mark" src="{{img['/images/ui/check-white.png']}}" mode="aspectFit"></image>
               </view>
-              <image class="thumb" src="{{it.image}}" mode="aspectFill" bindtap="goDetail" data-id="{{it.productId}}"></image>
+              <view class="prod" catchtap="goDetail" data-id="{{it.productId}}">
+              <image class="thumb" src="{{it.image}}" mode="aspectFill"></image>
               <view class="meta">
                 <view class="name ellipsis">{{it.title}}</view>
                 <view class="spec">{{it.spec}}</view>
@@ -69,6 +70,7 @@
                     </view>
                   </view>
                 </view>
+              </view>
               </view>
             </view>
             <view class="actions">

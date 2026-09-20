@@ -15,9 +15,9 @@
           <view class="name ellipsis">{{product.title}}</view>
           <view class="price"><text class="yen">¥</text>{{price}}</view>
           <view class="stepper">
-            <view class="sbtn" bindtap="minus"><text class="sbtn-mark">−</text></view>
+            <view class="sbtn {{qty <= 1 ? 'dim' : ''}}" bindtap="minus"><text class="sbtn-mark">−</text></view>
             <text class="snum">{{qty}}</text>
-            <view class="sbtn" bindtap="plus"><text class="sbtn-mark">+</text></view>
+            <view class="sbtn {{qty >= 99 ? 'dim' : ''}}" bindtap="plus"><text class="sbtn-mark">+</text></view>
           </view>
         </view>
       </view>

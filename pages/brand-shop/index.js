@@ -12,7 +12,8 @@ Page({
       { id: 'sales', name: '销量' },
       { id: 'price', name: '价格' }
     ],
-    list: []
+    list: [],
+    loaded: false
   },
 
   onLoad(q) {
@@ -25,7 +26,8 @@ Page({
     api.getBrandShop({ brandId: this.brandId, sort: this.data.sort }).then((res) => {
       this.setData({
         brand: res.brand || { name: '元祖' },
-        list: res.list || []
+        list: res.list || [],
+        loaded: true
       })
     })
   },

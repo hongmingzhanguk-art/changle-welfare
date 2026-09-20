@@ -83,7 +83,7 @@
       <image class="pic" src="{{img['/images/cake/pay-star.png']}}" mode="aspectFit"></image>
       <view class="ptxt">
         <text class="pn">积分支付</text>
-        <text class="need">需支付 <text class="amt">{{pointsNeed}}</text></text>
+        <text class="need">需支付 <text class="amt">{{pointsNeed}}</text> 积分</text>
       </view>
       <image class="radio" src="{{payType === 'points' ? img['/images/cake/radio-on.png'] : img['/images/cake/radio-off.png']}}" mode="aspectFit"></image>
     </view>
@@ -92,14 +92,17 @@
       <image class="pic" src="{{img['/images/cake/pay-wechat.png']}}" mode="aspectFit"></image>
       <view class="ptxt">
         <text class="pn">微信支付</text>
-        <text class="need">需支付 <text class="amt">{{price}}</text></text>
+        <text class="need">需支付 <text class="amt">¥{{price}}</text></text>
       </view>
       <image class="radio" src="{{payType === 'wx' ? img['/images/cake/radio-on.png'] : img['/images/cake/radio-off.png']}}" mode="aspectFit"></image>
     </view>
   </view>
 
   <view class="bar">
-    <view class="sum">应付：<text class="sum-price"><text class="yen">¥</text>{{price}}</text> <text class="unit">积分</text></view>
-    <view class="pay-btn" bindtap="submit" hover-class="btn-on" hover-stay-time="80">确认支付</view>
+    <view class="sum" wx:if="{{payType === 'points'}}">应付：<text class="sum-price">{{pointsNeed}}</text> <text class="unit">积分</text></view>
+    <view class="sum" wx:else>应付：<text class="sum-price"><text class="yen">¥</text>{{price}}</text></view>
+    <view class="pay-hit" bindtap="submit" hover-class="btn-on" hover-stay-time="80">
+      <view class="pay-btn {{payDisabled ? 'is-off' : ''}}">确认支付</view>
+    </view>
   </view>
 </view>

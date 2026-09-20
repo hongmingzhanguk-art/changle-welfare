@@ -17,7 +17,8 @@ Page({
     cinemas: [],
     movies: [],
     shownCinemas: [],
-    banner: ''
+    banner: '',
+    loaded: false
   },
 
   onLoad() {
@@ -29,6 +30,7 @@ Page({
     // TODO: 接口联调 getMovieChannel
     api.getMovieChannel({}).then((data) => {
       this.setData({
+        loaded: true,
         districts: data.districts || [],
         brands: data.brands || [],
         cinemas: data.cinemas || [],
@@ -56,10 +58,9 @@ Page({
   noop() {},
 
   search() {
-    const k = (this.data.keyword || '').trim()
-    const sample = '燃烧吧爸爸离别...'
-    const list = (this.data.cinemas || []).filter((c) => !k || k === sample || (c.name + c.addr).indexOf(k) > -1)
-    this.setData({ shownCinemas: list, tab: 'cinema' })
+    this._keyword = (this.data.keyword || '').trim()
+    this.setData({ tab: 'cinema', filter: '' })
+    this.applyFilter()
   },
 
   onTab(e) {
@@ -105,7 +106,15 @@ Page({
   },
 
   applyFilter() {
+    const sample = '燃烧吧爸爸离别...'
+    const k = this._keyword || ''
     let list = (this.data.cinemas || []).slice()
+    if (k && k !== sample) {
+      list = list.filter((c) => (c.name + c.addr).indexOf(k) > -1)
+    }
+    if (this.data.districtId && this.data.districtId !== 'all') {
+      list = list.filter((c) => c.district === this.data.districtId)
+    }
     if (this.data.brandIds.length) {
       const set = {}
       this.data.brandIds.forEach((id) => { set[id] = true })
@@ -117,5 +126,9 @@ Page({
       list.sort((a, b) => a.distKm - b.distKm)
     }
     this.setData({ shownCinemas: list })
+  },
+
+  goTicket() {
+    wx.showToast({ title: '购票待接口联调', icon: 'none' })
   }
 })

@@ -9,7 +9,8 @@ Page({
     cats: [],
     catId: 'birthday',
     delivery: 'sameCity',
-    list: []
+    list: [],
+    loaded: false
   },
 
   onLoad(q) {
@@ -24,6 +25,7 @@ Page({
     // TODO: 接口联调 getCakeList
     api.getCakeList({ cat: this.data.catId, delivery: this.data.delivery }).then((res) => {
       this.setData({
+        loaded: true,
         cats: res.cats || [],
         list: res.list || []
       })

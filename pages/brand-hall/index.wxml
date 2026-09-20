@@ -17,12 +17,16 @@
     <view class="go" bindtap="search">搜索</view>
   </view>
 
-  <view class="grid deco-front">
+  <view class="grid deco-front" wx:if="{{list.length}}">
     <view class="item" wx:for="{{list}}" wx:key="id" bindtap="goShop" data-id="{{item.id}}">
       <view class="tile">
         <image src="{{item.icon}}" mode="aspectFit"></image>
       </view>
       <text class="name">{{item.name}}</text>
     </view>
+  </view>
+  <view class="list-empty deco-front" wx:elif="{{loaded}}">
+    <text class="list-empty-t">暂无匹配品牌</text>
+    <text class="list-empty-s">换个关键字试试</text>
   </view>
 </view>

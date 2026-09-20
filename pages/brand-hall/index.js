@@ -5,7 +5,8 @@ Page({
   behaviors: [cdnBehavior],
   data: {
     keyword: '',
-    list: []
+    list: [],
+    loaded: false
   },
 
   onLoad() {
@@ -15,7 +16,7 @@ Page({
   load() {
     // TODO: 接口联调 getBrandHall
     api.getBrandHall({ keyword: this.data.keyword }).then((res) => {
-      this.setData({ list: res.list || [] })
+      this.setData({ loaded: true, list: res.list || [] })
     })
   },
 

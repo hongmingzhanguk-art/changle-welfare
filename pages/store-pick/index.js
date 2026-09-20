@@ -7,7 +7,8 @@ Page({
   data: {
     city: '常州',
     keyword: '',
-    list: []
+    list: [],
+    loaded: false
   },
 
   onLoad() {
@@ -18,7 +19,7 @@ Page({
   load() {
     // TODO: 接口联调 getCakeStores
     api.getCakeStores({ keyword: this.data.keyword }).then((res) => {
-      this.setData({ list: res.list || [] })
+      this.setData({ loaded: true, list: res.list || [] })
     })
   },
 

@@ -23,8 +23,8 @@
     </view>
   </view>
 
-  <view class="list">
-    <view class="card" wx:for="{{list}}" wx:key="id">
+  <view class="list" wx:if="{{list.length}}">
+    <view class="card" wx:for="{{list}}" wx:key="id" bindtap="pick" data-id="{{item.id}}">
       <view class="main">
         <view class="name">{{item.name}}</view>
         <view class="addr">
@@ -33,11 +33,15 @@
         </view>
       </view>
       <view class="side">
-        <view class="act" bindtap="pick" data-id="{{item.id}}">
+        <view class="act">
           <view class="order">去下单</view>
           <text class="dist">{{item.dist}}</text>
         </view>
       </view>
     </view>
+  </view>
+  <view class="list-empty" wx:elif="{{loaded}}">
+    <text class="list-empty-t">暂无门店</text>
+    <text class="list-empty-s">换个城市或地址试试</text>
   </view>
 </view>

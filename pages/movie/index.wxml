@@ -88,8 +88,8 @@
       </view>
     </view>
 
-    <view class="cin-list" wx:if="{{tab === 'cinema'}}">
-      <view class="cin" wx:for="{{shownCinemas}}" wx:key="id">
+    <view class="cin-list" wx:if="{{tab === 'cinema' && shownCinemas.length}}">
+      <view class="cin" wx:for="{{shownCinemas}}" wx:key="id" bindtap="goTicket">
         <view class="cin-main">
           <view class="cin-name">{{item.name}}</view>
           <view class="cin-addr">{{item.addr}}</view>
@@ -104,13 +104,22 @@
         </view>
       </view>
     </view>
+    <view class="list-empty" wx:elif="{{tab === 'cinema' && loaded}}">
+      <text class="list-empty-t">暂无符合条件的影院</text>
+      <text class="list-empty-s">换个区域、品牌或排序试试</text>
+    </view>
 
-    <scroll-view wx:if="{{tab === 'hot'}}" scroll-x class="mrow" enhanced show-scrollbar="{{false}}">
-      <view class="mcard" wx:for="{{movies}}" wx:key="id">
+    <scroll-view wx:if="{{tab === 'hot' && movies.length}}" scroll-x class="mrow" enhanced show-scrollbar="{{false}}">
+      <view class="mcard" wx:for="{{movies}}" wx:key="id" bindtap="goTicket">
         <image class="poster" src="{{item.poster}}" mode="aspectFill"></image>
         <text class="mname">{{item.name}}</text>
       </view>
     </scroll-view>
-    <view wx:if="{{tab === 'soon'}}" class="empty">暂无待映影片</view>
+    <view class="list-empty" wx:elif="{{tab === 'hot' && loaded}}">
+      <text class="list-empty-t">暂无热映影片</text>
+    </view>
+    <view wx:if="{{tab === 'soon'}}" class="list-empty">
+      <text class="list-empty-t">暂无待映影片</text>
+    </view>
   </view>
 </view>

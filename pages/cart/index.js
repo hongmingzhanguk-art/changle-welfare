@@ -371,7 +371,9 @@ Page({
   },
 
   goDetail(e) {
-    wx.navigateTo({ url: util.productDetailUrl(e.currentTarget.dataset.id) })
+    const id = e.currentTarget.dataset.id
+    if (!id) return
+    wx.navigateTo({ url: util.productDetailUrl(id) })
   },
 
   addCart(e) {

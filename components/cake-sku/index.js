@@ -39,7 +39,7 @@ Component({
       if (this.data.qty > 1) this.setData({ qty: this.data.qty - 1 })
     },
     plus() {
-      this.setData({ qty: this.data.qty + 1 })
+      if (this.data.qty < 99) this.setData({ qty: this.data.qty + 1 })
     },
     confirm() {
       this.triggerEvent('confirm', {

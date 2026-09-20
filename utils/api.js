@@ -364,7 +364,7 @@ function getBirthdayHome() {
   return request('/cake/birthday').then((res) => res || {
     cats: mapCdnFields(mock.birthdayCats, ['icon']),
     brands: mapCdnFields(mock.birthdayPreviewBrands, ['icon']),
-    products: mapCdnFields(mock.cakeProducts.filter((p) => p.id !== 'c-yuni'), ['image']),
+    products: mapCdnFields(mock.cakeProducts, ['image']),
     tabs: [
       { id: 'rec', name: '为你推荐' },
       { id: 'new', name: '新品上市' },
@@ -390,6 +390,7 @@ function getCakeList(payload) {
     const cat = (payload && payload.cat) || 'birthday'
     const delivery = (payload && payload.delivery) || 'sameCity'
     let list = mock.cakeProducts.filter((p) => p.id !== 'c-yuni')
+    if (cat) list = list.filter((p) => (p.cat || 'birthday') === cat)
     if (delivery === 'nextDay') list = list.filter((p) => p.nextDay)
     else list = list.filter((p) => p.sameCity)
     return {

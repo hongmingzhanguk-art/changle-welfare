@@ -9,7 +9,8 @@ Page({
     product: {},
     skuShow: false,
     skuMode: 'buy',
-    cartCount: 2
+    cartCount: 2,
+    loaded: false
   },
 
   onShow() {
@@ -24,7 +25,7 @@ Page({
   load(id) {
     // TODO: 接口联调 getCakeDetail
     api.getCakeDetail(id).then((p) => {
-      this.setData({ product: p })
+      this.setData({ product: p, loaded: true })
     })
   },
 

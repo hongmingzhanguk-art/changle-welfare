@@ -46,7 +46,7 @@
   font-size: 32rpx;
   font-weight: 500;
   color: #1A1A1A;
-  line-height: 32rpx;
+  line-height: 44rpx;
 }
 .meta-row {
   display: flex;
@@ -196,12 +196,18 @@
   align-items: center;
   justify-content: center;
 }
+.ghost-hit,
+.buy-hit {
+  height: var(--hit);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
 .ghost {
   width: 220rpx;
   height: 76rpx;
   flex: none;
   box-sizing: border-box;
-  margin-left: 0;
   border: 2rpx solid #4C41FF;
   border-radius: 38rpx;
   color: #4C41FF;
@@ -212,12 +218,12 @@
   justify-content: center;
   background: #ffffff;
 }
+.buy-hit { margin-left: 20rpx; }
 .buy {
   position: relative;
   width: 200rpx;
   height: 76rpx;
   flex: none;
-  margin-left: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;

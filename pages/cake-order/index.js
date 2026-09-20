@@ -22,6 +22,8 @@ Page({
     price: '198.00',
     pointsNeed: '2269.58',
     pointsText: '7652.00',
+    pointsBalance: 7652,
+    payDisabled: false,
     fee: '0'
   },
 
@@ -40,7 +42,8 @@ Page({
         shop: draft.shop || '元祖蛋糕'
       },
       price: price.toFixed(2),
-      pointsNeed: pointsOf(price)
+      pointsNeed: pointsOf(price),
+      payDisabled: false
     })
     this.refreshAddress()
     this.refreshStore()
@@ -105,10 +108,24 @@ Page({
   },
 
   setPay(e) {
-    this.setData({ payType: e.currentTarget.dataset.t })
+    const payType = e.currentTarget.dataset.t
+    const need = Number(this.data.pointsNeed)
+    const have = Number(this.data.pointsBalance)
+    this.setData({
+      payType,
+      payDisabled: payType === 'points' && have < need
+    })
   },
 
   submit() {
+    if (this.data.payType === 'points') {
+      const need = Number(this.data.pointsNeed)
+      const have = Number(this.data.pointsBalance)
+      if (have < need) {
+        wx.showToast({ title: '积分不足，还差' + (need - have).toFixed(2), icon: 'none' })
+        return
+      }
+    }
     if (this.data.ship === 'pickup' && !(this.data.store && this.data.store.name)) {
       wx.showToast({ title: '请选择自取门店', icon: 'none' })
       return

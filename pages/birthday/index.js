@@ -10,7 +10,8 @@ Page({
     brands: [],
     tabs: [],
     tabId: 'rec',
-    products: []
+    products: [],
+    loaded: false
   },
 
   onLoad() {
@@ -21,13 +22,20 @@ Page({
   load() {
     // TODO: 接口联调 getBirthdayHome
     api.getBirthdayHome().then((data) => {
+      this._products = data.products || []
+      const tabId = this.data.tabId
       this.setData({
+        loaded: true,
         cats: data.cats || [],
         brands: data.brands || [],
         tabs: data.tabs || [],
-        products: data.products || []
+        products: this.productsOf(tabId)
       })
     })
+  },
+
+  productsOf(tabId) {
+    return (this._products || []).filter((p) => (p.tab || 'rec') === tabId)
   },
 
   goCity() {
@@ -61,7 +69,8 @@ Page({
   },
 
   onTab(e) {
-    this.setData({ tabId: e.currentTarget.dataset.id })
+    const tabId = e.currentTarget.dataset.id
+    this.setData({ tabId, products: this.productsOf(tabId) })
   },
 
   goDetail(e) {

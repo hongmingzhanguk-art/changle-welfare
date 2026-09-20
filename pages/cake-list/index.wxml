@@ -35,7 +35,7 @@
     <view class="pill {{delivery === 'nextDay' ? 'on' : ''}}" data-d="nextDay" bindtap="onDelivery">次日达</view>
   </view>
 
-  <view class="grid deco-front">
+  <view class="grid deco-front" wx:if="{{list.length}}">
     <view class="p-card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
       <image class="p-img" src="{{item.image}}" mode="aspectFill"></image>
       <view class="p-body">
@@ -49,5 +49,9 @@
         </view>
       </view>
     </view>
+  </view>
+  <view class="list-empty deco-front" wx:elif="{{loaded}}">
+    <text class="list-empty-t">暂无相关商品</text>
+    <text class="list-empty-s">换个分类或配送方式试试</text>
   </view>
 </view>

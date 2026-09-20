@@ -27,7 +27,7 @@
 .who {
   font-size: 32rpx;
   color: #1A1A1A;
-  line-height: 32rpx;
+  line-height: 44rpx;
 }
 .full {
   margin-top: 12rpx;
@@ -149,7 +149,7 @@
   padding: 8rpx 24rpx 16rpx;
   font-size: 32rpx;
   color: #000000;
-  line-height: 32rpx;
+  line-height: 44rpx;
 }
 .pay { padding: 8rpx 24rpx 16rpx; }
 .pay-item {
@@ -205,10 +205,16 @@
   color: #EB0000;
   font-size: 32rpx;
   font-weight: 500;
-  line-height: 32rpx;
+  line-height: 44rpx;
 }
 .sum-price .yen { font-size: 24rpx; }
 .unit { font-size: 24rpx; color: #7A7F8D; }
+.pay-hit {
+  height: var(--hit);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
 .pay-btn {
   width: 200rpx;
   height: 76rpx;
@@ -221,4 +227,5 @@
   align-items: center;
   justify-content: center;
 }
+.pay-btn.is-off { opacity: 0.45; }
 .btn-on { opacity: 0.88; }
